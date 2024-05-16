@@ -1,0 +1,15 @@
+{
+  "name": "2d-phaser-game",
+  "version": "1.0.0",
+  "description": "A 2D Tycoon",
+  "main": "main.js",
+  "scripts": {
+    "start": "tsc && electron ."
+  },
+  "author": "Alvin Hansen",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^30.0.6",
+    "typescript": "^5.4.5"
+  }
+}
