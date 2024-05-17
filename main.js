@@ -1,15 +1,38 @@
-const w = require("./dist/window")
+const { app, BrowserWindow } = require("electron")
+const { Application } = require("./dist/window")
 
 
 
-console.log("Start")
-
-const win = new w.Window()
-
-
-// DEBUG
-console.log("listening for event...")
-win.eventHandler.on("start", (data) => console.log(data))
+/**
+ * Base Application Instance
+ */
+let application
 
 
-win.eventHandler.emit("start", "Hello World")
+
+// App Start
+app.whenReady().then(() => {
+    console.log("Starting...")
+
+    // Creates Window
+    application = new Application()
+
+    // Activate Event
+    app.on('activate', () => {
+        if (BrowserWindow.getAllWindows().length === 0) {
+            console.log("[ No Window was created ] :: Creates Window")
+
+            // Creating window
+            application = new Application()
+        }
+    })
+})
+
+// Window Close Event
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        console.log("Stoping...")
+
+        app.quit() // Exits app
+    }
+})
