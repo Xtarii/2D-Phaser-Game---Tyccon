@@ -16,7 +16,7 @@ export const route = express.Router()
 
 
 // Routes
-route.get("/", (req, res) => res.render("index")) // Main
+route.get("/", (req, res) => res.render("index", {title: "Home"})) // Main
 
 
 
