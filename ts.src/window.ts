@@ -1,5 +1,5 @@
 import { BrowserWindow } from "electron"
-import { Emitter, EventEmitter } from "./event"
+import { Emitter, EventEmitter } from "./event/event"
 
 
 
