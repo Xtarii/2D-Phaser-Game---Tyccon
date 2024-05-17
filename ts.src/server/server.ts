@@ -3,6 +3,7 @@
  */
 import express from 'express'
 import { Emitter, EventMap } from '../event/event'
+import { route } from './routes/home'
 
 
 
@@ -42,7 +43,7 @@ export class Server<T extends EventMap> {
 
 
         // Routes
-        // this.server.use("/", route) // Home Route
+        this.server.use("/", route) // Home Route
 
 
         // Starts Server

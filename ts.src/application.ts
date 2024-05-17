@@ -1,3 +1,7 @@
+/**
+ * Base Application
+ */
+
 import { BrowserWindow } from "electron"
 import { Emitter, EventEmitter, EventMap } from "./event/event"
 import { Server } from "./server/server"
@@ -27,7 +31,7 @@ export class Application {
     /**
      * Application Server
      */
-    public server: Server<EventMap>
+    static server: Server<EventMap>
 
 
 
@@ -48,12 +52,13 @@ export class Application {
                 contextIsolation: false
             },
         })
-        // this.window.removeMenu()           // Debug Menu Removal
+        // this.window.removeMenu()                     // Debug Menu Removal
 
-        this.events = new EventEmitter()      // Creates Event Handler
-        this.server = new Server(this.events) // Creates Server Instace
+        this.events = new EventEmitter()                // Creates Event Handler
+        Application.server = new Server(this.events)    // Creates Server Instace
 
 
         // Window Setup
+        this.window.loadURL(`http://localhost:${Application.server.PORT}/`) // Loads Home Page
     }
 }

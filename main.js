@@ -1,5 +1,5 @@
 const { app, BrowserWindow } = require("electron")
-const { Application } = require("./dist/window")
+const { Application } = require("./dist/application")
 
 
 
