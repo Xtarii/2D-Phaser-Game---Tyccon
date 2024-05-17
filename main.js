@@ -31,8 +31,7 @@ app.whenReady().then(() => {
 // Window Close Event
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
-        console.log("Stoping...")
-
+        console.log("Stoping...") // DEBUG
         app.quit() // Exits app
     }
 })

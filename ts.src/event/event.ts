@@ -1,7 +1,7 @@
 /**
  * Event Map
  */
-type EventMap = Record<string, any>
+export type EventMap = Record<string, any>
 
 /**
  * Event Key

@@ -1,5 +1,6 @@
 import { BrowserWindow } from "electron"
-import { Emitter, EventEmitter } from "./event/event"
+import { Emitter, EventEmitter, EventMap } from "./event/event"
+import { Server } from "./server/server"
 
 
 
@@ -23,6 +24,10 @@ export class Application {
      * Application Window Instance
      */
     public window: BrowserWindow
+    /**
+     * Application Server
+     */
+    public server: Server<EventMap>
 
 
 
@@ -43,7 +48,12 @@ export class Application {
                 contextIsolation: false
             },
         })
-        // this.window.removeMenu() // Debug Menu Removal
-        this.events = new EventEmitter() // Creates Event Handler
+        // this.window.removeMenu()           // Debug Menu Removal
+
+        this.events = new EventEmitter()      // Creates Event Handler
+        this.server = new Server(this.events) // Creates Server Instace
+
+
+        // Window Setup
     }
 }
