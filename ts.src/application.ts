@@ -4,7 +4,8 @@
 
 import { BrowserWindow } from "electron"
 import { Emitter, EventEmitter, EventMap } from "./event/event"
-import { Server } from "./server/server"
+import { ApplicationHost } from "./server/applicationHost"
+import { Server } from "./server/networking/server"
 
 
 
@@ -29,7 +30,18 @@ export class Application {
      */
     public window: BrowserWindow
     /**
-     * Application Server
+     * Application Host Server
+     *
+     * Express Server for Page render
+     * - Note: Server is Client Connections
+     */
+    static host: ApplicationHost<EventMap>
+    /**
+     * Game Server
+     *
+     * Handles Clients
+     * - Note: Game Server is not the same as {@link host},
+     * {@link server} is the networking backbone of the game
      */
     static server: Server<EventMap>
 
@@ -52,13 +64,14 @@ export class Application {
                 contextIsolation: false
             },
         })
-        // this.window.removeMenu()                     // Debug Menu Removal
+        // this.window.removeMenu()                            // Debug Menu Removal
 
-        this.events = new EventEmitter()                // Creates Event Handler
-        Application.server = new Server(this.events)    // Creates Server Instace
+        this.events = new EventEmitter()                       // Creates Event Handler
+        Application.host = new ApplicationHost(this.events)    // Creates Host Server Instance
+        Application.server = new Server(this.events)           // Creates Game Server Instance
 
 
         // Window Setup
-        this.window.loadURL(`http://localhost:${Application.server.PORT}/`) // Loads Home Page
+        this.window.loadURL(`http://localhost:${Application.host.PORT}/`) // Loads Home Page
     }
 }

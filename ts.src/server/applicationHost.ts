@@ -10,7 +10,7 @@ import { route } from './routes/home'
 /**
  * Server Instance
  */
-export class Server<T extends EventMap> {
+export class ApplicationHost<T extends EventMap> {
     /**
      * Server Port
      */
