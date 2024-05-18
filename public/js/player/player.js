@@ -1,13 +1,11 @@
 /**
  * Local Player Instance
  */
-class Player {
+export class Player {
     /**
      * Creates Player Instance
      */
-    constructor(){}
+    constructor(){
+        console.log("Player Instance")
+    }
 }
-
-
-
-module.exports = { Player }

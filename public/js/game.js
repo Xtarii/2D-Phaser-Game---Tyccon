@@ -8,6 +8,11 @@ const Phaser = require("phaser")
 
 
 
+import { Player } from "./player/player.js"
+const player = new Player()
+
+
+
 class Example extends Phaser.Scene
 {
     preload ()
