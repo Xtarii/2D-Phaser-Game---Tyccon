@@ -11,8 +11,8 @@ Simple Multiplayer 2D Game
 
 
 
-OBS
-~~~
+**OBS**
+-------
 ```js
 /// Node Packet Import on Frontend ( User Page )
 const foo = require("foo")
