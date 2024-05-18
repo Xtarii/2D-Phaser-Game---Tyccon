@@ -32,7 +32,7 @@ class Example extends Phaser.Scene
         const logo = this.physics.add.image(400, 100, 'logo');
 
         logo.setVelocity(100, 200);
-        logo.setBounce(1, 1);
+        logo.setBounce(0.8, 0.8);
         logo.setCollideWorldBounds(true);
 
         particles.startFollow(logo);
