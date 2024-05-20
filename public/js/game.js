@@ -8,8 +8,7 @@ const Phaser = require("phaser")
 
 
 
-import { Player } from "./player/player.js"
-const player = new Player()
+import { Hotel } from "./world/scenes/hotel.js"
 
 
 
@@ -70,10 +69,15 @@ const config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
-    scene: Example,
+    scene: Hotel,
     physics: {
         default: 'arcade',
     }
 };
 
-const game = new Phaser.Game(config);
+/**
+ * Hotel Tycoon Game
+ *
+ * Game Instance and Tools
+ */
+export const game = new Phaser.Game(config);
