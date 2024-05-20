@@ -21,7 +21,13 @@ export class Game extends Phaser.Game {
      *
      * The Size all sprites **SHOULD** use
      */
-    static spriteSize = 64
+    static spriteSize = 32
+    /**
+     * Sprite Scale
+     *
+     * The scale all sprites **SHOULD** be set to
+     */
+    static size = 2
 
 
 
