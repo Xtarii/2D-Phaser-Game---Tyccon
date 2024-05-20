@@ -6,7 +6,7 @@
  */
 const Phaser = require("phaser")
 
-import { Hotel } from "./world/scenes/hotel.js"
+import { Hotel } from "./world/scenes/buildings/hotel.js"
 
 
 
