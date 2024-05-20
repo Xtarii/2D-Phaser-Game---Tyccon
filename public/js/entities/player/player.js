@@ -17,10 +17,20 @@ export class Player extends Entity {
 
 
         this.setCollideWorldBounds(true)
+
+
+        this.keys = this.scene.input.keyboard.addKeys("W,S,A,D")
     }
 
 
 
     update(){
+        this.setVelocity(0, 0)
+
+        if(this.keys.W.isDown) this.setVelocityY(-this.speed)
+        if(this.keys.S.isDown) this.setVelocityY(this.speed)
+
+        if(this.keys.A.isDown) this.setVelocityX(-this.speed)
+        if(this.keys.D.isDown) this.setVelocityX(this.speed)
     }
 }

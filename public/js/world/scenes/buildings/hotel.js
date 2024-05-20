@@ -12,6 +12,9 @@ export class Hotel extends BaseScene {
 
     create(){
         this.player = new Player()
+
+
+        this.cameras.main.startFollow(this.player, true, 0.1, 0.1) // Camera Follow Player with small Delay
     }
 
     update(){
