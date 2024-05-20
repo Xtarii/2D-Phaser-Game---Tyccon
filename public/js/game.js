@@ -72,6 +72,11 @@ const config = {
     scene: Hotel,
     physics: {
         default: 'arcade',
+
+        // DEBUG
+        arcade: {
+            debug: true
+        }
     }
 };
 
