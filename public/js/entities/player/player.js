@@ -1,4 +1,4 @@
-import { game } from "../../game.js"
+import { Game, game } from "../../game.js"
 import { Entity } from "../entity.js"
 
 
@@ -12,6 +12,8 @@ export class Player extends Entity {
      */
     constructor(){
         super(game.scene.scenes[0], 100, 100, "player")
+        this.scale = Game.size // Sprite Size
+
         this.scene.add.existing(this)
         this.scene.physics.add.existing(this)
 
