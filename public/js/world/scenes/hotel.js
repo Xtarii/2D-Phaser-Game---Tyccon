@@ -1,4 +1,4 @@
-import { Player } from "../../player/player.js"
+import { Player } from "../../entities/player/player.js"
 import { BaseScene } from "./scenes.js"
 
 const Phaser = require("phaser")
