@@ -1,4 +1,4 @@
-import { Game, game } from "../../game.js"
+import { game } from "../../game.js"
 import { Entity } from "../entity.js"
 
 
@@ -26,8 +26,8 @@ export class Player extends Entity {
 
 
     update(){
-        this.setVelocityX(this.body.velocity.x * this.dampSpeed);
-        this.setVelocityY(this.body.velocity.y * this.dampSpeed);
+        this.setVelocityX(this.body.velocity.x * this.dampSpeed)
+        this.setVelocityY(this.body.velocity.y * this.dampSpeed)
 
         if(this.keys.W.isDown) this.setVelocityY(-this.speed)
         if(this.keys.S.isDown) this.setVelocityY(this.speed)

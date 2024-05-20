@@ -2,10 +2,11 @@ import { Player } from "../../../entities/player/player.js"
 import { Game } from "../../../game.js"
 import { BaseScene } from "../scenes.js"
 
-const Phaser = require("phaser")
 
 
-
+/**
+ * Main Hotel Scene
+ */
 export class Hotel extends BaseScene {
     preload(){
         this.load.image("player", "assets/player/player.png") // DEBUG
