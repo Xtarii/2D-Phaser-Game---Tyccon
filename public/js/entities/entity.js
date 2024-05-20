@@ -6,5 +6,5 @@ export class Entity extends Physics.Arcade.Sprite {
     /**
      * Entity Speed
      */
-    speed = 125
+    speed = 75
 }
