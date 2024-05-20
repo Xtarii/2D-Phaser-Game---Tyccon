@@ -6,65 +6,40 @@
  */
 const Phaser = require("phaser")
 
-
-
 import { Hotel } from "./world/scenes/hotel.js"
 
 
 
-class Example extends Phaser.Scene
-{
-    preload ()
-    {
-        // Preload Game Textures
+/**
+ * Hotel Tycoon Game
+ *
+ * Game Instance and Tools
+ */
+export class Game extends Phaser.Game {
+    /**
+     * Sprite Size
+     *
+     * The Size all sprites **SHOULD** use
+     */
+    static spriteSize = 64
 
 
 
-        this.load.setBaseURL('https://labs.phaser.io');
-
-        // this.load.image('sky', 'assets/skies/space3.png');
-        this.load.image('logo', 'assets/sprites/phaser3-logo.png');
-        // this.load.image('red', 'assets/particles/red.png');
-    }
-
-    create ()
-    {
-        // this.add.image(400, 300, 'sky');
-
-        // const particles = this.add.particles(0, 0, 'red', {
-        //     speed: 100,
-        //     scale: { start: 1, end: 0 },
-        //     blendMode: 'ADD'
-        // });
-
-        // const logo = this.physics.add.image(400, 100, 'logo');
-
-        // logo.setVelocity(100, 200);
-        // logo.setBounce(0.8, 0.8);
-        // logo.setCollideWorldBounds(true);
-
-        // particles.startFollow(logo);
-
-
-        this.shape = this.physics.add.image(1, 1, "logo")
-
-        // this.input.keyboard.on("keydown-D", () => this.shape.setVelocityX(100))
-        // this.input.keyboard.on("keydown-A", () => this.shape.setVelocityX(-100))
-
-        // this.input.keyboard.on("keydown-W", () => this.shape.setVelocityY(-100))
-        // this.input.keyboard.on("keydown-S", () => this.shape.setVelocityY(100))
-
-
-        this.cursors = this.input.keyboard.createCursorKeys()
-    }
-
-
-
-    update(){
-        this.shape.setVelocity(0)
+    /**
+     * Creates Game Instance
+     *
+     * @param {object} config Game Config
+     */
+    constructor(config) {
+        super(config) // Creates Game
     }
 }
 
+
+
+
+
+// Game Config
 const config = {
     type: Phaser.AUTO,
     width: 800,
@@ -78,11 +53,9 @@ const config = {
             debug: true
         }
     }
-};
+}
 
 /**
- * Hotel Tycoon Game
- *
- * Game Instance and Tools
+ * Game Instance
  */
-export const game = new Phaser.Game(config);
+export const game = new Game(config)
