@@ -22,7 +22,7 @@ export class Hotel extends BaseScene {
         this.physics.add.collider(this.player, this.floor)
 
 
-        this.cameras.main.startFollow(this.player, true, 0.1, 0.1) // Camera Follow Player with small Delay
+        this.cameras.main.startFollow(this.player, true, 0.07, 0.07) // Camera Follow Player with small Delay
         this.cameras.main.setZoom(1.75)
     }
 

@@ -26,8 +26,6 @@ export class Player extends Entity {
 
 
     update(){
-        this.setVelocity(0, 0)
-
         if(this.keys.W.isDown) this.setVelocityY(-this.speed)
         if(this.keys.S.isDown) this.setVelocityY(this.speed)
 
