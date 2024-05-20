@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsc && electron ."
   },
-  "author": "Alvin Hansen",
+  "author": "Evil, INC",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.21",
