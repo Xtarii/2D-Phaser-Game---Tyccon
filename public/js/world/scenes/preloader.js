@@ -10,10 +10,12 @@ export class Preloader extends Phaser.Scene {
 
     preload(){
         this.load.image("player", "assets/player/player.png") // DEBUG
+        // this.load.image("player", "assets/extras-add-later/Entity1-Asian-Tailand-Phakphum.png") // DEBUG
 
 
 
-        this.load.image("floor", "assets/tiles/Floor-test.png")
+        this.load.image("tileset", "assets/extras-add-later/tileset.png")
+        this.load.tilemapTiledJSON("tilemap", "assets/extras-add-later/tile-test/tilemap.json")
     }
 
 

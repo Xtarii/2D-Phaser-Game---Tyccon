@@ -17,7 +17,8 @@ export class Player extends Entity {
         this.scene.physics.add.existing(this)
 
 
-        this.setCollideWorldBounds(true)
+        // this.setCollideWorldBounds(true)
+        this.setDepth(100) // Sets Player to Front
 
 
         this.keys = this.scene.input.keyboard.addKeys("W,S,A,D")
