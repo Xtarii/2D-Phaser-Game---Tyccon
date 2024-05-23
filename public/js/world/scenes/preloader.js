@@ -9,8 +9,8 @@ export class Preloader extends Phaser.Scene {
 
 
     preload(){
-        // this.load.image("player", "assets/player/player.png") // DEBUG
-        this.load.image("player", "assets/extras-add-later/Entity1-Asian-Tailand-Phakphum.png") // DEBUG
+        this.load.image("player", "assets/player/player.png") // DEBUG
+        // this.load.image("player", "assets/extras-add-later/Entity1-Asian-Tailand-Phakphum.png") // DEBUG
 
 
 
