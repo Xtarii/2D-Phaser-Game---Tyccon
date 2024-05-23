@@ -9,6 +9,7 @@
     ],
     "fileStates": {
         "#Hotel tiles": {
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "#tileset": {
