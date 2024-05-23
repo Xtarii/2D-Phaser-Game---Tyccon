@@ -14,7 +14,7 @@ export class Preloader extends Phaser.Scene {
 
 
 
-        this.load.image("tileset", "assets/extras-add-later/tileset.png")
+        this.load.image("tileset", "assets/extras-add-later/Hotel tiles.png")
         this.load.tilemapTiledJSON("tilemap", "assets/extras-add-later/tile-test/tilemap.json")
     }
 
