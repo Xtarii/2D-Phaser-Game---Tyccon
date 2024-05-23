@@ -6,7 +6,7 @@ export class Entity extends Physics.Arcade.Sprite {
     /**
      * Entity Speed
      */
-    speed = 50
+    speed = 200
     /** 
      * Entity damp speed 
      * 
