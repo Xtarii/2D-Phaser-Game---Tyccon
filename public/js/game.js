@@ -7,6 +7,7 @@
 const Phaser = require("phaser")
 
 import { Hotel } from "./world/scenes/buildings/hotel.js"
+import { Preloader } from "./world/scenes/preloader.js"
 
 
 
@@ -44,7 +45,8 @@ const config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
-    scene: Hotel,
+    scene: [Preloader, Hotel],
+
     physics: {
         default: 'arcade',
 

@@ -11,13 +11,14 @@ export class Player extends Entity {
      * Creates Player Instance
      */
     constructor(){
-        super(game.scene.scenes[0], 100, 100, "player")
+        super(game.scene.scenes[1], 100, 100, "player")
 
         this.scene.add.existing(this)
         this.scene.physics.add.existing(this)
 
 
-        this.setCollideWorldBounds(true)
+        // this.setCollideWorldBounds(true)
+        this.setDepth(100) // Sets Player to Front
 
 
         this.keys = this.scene.input.keyboard.addKeys("W,S,A,D")
