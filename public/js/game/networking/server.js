@@ -8,6 +8,8 @@ const Socket = require("socket.io-client")
 export class Server {
     /**
      * Socket Connection
+     *
+     * @type {Socket.Socket}
      */
     socket
 
