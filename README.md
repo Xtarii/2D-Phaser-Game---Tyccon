@@ -7,6 +7,7 @@ Simple Multiplayer 2D Game
 2D Hotel Manager,
 - 2D Top Down
 - Pixel Art
+- 64 and 32 pixels ( Must use the same design style )
 
 
 
