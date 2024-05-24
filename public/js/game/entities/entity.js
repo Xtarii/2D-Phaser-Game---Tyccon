@@ -12,5 +12,5 @@ export class Entity extends Physics.Arcade.Sprite {
      *
      * Damping Entity speed, to deley abropt stop
     */
-    dampSpeed = 0.9
+    dampSpeed = 0.7
 }
