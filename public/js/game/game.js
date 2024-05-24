@@ -6,6 +6,7 @@
  */
 const Phaser = require("phaser")
 
+import { Server } from "./networking/server.js"
 import { Hotel } from "./world/scenes/buildings/hotel.js"
 import { Preloader } from "./world/scenes/preloader.js"
 
@@ -25,6 +26,16 @@ export class Game extends Phaser.Game {
      * but 64x64 pixels is the base.
      */
     static size = 64
+    /**
+     * Game Server Instance
+     *
+     * Handles Online Part of the Game.
+     * Connections, Positions and buildings
+     * data is handles by this instance
+     *
+     * @type {Server}
+     */
+    static server
 
 
 
@@ -35,6 +46,7 @@ export class Game extends Phaser.Game {
      */
     constructor(config) {
         super(config) // Creates Game
+        Game.server = new Server() // Creates Server
     }
 }
 
