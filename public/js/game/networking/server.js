@@ -1,4 +1,5 @@
 const Socket = require("socket.io-client")
+import { game } from "../game.js"
 
 
 
@@ -19,13 +20,15 @@ export class Server {
      * Creates Game Server instance
      */
     constructor(){
-        const game = localStorage.getItem("game")
-        if(game === "null") game = "localhost:8080"
-
-        this.socket = Socket.io(game) // Connects to Socket Server
-
+        const host = localStorage.getItem("host")
+        if(host === null || host === "null") this.socket = Socket.io() // Connects to Local Socket Server
+        else this.socket = Socket.io(host) // Connects to Socket Server
 
 
-        this.socket.on("joined", (id) => console.log(id))
+
+        // Adds Player
+        this.socket.on("joined", (id) => {
+            game.scene.getScene("hotel").add.image(50, 50, "player")
+        })
     }
 }

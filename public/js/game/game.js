@@ -73,5 +73,7 @@ const config = {
 
 /**
  * Game Instance
+ *
+ * @type {Game}
  */
 export const game = new Game(config)
