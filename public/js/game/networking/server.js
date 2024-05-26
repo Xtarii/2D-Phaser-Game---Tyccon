@@ -28,7 +28,7 @@ export class Server {
 
         // Adds Player
         this.socket.on("joined", (id) => {
-            game.scene.getScene("hotel").add.image(50, 50, "player")
+            game.scene.getScene("main").add.image(50, 50, "player")
         })
     }
 }

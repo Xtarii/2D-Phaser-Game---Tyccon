@@ -1,16 +1,15 @@
-import { Player } from "../../../entities/player/player.js"
-import { Game } from "../../../game.js"
+import { Player } from "../../entities/player/player.js"
 
 const Phaser = require("phaser")
 
 
 
 /**
- * Main Hotel Scene
+ * Main Scene
  */
-export class Hotel extends Phaser.Scene {
+export class MainScene extends Phaser.Scene {
     constructor(){
-        super("hotel") // Sets Scene Name
+        super("main") // Sets Scene Name
     }
 
 

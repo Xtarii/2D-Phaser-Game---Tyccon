@@ -11,7 +11,7 @@ export class Player extends Entity {
      * Creates Player Instance
      */
     constructor(){
-        super(game.scene.scenes[1], 100, 100, "player")
+        super(game.scene.getScene("main"), 100, 100, "player")
 
         this.scene.add.existing(this)
         this.scene.physics.add.existing(this)

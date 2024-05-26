@@ -21,6 +21,6 @@ export class Preloader extends Phaser.Scene {
 
 
     create(){
-        this.scene.start("hotel") // Loads Next Scene
+        this.scene.start("main") // Loads Next Scene
     }
 }
