@@ -35,7 +35,7 @@ export class Hotel extends Phaser.Scene {
 
 
         this.cameras.main.startFollow(this.player, true, 0.07, 0.07) // Camera Follow Player with small Delay
-        this.cameras.main.setZoom(1.75)
+        this.cameras.main.setZoom(1.7)
     }
 
     update(){
