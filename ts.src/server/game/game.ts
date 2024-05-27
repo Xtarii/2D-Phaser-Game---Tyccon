@@ -90,6 +90,18 @@ export class ServerSocket {
 
 
 
+            // Test Update
+            socket.on("update client", pos => {
+                this.clients[socket.id].position.x = pos.x
+                this.clients[socket.id].position.y = pos.y
+
+                // Send Back Updated Client Data
+                socket.broadcast.emit("update client", this.clients[socket.id].position)
+            })
+
+
+
+
             // Client Disconnection
             socket.on("disconnect", reason => {
                 console.log(`[ Server ] : ${socket.id} left the Server --> [ ${reason} ]`)

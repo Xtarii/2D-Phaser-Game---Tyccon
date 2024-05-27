@@ -26,11 +26,13 @@ export class Server {
 
         // Local Player Connected to Server
         this.socket.on("connect", () => {
+            // Local Client Data
             this.socket.emit("prespawn playerData", {
                 x:10,
                 y:10
             })
 
+            // Spawns Clients
             this.socket.on("spawn clients", (data) =>  {
                 for (let i in data) {
                     game.scene.getScene("main").add.image(data[i].position.x, data[i].position.y, "phak")
