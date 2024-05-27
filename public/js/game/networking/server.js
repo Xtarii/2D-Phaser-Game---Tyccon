@@ -1,4 +1,6 @@
 const Socket = require("socket.io-client")
+import { game } from "../game.js"
+
 
 
 /**
@@ -29,7 +31,11 @@ export class Server {
                 y:10
             })
 
-            this.socket.on("spawn clients", (data) => console.log (data))
+            this.socket.on("spawn clients", (data) =>  {
+                for (let i in data) {
+                    game.scene.getScene("main").add.image(data[i].position.x, data[i].position.y, "phak")
+                }
+            })
         })
     }
 }
