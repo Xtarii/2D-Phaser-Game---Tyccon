@@ -84,7 +84,7 @@ export class ServerSocket {
 
 
                 // Sends Clients to Socket Client
-                socket.emit("spawn clients", this.clients[socket.id])
+                socket.emit("spawn clients", this.clients)
             })
 
 
