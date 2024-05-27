@@ -1,6 +1,4 @@
 const Socket = require("socket.io-client")
-import { game } from "../game.js"
-
 
 
 /**
@@ -24,9 +22,14 @@ export class Server {
         if(host === null || host === "null") this.socket = Socket.io() // Connects to Local Socket Server
         else this.socket = Socket.io(host) // Connects to Socket Server
 
-
         // Local Player Connected to Server
         this.socket.on("connect", () => {
+            this.socket.emit("prespawn playerData", {
+                x:10,
+                y:10
+            })
+
+            this.socket.on("spawn clients", (data) => console.log (data))
         })
     }
 }
