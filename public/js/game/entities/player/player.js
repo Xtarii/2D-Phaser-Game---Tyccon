@@ -1,4 +1,4 @@
-import { game } from "../../game.js"
+import {Game, game } from "../../game.js"
 import { Entity } from "../entity.js"
 
 
@@ -35,6 +35,8 @@ export class Player extends Entity {
 
 
     update(){
+        var x = this.x, y = this.y
+
         this.setVelocityX(this.body.velocity.x * this.dampSpeed)
         this.setVelocityY(this.body.velocity.y * this.dampSpeed)
 
@@ -43,5 +45,7 @@ export class Player extends Entity {
 
         if(this.keys.A.isDown) this.setVelocityX(-this.speed)
         if(this.keys.D.isDown) this.setVelocityX(this.speed)
+
+        if( x !== this.x || y !== this.y)Game.server.socket.emit("update client", {x: this.x, y: this.y})
     }
 }
