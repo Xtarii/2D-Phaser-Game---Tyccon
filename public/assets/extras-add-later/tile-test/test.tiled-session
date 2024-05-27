@@ -8,6 +8,10 @@
         "."
     ],
     "fileStates": {
+        "#Hotel tiles": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "#tileset": {
             "scaleInDock": 1,
             "scaleInEditor": 1
@@ -32,6 +36,7 @@
     "openFiles": [
     ],
     "project": "test.tiled-project",
+    "property.type": "bool",
     "recentFiles": [
         "tilemap.json"
     ],

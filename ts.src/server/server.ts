@@ -4,6 +4,7 @@
 import express from 'express'
 import { Emitter, EventMap } from '../event/event'
 import { route } from './routes/home'
+import { ServerSocket } from './game/game'
 
 
 
@@ -23,6 +24,13 @@ export class Server<T extends EventMap> {
      * Application Event System
      */
     private events: Emitter<T>
+    /**
+     * Game Server Socket Instance
+     *
+     * Handels Game Backend data like player connections and
+     * world build updates.
+     */
+    private ioServer: ServerSocket
 
 
 
@@ -36,6 +44,7 @@ export class Server<T extends EventMap> {
         this.server = express() // Creates Server
         this.events = events    // Application Event System
 
+
         // Server Config
         this.server.set('view engine', 'pug')
         this.server.use(express.urlencoded({ extended: true }))
@@ -47,8 +56,9 @@ export class Server<T extends EventMap> {
 
 
         // Starts Server
-        this.server.listen(this.PORT, () => {
+        const socketEntry = this.server.listen(this.PORT, () => {
             console.log(`Starting Server ${this.PORT}...`) // DEBUG
         })
+        this.ioServer = new ServerSocket(socketEntry) // Socket Server ( Game Backend )
     }
 }

@@ -1,4 +1,4 @@
-import { game } from "../../game.js"
+import {Game, game } from "../../game.js"
 import { Entity } from "../entity.js"
 
 
@@ -7,14 +7,27 @@ import { Entity } from "../entity.js"
  * Local Player Instance
  */
 export class Player extends Entity {
+    xPos = 100
+    yPos = 100
+
+
+
     /**
      * Creates Player Instance
      */
     constructor(){
-        super(game.scene.scenes[1], 100, 100, "player")
+        super(game.scene.getScene("main"), 100, 100, "player")
 
         this.scene.add.existing(this)
         this.scene.physics.add.existing(this)
+
+        // Collider Size
+        const size = this.getBounds()
+        const x = size.width / 3
+        const y = size.height / 2
+
+        this.body.setSize((size.width - x), (size.height - y))
+        this.body.setOffset(x / 2, y)
 
 
         // this.setCollideWorldBounds(true)
@@ -35,5 +48,11 @@ export class Player extends Entity {
 
         if(this.keys.A.isDown) this.setVelocityX(-this.speed)
         if(this.keys.D.isDown) this.setVelocityX(this.speed)
+
+        if(this.xPos !== this.x || this.yPos !== this.y) {
+            Game.server.socket.emit("update client", {x: this.x, y: this.y})
+            this.xPos = this.x
+            this.yPos = this.y
+        }
     }
 }

@@ -6,7 +6,8 @@
  */
 const Phaser = require("phaser")
 
-import { Hotel } from "./world/scenes/buildings/hotel.js"
+import { Server } from "./networking/server.js"
+import { MainScene } from "./world/scenes/mainScene.js"
 import { Preloader } from "./world/scenes/preloader.js"
 
 
@@ -20,9 +21,21 @@ export class Game extends Phaser.Game {
     /**
      * Sprite Size
      *
-     * The Size all sprites **SHOULD** use
+     * Sprites and Tiles Base Size,
+     * sprites can use other sizes,
+     * but 64x64 pixels is the base.
      */
-    static spriteSize = 32
+    static size = 64
+    /**
+     * Game Server Instance
+     *
+     * Handles Online Part of the Game.
+     * Connections, Positions and buildings
+     * data is handles by this instance
+     *
+     * @type {Server}
+     */
+    static server
 
 
 
@@ -33,6 +46,7 @@ export class Game extends Phaser.Game {
      */
     constructor(config) {
         super(config) // Creates Game
+        Game.server = new Server() // Creates Server
     }
 }
 
@@ -45,7 +59,7 @@ const config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
-    scene: [Preloader, Hotel],
+    scene: [Preloader, MainScene],
 
     physics: {
         default: 'arcade',
@@ -59,5 +73,7 @@ const config = {
 
 /**
  * Game Instance
+ *
+ * @type {Game}
  */
 export const game = new Game(config)
