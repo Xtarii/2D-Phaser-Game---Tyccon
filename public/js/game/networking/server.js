@@ -25,10 +25,8 @@ export class Server {
         else this.socket = Socket.io(host) // Connects to Socket Server
 
 
-
-        // Adds Player
-        this.socket.on("joined", (id) => {
-            game.scene.getScene("main").add.image(50, 50, "player")
+        // Local Player Connected to Server
+        this.socket.on("connect", () => {
         })
     }
 }
