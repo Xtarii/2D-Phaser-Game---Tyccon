@@ -16,6 +16,14 @@ export class Player extends Entity {
         this.scene.add.existing(this)
         this.scene.physics.add.existing(this)
 
+        // Collider Size
+        const size = this.getBounds()
+        const x = size.width / 3
+        const y = size.height / 2
+
+        this.body.setSize((size.width - x), (size.height - y))
+        this.body.setOffset(x / 2, y)
+
 
         // this.setCollideWorldBounds(true)
         this.setDepth(100) // Sets Player to Front
