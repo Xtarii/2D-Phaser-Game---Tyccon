@@ -39,7 +39,7 @@ export class Server {
                         game.scene.getScene("main").add.image(data[i].position.x, data[i].position.y, "player")
                 }
             })
-            this.socket.on("update clients", (position) => console.log ("client position: ", position))
+            this.socket.on("update client", (position) => console.log ("client position: ", position))
         })
     }
 }
