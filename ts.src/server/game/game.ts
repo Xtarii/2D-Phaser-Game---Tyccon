@@ -96,7 +96,7 @@ export class ServerSocket {
                 this.clients[socket.id].position.y = pos.y
 
                 // Send Back Updated Client Data
-                socket.broadcast.emit("update client", this.clients[socket.id].position)
+                socket.broadcast.emit("update client", this.clients[socket.id])
             })
 
 
@@ -108,6 +108,7 @@ export class ServerSocket {
 
                 // Client Disconnection
                 delete this.clients[socket.id]
+                socket.broadcast.emit("despawn client", socket.id)
             })
         })
     }
