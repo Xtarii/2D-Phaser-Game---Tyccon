@@ -21,6 +21,17 @@ interface Client {
     }
 }
 
+interface PlayerData {
+    /**
+     * Player X Position
+     */
+    x: number
+    /**
+     * Player Y Position
+     */
+    y: number
+}
+
 
 
 
@@ -58,17 +69,24 @@ export class ServerSocket {
         this.server.on("connection", socket => {
             console.log(`[ Server ] : ${socket.id} connected to the server`) // DEBUG
 
-            // Adds Client to Client List
-            this.clients[socket.id] = {
-                id: socket.id,
 
-                position: {
-                    x: 10,
-                    y: 10
+            // Gets Client Data
+            socket.on("prespawn playerData", (data: PlayerData) => {
+                // Adds Client to Client List
+                this.clients[socket.id] = {
+                    id: socket.id,
+
+                    position: {
+                        x: data.x,
+                        y: data.y
+                    }
                 }
-            }
 
-            socket.broadcast.emit("joined", socket.id) // Sends Socket to all other players
+
+                // Sends Clients to Socket Client
+                socket.emit("spawn clients", this.clients[socket.id])
+            })
+
 
 
 
