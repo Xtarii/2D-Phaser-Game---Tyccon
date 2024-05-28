@@ -1,4 +1,3 @@
-const Socket = require("socket.io-client")
 import { game } from "../game.js"
 import { MainScene } from "../world/scenes/mainScene.js"
 
