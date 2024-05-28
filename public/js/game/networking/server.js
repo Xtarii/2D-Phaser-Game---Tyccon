@@ -55,6 +55,15 @@ export class Server {
                     }
                 }
             })
+            this.socket.on("spawn client", (data) => {
+                // Adds Client to scene
+                const obj = game.scene.getScene("main").add.image(
+                    data.position.x, data.position.y, "player")
+                
+                this.clients[data.id] = {
+                    body: obj
+                }
+            })
 
 
             // Client Update
