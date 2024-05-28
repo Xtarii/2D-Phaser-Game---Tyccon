@@ -35,6 +35,12 @@ export class Server {
 
 
 
+        const room = this.socket.joinOrCreate("main", {x: 10, y: 10}).then(() => {
+            console.log("Connected to UDP Server")
+        })
+
+
+
         // // Spawns Clients
         // this.socket.on("spawn clients", (data) =>  {
         //     for (let i in data) {

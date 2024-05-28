@@ -45,3 +45,13 @@ When Code don't start, run
 ```bash
 npm install
 ```
+
+
+
+### Connection
+```bash
+ws://<ip>:<port>
+
+# Example
+ws://192.168.0.1:8080
+```
