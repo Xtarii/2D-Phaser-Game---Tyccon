@@ -1,34 +1,18 @@
-import Colyseus from 'colyseus'
+import { Room, Client, ClientArray } from "colyseus"
+import { Schema } from "@colyseus/schema"
 
 
 
 /**
- * Client Interface
+ * Player Object
  */
-interface Client {
-    /**
-     * Client ID
-     */
-    id: string
-
-    /**
-     * Client Position
-     */
-    position : {
-        x: number
-        y: number
-    }
+class Player extends Schema {
+    x: number = 0
+    y: number = 0
 }
 
-interface PlayerData {
-    /**
-     * Player X Position
-     */
-    x: number
-    /**
-     * Player Y Position
-     */
-    y: number
+class State extends Schema {
+    players = new Map<string, Player>()
 }
 
 
@@ -41,20 +25,24 @@ interface PlayerData {
  * Handels Game Backend data like player connections and
  * world build updates.
  */
-export class ServerSocket extends Colyseus.Room {
+export class ServerSocket extends Room<State> {
     onCreate(options: any): void | Promise<any> {
-        this.setState({ players: {} })
+        this.setState(new State())
     }
 
-    onJoin(client: Colyseus.Client<this['clients'] extends Colyseus.ClientArray<infer U, any> ? U : never, this['clients'] extends Colyseus.ClientArray<infer _, infer U> ? U : never>, options?: any, auth?: (this['clients'] extends Colyseus.ClientArray<infer _, infer U> ? U : never) | undefined): void | Promise<any> {
+    onJoin(client: Client<this['clients'] extends ClientArray<infer U, any> ? U : never, this['clients'] extends ClientArray<infer _, infer U> ? U : never>, options?: any, auth?: (this['clients'] extends ClientArray<infer _, infer U> ? U : never) | undefined): void | Promise<any> {
         // Adds Player
         console.log(options)
-        this.state.players[client.sessionId] = { x: options.x, y: options.y }
+
+        const player = new Player()
+        player.x = options.x || 0
+        player.y = options.y || 0
+        this.state.players.set(client.sessionId, player)
     }
 
-    onLeave(client: Colyseus.Client<this['clients'] extends Colyseus.ClientArray<infer U, any> ? U : never, this['clients'] extends Colyseus.ClientArray<infer _, infer U> ? U : never>, consented?: boolean | undefined): void | Promise<any> {
+    onLeave(client: Client<this['clients'] extends ClientArray<infer U, any> ? U : never, this['clients'] extends ClientArray<infer _, infer U> ? U : never>, consented?: boolean | undefined): void | Promise<any> {
         // Removes Player
-        delete this.state.players[client.sessionId]
+        this.state.players.delete(client.sessionId)
     }
 
     onMessage(client: any, message: any){

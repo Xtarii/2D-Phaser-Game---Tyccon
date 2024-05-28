@@ -62,15 +62,15 @@ export class Player extends Entity {
 
 
         // Connection to Server
-        Game.server.socket.on("connect", () => {
-            console.log("Connection...") // DEBUG
+        // Game.server.socket.on("connect", () => {
+        //     console.log("Connection...") // DEBUG
 
-            // Local Client Data
-            Game.server.socket.emit("prespawn clientData", {
-                x: MainScene.player.x,
-                y: MainScene.player.y
-            })
-        })
+        //     // Local Client Data
+        //     Game.server.socket.emit("prespawn clientData", {
+        //         x: MainScene.player.x,
+        //         y: MainScene.player.y
+        //     })
+        // })
     }
 
 
@@ -86,7 +86,7 @@ export class Player extends Entity {
         if(this.keys.D.isDown) this.setVelocityX(this.speed)
 
         if(this.xPos !== this.x || this.yPos !== this.y) {
-            Game.server.socket.emit("update client", {x: this.x, y: this.y})
+            // Game.server.socket.emit("update client", {x: this.x, y: this.y})
             this.xPos = this.x
             this.yPos = this.y
         }
