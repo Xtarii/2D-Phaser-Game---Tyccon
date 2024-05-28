@@ -37,8 +37,8 @@ export class Server {
         this.socket.on("connect", () => {
             // Local Client Data
             this.socket.emit("prespawn clientData", {
-                x: MainScene.player.x,
-                y: MainScene.player.y
+                x: MainScene.player.x | 0,
+                y: MainScene.player.y | 0
             })
 
             // Spawns Clients
