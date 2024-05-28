@@ -34,6 +34,8 @@ export class ServerSocket extends Room<State> {
     }
 
     onJoin(client: Client<this['clients'] extends ClientArray<infer U, any> ? U : never, this['clients'] extends ClientArray<infer _, infer U> ? U : never>, options?: any, auth?: (this['clients'] extends ClientArray<infer _, infer U> ? U : never) | undefined): void | Promise<any> {
+        console.log(`[ Server ] : ${client.sessionId} joined`) // DEBUG
+
         // Adds Player
         console.log(options)
 
@@ -44,6 +46,8 @@ export class ServerSocket extends Room<State> {
     }
 
     onLeave(client: Client<this['clients'] extends ClientArray<infer U, any> ? U : never, this['clients'] extends ClientArray<infer _, infer U> ? U : never>, consented?: boolean | undefined): void | Promise<any> {
+        console.log(`[ Server ] : Client ${client.sessionId} left`) // DEBUG
+
         // Removes Player
         this.state.players.delete(client.sessionId)
     }
