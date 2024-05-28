@@ -71,7 +71,7 @@ export class ServerSocket {
 
 
             // Gets Client Data
-            socket.on("prespawn playerData", (data: PlayerData) => {
+            socket.on("prespawn clientData", (data: PlayerData) => {
                 // Adds Client to Client List
                 this.clients[socket.id] = {
                     id: socket.id,

@@ -31,10 +31,11 @@ export class Server {
         if(host === null || host === "null") this.socket = Socket.io() // Connects to Local Socket Server
         else this.socket = Socket.io(host) // Connects to Socket Server
 
-        // Local Player Connected to Server
+
+        // Local Client Connection Handler
         this.socket.on("connect", () => {
             // Local Client Data
-            this.socket.emit("prespawn playerData", {
+            this.socket.emit("prespawn clientData", {
                 x:10,
                 y:10
             })
@@ -44,7 +45,8 @@ export class Server {
                 for (let i in data) {
                     if (data[i].id !== this.socket.id){
                         // Adds Client to scene
-                        const obj = game.scene.getScene("main").add.image(data[i].position.x, data[i].position.y, "player")
+                        const obj = game.scene.getScene("main").add.image(
+                            data[i].position.x, data[i].position.y, "player")
 
                         this.clients[i] = {
                             body: obj
@@ -52,6 +54,9 @@ export class Server {
                     }
                 }
             })
+
+
+            // Client Update
             this.socket.on("update client", (data) => {
                 // Updates client
                 this.clients[data.id].body.x = data.position.x
@@ -59,7 +64,8 @@ export class Server {
             })
 
 
-            this.socket.on("despawn client", id => {
+            // Client Despawn
+            this.socket.on("despawn client", (id) => {
                 this.clients[id].body.destroy(true)
 
                 // Removes Client
