@@ -73,5 +73,10 @@ export class Server {
             this.clients[id].body.destroy(true)
             delete this.clients[id]
         })
+        // Disconnection Event
+        this.socket.on("disconnect", () => {
+            this.socket.close()
+            location.href = "/"
+        })
     }
 }
