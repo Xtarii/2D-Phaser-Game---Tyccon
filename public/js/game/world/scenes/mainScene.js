@@ -61,7 +61,7 @@ export class MainScene extends Phaser.Scene {
         this.cameras.main.setZoom(1.7)
 
         // Camera Bound ( Can't move outside this point ) set to map size
-        this.cameras.main.setBounds(ground.x, ground.y, 1600, 1600)
+        this.cameras.main.setBounds(ground.x - 15, ground.y - 15, 1630, 1630)
     }
 
     update(){
