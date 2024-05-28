@@ -59,7 +59,7 @@ export class Server {
                 // Adds Client to scene
                 const obj = game.scene.getScene("main").add.image(
                     data.position.x, data.position.y, "player")
-                
+
                 this.clients[data.id] = {
                     body: obj
                 }
@@ -77,12 +77,7 @@ export class Server {
             // Client Despawn
             this.socket.on("despawn client", (id) => {
                 this.clients[id].body.destroy(true)
-
-                // Removes Client
                 delete this.clients[id]
-
-
-                console.log(this.clients)
             })
         })
     }
