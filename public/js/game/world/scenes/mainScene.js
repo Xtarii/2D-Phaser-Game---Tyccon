@@ -59,6 +59,9 @@ export class MainScene extends Phaser.Scene {
 
         this.cameras.main.startFollow(MainScene.player, true, 0.07, 0.07) // Camera Follow Player with small Delay
         this.cameras.main.setZoom(1.7)
+
+        // Camera Bound ( Can't move outside this point ) set to map size
+        this.cameras.main.setBounds(ground.x, ground.y, 1600, 1600)
     }
 
     update(){
