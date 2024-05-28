@@ -8,14 +8,31 @@ const Phaser = require("phaser")
  * Main Scene
  */
 export class MainScene extends Phaser.Scene {
+    /**
+     * Local Player Object
+     *
+     * @type {Player}
+     */
+    static player
+    /**
+     * Scene Spawn Radius
+     */
+    static spawnRadius = 200
+
+
+
+
+
+    /**
+     * Creates Main Scene Instance
+     */
     constructor(){
         super("main") // Sets Scene Name
     }
 
 
-
     create(){
-        this.player = new Player()
+        MainScene.player = new Player()
 
 
 
@@ -28,16 +45,17 @@ export class MainScene extends Phaser.Scene {
         const tiles = map.addTilesetImage("Hotel tiles", "tileset")
         map.createLayer("ground", tiles)
 
+
         const wall = map.createLayer("wall", tiles)
-        this.physics.add.collider(this.player, wall) // Collision
+        this.physics.add.collider(MainScene.player, wall) // Collision
         wall.setCollisionBetween(0, 100)
 
 
-        this.cameras.main.startFollow(this.player, true, 0.07, 0.07) // Camera Follow Player with small Delay
+        this.cameras.main.startFollow(MainScene.player, true, 0.07, 0.07) // Camera Follow Player with small Delay
         this.cameras.main.setZoom(1.7)
     }
 
     update(){
-        this.player.update()
+        MainScene.player.update()
     }
 }

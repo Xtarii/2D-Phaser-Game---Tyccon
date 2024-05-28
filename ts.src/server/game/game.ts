@@ -66,7 +66,7 @@ export class ServerSocket {
         this.clients = {}
 
 
-        this.server.on("connection", socket => {
+        this.server.on("connection", (socket) => {
             console.log(`[ Server ] : ${socket.id} connected to the server`) // DEBUG
 
 
@@ -91,7 +91,7 @@ export class ServerSocket {
 
 
             // Test Update
-            socket.on("update client", pos => {
+            socket.on("update client", (pos) => {
                 this.clients[socket.id].position.x = pos.x
                 this.clients[socket.id].position.y = pos.y
 
@@ -103,7 +103,7 @@ export class ServerSocket {
 
 
             // Client Disconnection
-            socket.on("disconnect", reason => {
+            socket.on("disconnect", (reason) => {
                 console.log(`[ Server ] : ${socket.id} left the Server --> [ ${reason} ]`)
 
                 // Client Disconnection

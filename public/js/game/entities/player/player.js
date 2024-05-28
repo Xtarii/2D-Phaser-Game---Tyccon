@@ -1,4 +1,5 @@
 import {Game, game } from "../../game.js"
+import { MainScene } from "../../world/scenes/mainScene.js"
 import { Entity } from "../entity.js"
 
 
@@ -7,8 +8,16 @@ import { Entity } from "../entity.js"
  * Local Player Instance
  */
 export class Player extends Entity {
-    xPos = 100
-    yPos = 100
+    /**
+     * Player Previus X Position
+     */
+    xPos = 0
+    /**
+     * Player Previus Y Position
+     */
+    yPos = 0
+
+
 
 
 
@@ -16,10 +25,23 @@ export class Player extends Entity {
      * Creates Player Instance
      */
     constructor(){
-        super(game.scene.getScene("main"), 100, 100, "player")
+        super(
+            game.scene.getScene("main"),
+
+            // Random Position
+            150 + Math.random() * (MainScene.spawnRadius - -MainScene.spawnRadius) + -MainScene.spawnRadius,
+            150 + Math.random() * (MainScene.spawnRadius - -MainScene.spawnRadius) + -MainScene.spawnRadius,
+
+            // Player Avatar
+            "player"
+        )
+        this.xPos = this.x
+        this.yPos = this.y
+
 
         this.scene.add.existing(this)
         this.scene.physics.add.existing(this)
+
 
         // Collider Size
         const size = this.getBounds()

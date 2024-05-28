@@ -1,5 +1,6 @@
 const Socket = require("socket.io-client")
 import { game } from "../game.js"
+import { MainScene } from "../world/scenes/mainScene.js"
 
 
 
@@ -36,8 +37,8 @@ export class Server {
         this.socket.on("connect", () => {
             // Local Client Data
             this.socket.emit("prespawn clientData", {
-                x:10,
-                y:10
+                x: MainScene.player.x,
+                y: MainScene.player.y
             })
 
             // Spawns Clients
