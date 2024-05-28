@@ -63,6 +63,8 @@ export class Player extends Entity {
 
         // Connection to Server
         Game.server.socket.on("connect", () => {
+            console.log("Connection...") // DEBUG
+
             // Local Client Data
             Game.server.socket.emit("prespawn clientData", {
                 x: MainScene.player.x,
