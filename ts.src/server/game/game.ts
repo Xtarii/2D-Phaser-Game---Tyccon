@@ -1,5 +1,5 @@
 import { Room, Client, ClientArray } from "colyseus"
-import { Schema } from "@colyseus/schema"
+import { MapSchema, Schema, type } from "@colyseus/schema"
 
 
 
@@ -7,12 +7,15 @@ import { Schema } from "@colyseus/schema"
  * Player Object
  */
 class Player extends Schema {
-    x: number = 0
-    y: number = 0
+    @type("number") x: number = 0
+    @type("number") y: number = 0
 }
 
+/**
+ * Game State ( Server Side )
+ */
 class State extends Schema {
-    players = new Map<string, Player>()
+    @type({ map: Player }) players = new MapSchema<Player>()
 }
 
 
