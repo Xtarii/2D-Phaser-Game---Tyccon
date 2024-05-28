@@ -16,6 +16,7 @@
   "dependencies": {
     "@colyseus/schema": "^2.0.32",
     "colyseus": "^0.15.17",
+    "colyseus.js": "^0.15.20",
     "express": "^4.19.2",
     "phaser": "^3.80.1",
     "phaser3spectorjs": "^0.0.8",

@@ -1,3 +1,5 @@
+const { Client } = require("colyseus.js")
+
 import { game } from "../game.js"
 import { MainScene } from "../world/scenes/mainScene.js"
 
@@ -10,7 +12,7 @@ export class Server {
     /**
      * Socket Connection
      *
-     * @type {Socket.Socket}
+     * @type {Client}
      */
     socket
 
@@ -27,14 +29,9 @@ export class Server {
      * Creates Game Server instance
      */
     constructor(){
-
-
-
-
-
-        // const host = localStorage.getItem("host")
-        // if(host === null || host === "null") this.socket = Socket.io() // Connects to Local Socket Server
-        // else this.socket = Socket.io(host) // Connects to Socket Server
+        const host = localStorage.getItem("host")
+        if(host === null || host === "null") this.socket = new Client() // Connects to Local Socket Server
+        else this.socket = new Client(host) // Connects to Socket Server
 
 
 
