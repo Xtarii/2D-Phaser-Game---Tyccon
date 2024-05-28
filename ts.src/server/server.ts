@@ -5,6 +5,8 @@ import express from 'express'
 import { Emitter, EventMap } from '../event/event'
 import { route } from './routes/home'
 import { ServerSocket } from './game/game'
+import Colyseus from 'colyseus'
+import { WebSocketTransport } from '@colyseus/ws-transport'
 
 
 
@@ -30,7 +32,7 @@ export class Server<T extends EventMap> {
      * Handels Game Backend data like player connections and
      * world build updates.
      */
-    private ioServer: ServerSocket
+    private udpServer: Colyseus.Server
 
 
 
@@ -59,6 +61,15 @@ export class Server<T extends EventMap> {
         const socketEntry = this.server.listen(this.PORT, () => {
             console.log(`Starting Server ${this.PORT}...`) // DEBUG
         })
-        this.ioServer = new ServerSocket(socketEntry) // Socket Server ( Game Backend )
+
+
+
+        // Game Server
+        this.udpServer = new Colyseus.Server({
+            transport: new WebSocketTransport({
+                server: socketEntry
+            })
+        })
+        this.udpServer.define("main", ServerSocket)
     }
 }
