@@ -43,12 +43,18 @@ export class MainScene extends Phaser.Scene {
 
         const map = this.make.tilemap({key: "tilemap"})
         const tiles = map.addTilesetImage("Hotel tiles", "tileset")
-        map.createLayer("ground", tiles)
+        const ground = map.createLayer("ground", tiles)
 
 
         const wall = map.createLayer("wall", tiles)
         this.physics.add.collider(MainScene.player, wall) // Collision
         wall.setCollisionBetween(0, 100)
+
+
+        ground.y = -1200
+        ground.x = -600
+        wall.y = -1200
+        wall.x = -600
 
 
         this.cameras.main.startFollow(MainScene.player, true, 0.07, 0.07) // Camera Follow Player with small Delay
