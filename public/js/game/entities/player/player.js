@@ -56,20 +56,6 @@ export class Player extends Entity {
 
 
         this.keys = this.scene.input.keyboard.addKeys("W,S,A,D")
-
-
-
-
-        // Connection to Server
-        // Game.server.socket.on("connect", () => {
-        //     console.log("Connection...") // DEBUG
-
-        //     // Local Client Data
-        //     Game.server.socket.emit("prespawn clientData", {
-        //         x: MainScene.player.x,
-        //         y: MainScene.player.y
-        //     })
-        // })
     }
 
 
