@@ -33,7 +33,8 @@ export class Player extends Entity {
             150 + Math.random() * (MainScene.spawnRadius - -MainScene.spawnRadius) + -MainScene.spawnRadius,
 
             // Player Avatar
-            "player"
+            "morbidly obese guy"
+            // "player"
         )
         this.xPos = this.x
         this.yPos = this.y
