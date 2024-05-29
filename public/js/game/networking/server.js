@@ -30,14 +30,14 @@ export class Server {
      */
     constructor(){
         const host = localStorage.getItem("host")
-        if(host === null || host === "null") this.socket = new Client() // Connects to Local Socket Server
+        if(host === null || host === "null") this.socket = new Client(
+
+            "ws://localhost:1024"
+
+        ) // Connects to Local Socket Server
         else this.socket = new Client(host) // Connects to Socket Server
 
-
-
-        const room = this.socket.joinOrCreate("main", {x: 10, y: 10}).then(() => {
-            console.log("Connected to UDP Server")
-        })
+        this.join()
 
 
 
@@ -85,5 +85,13 @@ export class Server {
         //     this.socket.close()
         //     location.href = "/"
         // })
+    }
+
+
+    join = async () => {
+        const room = await this.socket.joinOrCreate("main", {x: 10, y: 10})
+        console.log("Connected to UDP Server")
+
+        console.log(room)
     }
 }

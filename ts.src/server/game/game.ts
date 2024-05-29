@@ -31,6 +31,8 @@ class State extends Schema {
 export class ServerSocket extends Room<State> {
     onCreate(options: any): void | Promise<any> {
         this.setState(new State())
+
+        console.log("Game Server Started...")
     }
 
     onJoin(client: Client<this['clients'] extends ClientArray<infer U, any> ? U : never, this['clients'] extends ClientArray<infer _, infer U> ? U : never>, options?: any, auth?: (this['clients'] extends ClientArray<infer _, infer U> ? U : never) | undefined): void | Promise<any> {

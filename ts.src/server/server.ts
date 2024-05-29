@@ -42,7 +42,7 @@ export class Server<T extends EventMap> {
      * @param events Event System
      */
     constructor(events: Emitter<T>){
-        this.PORT = Number.parseInt(process.env.PORT || "8080") // Server Port
+        this.PORT = Number.parseInt(process.env.PORT || "1024") // Server Port
         this.server = express() // Creates Server
         this.events = events    // Application Event System
 
