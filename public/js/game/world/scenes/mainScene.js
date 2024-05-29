@@ -1,6 +1,6 @@
-import { Player } from "../../entities/player/player.js"
-
 const Phaser = require("phaser")
+import { Player } from "../../entities/player/player.js"
+import { Game } from "../../game.js"
 
 
 
@@ -14,10 +14,6 @@ export class MainScene extends Phaser.Scene {
      * @type {Player}
      */
     static player
-    /**
-     * Scene Spawn Radius
-     */
-    static spawnRadius = 200
 
 
 
@@ -66,5 +62,27 @@ export class MainScene extends Phaser.Scene {
 
     update(){
         MainScene.player.update()
+    }
+}
+
+
+
+
+
+/**
+ * Checks if important Game Instances are loaded
+ *
+ * Will keep on running until all instances are loaded
+ */
+export async function checkGameInstances() {
+    let loaded = false // Instances Loaded check
+
+    // Check if Instances Exists
+    while(true){
+        if(MainScene.player !== undefined) loaded = true // Player Object
+
+        // Exit Function
+        if(loaded) break
+        await Game.sleep(1000) // Timeout 1 second
     }
 }

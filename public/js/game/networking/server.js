@@ -1,7 +1,5 @@
-const { Client } = require("colyseus.js")
-
-import { game } from "../game.js"
-import { MainScene } from "../world/scenes/mainScene.js"
+const { Client, Room } = require("colyseus.js")
+import { MainScene, checkGameInstances } from "../world/scenes/mainScene.js"
 
 
 
@@ -15,6 +13,12 @@ export class Server {
      * @type {Client}
      */
     socket
+    /**
+     * Server Room
+     *
+     * @type {Room}
+     */
+    room
 
     /**
      * Clients TEST
@@ -30,14 +34,14 @@ export class Server {
      */
     constructor(){
         const host = localStorage.getItem("host")
-        if(host === null || host === "null") this.socket = new Client(
+        if(host === null || host === "null" || host === ""){
 
-            "ws://localhost:1024"
 
-        ) // Connects to Local Socket Server
-        else this.socket = new Client(host) // Connects to Socket Server
+            this.socket = new Client("ws://localhost:1024") // Connects to Local Socket Server
 
-        this.join()
+
+        }else this.socket = new Client(host) // Connects to Socket Server
+        this.join() // Joins Server Room
 
 
 
@@ -88,10 +92,31 @@ export class Server {
     }
 
 
+    /**
+     * Joins **main** Server Room
+     *
+     * Sends Prespawn Player Data
+     * - Sprite ID
+     * - Player Name
+     */
     join = async () => {
-        const room = await this.socket.joinOrCreate("main", {x: 10, y: 10})
+        await checkGameInstances() // Check if Game is fully loaded
+
+
+        // Constructs Player Data
+        const data = {
+            name: localStorage.getItem("playerName"),
+            spriteID: localStorage.getItem("spriteID"),
+
+            // Position
+            x: MainScene.player.x,
+            y: MainScene.player.y
+        }
+
+        // Joins Room
+        this.room = await this.socket.joinOrCreate("main", data)
         console.log("Connected to UDP Server")
 
-        console.log(room)
+        console.log(this.room)
     }
 }

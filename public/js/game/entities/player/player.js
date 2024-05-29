@@ -1,5 +1,4 @@
-import {Game, game } from "../../game.js"
-import { MainScene } from "../../world/scenes/mainScene.js"
+import { game } from "../../game.js"
 import { Entity } from "../entity.js"
 
 
@@ -11,11 +10,11 @@ export class Player extends Entity {
     /**
      * Player Previus X Position
      */
-    xPos = 0
+    prevX = 0
     /**
      * Player Previus Y Position
      */
-    yPos = 0
+    prevY = 0
 
 
 
@@ -28,17 +27,16 @@ export class Player extends Entity {
         super(
             game.scene.getScene("main"),
 
-            // Random Position
-            150 + Math.random() * (MainScene.spawnRadius - -MainScene.spawnRadius) + -MainScene.spawnRadius,
-            150 + Math.random() * (MainScene.spawnRadius - -MainScene.spawnRadius) + -MainScene.spawnRadius,
+            // Prespawn Position
+            150 + Math.random() * (200 - -200) + -200,
+            150 + Math.random() * (200 - -200) + -200,
 
             // Player Avatar
-            "morbidly obese guy"
-            // "player"
+            localStorage.getItem("spriteID")
         )
-        this.xPos = this.x
-        this.yPos = this.y
-
+        this.name = localStorage.getItem("playerName") // Sets Player Name
+        this.prevX = this.x
+        this.prevY = this.y
 
         this.scene.add.existing(this)
         this.scene.physics.add.existing(this)
@@ -86,10 +84,10 @@ export class Player extends Entity {
         if(this.keys.A.isDown) this.setVelocityX(-this.speed)
         if(this.keys.D.isDown) this.setVelocityX(this.speed)
 
-        if(this.xPos !== this.x || this.yPos !== this.y) {
+        if(this.prevX !== this.x || this.prevY !== this.y) {
             // Game.server.socket.emit("update client", {x: this.x, y: this.y})
-            this.xPos = this.x
-            this.yPos = this.y
+            this.prevX = this.x
+            this.prevY = this.y
         }
     }
 }

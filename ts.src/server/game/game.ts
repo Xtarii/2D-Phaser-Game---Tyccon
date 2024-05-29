@@ -7,6 +7,9 @@ import { MapSchema, Schema, type } from "@colyseus/schema"
  * Player Object
  */
 class Player extends Schema {
+    @type("string") name: string = "name"
+    @type("string") spriteID: string = "sprite"
+
     @type("number") x: number = 0
     @type("number") y: number = 0
 }
@@ -38,13 +41,19 @@ export class ServerSocket extends Room<State> {
     onJoin(client: Client<this['clients'] extends ClientArray<infer U, any> ? U : never, this['clients'] extends ClientArray<infer _, infer U> ? U : never>, options?: any, auth?: (this['clients'] extends ClientArray<infer _, infer U> ? U : never) | undefined): void | Promise<any> {
         console.log(`[ Server ] : ${client.sessionId} joined`) // DEBUG
 
-        // Adds Player
-        console.log(options)
 
-        const player = new Player()
-        player.x = options.x || 0
-        player.y = options.y || 0
-        this.state.players.set(client.sessionId, player)
+        // Adds Player
+        const player = new Player() // Creates Player Instance
+
+        // Player Name and Sprite
+        player.name = options.name
+        player.spriteID = options.spriteID
+
+        // Random Position
+        player.x = options.x
+        player.y = options.y
+
+        this.state.players.set(client.sessionId, player) // Adds Player to Server Player List
     }
 
     onLeave(client: Client<this['clients'] extends ClientArray<infer U, any> ? U : never, this['clients'] extends ClientArray<infer _, infer U> ? U : never>, consented?: boolean | undefined): void | Promise<any> {

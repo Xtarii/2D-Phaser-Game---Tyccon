@@ -48,6 +48,20 @@ export class Game extends Phaser.Game {
         super(config) // Creates Game
         Game.server = new Server() // Creates Server
     }
+
+
+    /**
+     * Sleep Function
+     *
+     * @example
+     * await sleep(1000) // 1 second sleep
+     *
+     * @param {number} ms Milliseconds
+     * @returns Promise
+     */
+    static sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms))
+    }
 }
 
 
