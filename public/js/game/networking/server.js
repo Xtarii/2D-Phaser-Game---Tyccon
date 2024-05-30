@@ -123,7 +123,5 @@ export class Server {
         // Joins Room
         this.room = await this.socket.joinOrCreate("main", data)
         console.log("Connected to UDP Server")
-
-        console.log(this.room)
     }
 }

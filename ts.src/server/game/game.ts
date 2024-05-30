@@ -35,7 +35,7 @@ export class ServerSocket extends Room<State> {
     onCreate(options: any): void | Promise<any> {
         this.setState(new State())
 
-        console.log("Game Server Started...")
+        console.log("Game Server Setup...")
     }
 
     onJoin(client: Client<this['clients'] extends ClientArray<infer U, any> ? U : never, this['clients'] extends ClientArray<infer _, infer U> ? U : never>, options?: any, auth?: (this['clients'] extends ClientArray<infer _, infer U> ? U : never) | undefined): void | Promise<any> {
@@ -63,10 +63,10 @@ export class ServerSocket extends Room<State> {
         this.state.players.delete(client.sessionId)
     }
 
-    onMessage(client: any, message: any){
-        // Message
-        console.log(client + " :: " + message)
-    }
+    // onMessage(client: any, message: any){
+    //     // Message
+    //     console.log(client + " :: " + message)
+    // }
 
     onDispose(): void | Promise<any> {
         // Cleanup
