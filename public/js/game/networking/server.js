@@ -51,7 +51,7 @@ export class Server {
             })
             // PLayer leave room event
             this.room.state.players.onRemove((player, sessionId) => {})
-        })  
+        })
 
 
 
