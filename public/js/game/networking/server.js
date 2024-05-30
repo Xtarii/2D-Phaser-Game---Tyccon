@@ -24,7 +24,7 @@ export class Server {
     /**
      * Clients TEST
      */
-    clients = {}
+    players = {}
 
 
 
@@ -46,11 +46,20 @@ export class Server {
         this.join().then(() => {
             // Player join room event
             this.room.state.players.onAdd((player, sessionId) => {
-                if (sessionId !== this.room.sessionId)
-                    game.scene.getScene("main").add.image(player.x, player.y, player.spriteID)
+                if (sessionId !== this.room.sessionId) {
+                    const obj = game.scene.getScene("main").add.image(player.x, player.y, player.spriteID)
+                    const data = {
+                        name: player.name,
+                        body: obj
+                    }
+                    this.players[sessionId] = data
+                }
             })
             // PLayer leave room event
-            this.room.state.players.onRemove((player, sessionId) => {})
+            this.room.state.players.onRemove((player, sessionId) => {
+                this.players[sessionId].body.destroy(true)
+                delete this.players[sessionId]
+            })
         })  
 
 
