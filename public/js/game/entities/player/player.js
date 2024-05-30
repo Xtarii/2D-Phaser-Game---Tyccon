@@ -1,4 +1,4 @@
-import { game } from "../../game.js"
+import { Game, game } from "../../game.js"
 import { Entity } from "../entity.js"
 
 
@@ -71,6 +71,6 @@ export class Player extends Entity {
         if(this.keys.D.isDown) this.setVelocityX(this.speed)
 
         // updates player position
-        this.room.send("update player", { x: this.x, y: this.y})
+        Game.server.room.send("update player", { x: this.x, y: this.y})
     }
 }
