@@ -46,14 +46,23 @@ export class Server {
         this.join().then(() => {
             // Player join room event
             this.room.state.players.onAdd((player, sessionId) => {
-                if (sessionId !== this.room.sessionId) {
-                    const obj = game.scene.getScene("main").add.image(player.x, player.y, player.spriteID)
-                    const data = {
-                        name: player.name,
-                        body: obj
-                    }
-                    this.players[sessionId] = data
+                if (sessionId === this.room.sessionId) return // Return if local player
+              
+                // Adds player to game
+                const obj = game.scene.getScene("main").add.image(player.x, player.y, player.spriteID)
+                const data = {
+                    name: player.name,
+                    body: obj
                 }
+                this.players[sessionId] = data
+
+
+                // player update event
+                player.onChange(() => {
+                    obj.x = player.x
+                    obj.y = player.y
+                })
+                
             })
             // PLayer leave room event
             this.room.state.players.onRemove((player, sessionId) => {

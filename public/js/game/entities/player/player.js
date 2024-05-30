@@ -70,10 +70,7 @@ export class Player extends Entity {
         if(this.keys.A.isDown) this.setVelocityX(-this.speed)
         if(this.keys.D.isDown) this.setVelocityX(this.speed)
 
-        if(this.prevX !== this.x || this.prevY !== this.y) {
-            // Game.server.socket.emit("update client", {x: this.x, y: this.y})
-            this.prevX = this.x
-            this.prevY = this.y
-        }
+        // updates player position
+        this.room.send("update player", { x: this.x, y: this.y})
     }
 }
