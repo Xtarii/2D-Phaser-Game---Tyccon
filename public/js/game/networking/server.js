@@ -48,6 +48,8 @@ export class Server {
                 if (sessionId !== this.room.sessionId)
                     game.scene.getScene("main").add.image(player.x, player.y, player.spriteID)
             })
+            // PLayer leave room event
+            this.room.state.players.onRemove((player, sessionId) => {})
         })  
 
 
