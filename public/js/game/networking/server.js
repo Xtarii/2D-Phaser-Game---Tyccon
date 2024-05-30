@@ -1,5 +1,6 @@
 const { Client, Room } = require("colyseus.js")
 import { MainScene, checkGameInstances } from "../world/scenes/mainScene.js"
+import { game } from "../game.js"
 
 
 
@@ -41,7 +42,13 @@ export class Server {
 
 
         }else this.socket = new Client(host) // Connects to Socket Server
-        this.join() // Joins Server Room
+        // Joins Server Room
+        this.join().then(() => {
+            this.room.state.players.onAdd((player, sessionId) => {
+                if (sessionId !== this.room.sessionId)
+                    game.scene.getScene("main").add.image(player.x, player.y, player.spriteID)
+            })
+        })  
 
 
 
