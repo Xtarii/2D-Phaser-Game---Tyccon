@@ -61,6 +61,10 @@ export class Player extends Entity {
 
 
     update(){
+        if(Game.server.room === undefined) return // Return if no Server Room
+
+
+        // Movement
         this.setVelocityX(this.body.velocity.x * this.dampSpeed)
         this.setVelocityY(this.body.velocity.y * this.dampSpeed)
 
@@ -70,8 +74,7 @@ export class Player extends Entity {
         if(this.keys.A.isDown) this.setVelocityX(-this.speed)
         if(this.keys.D.isDown) this.setVelocityX(this.speed)
 
-        // updates player position
-        if(Game.server.room === undefined) return
+        // Updates player position
         Game.server.room.send("update player", { x: this.x, y: this.y})
     }
 }
