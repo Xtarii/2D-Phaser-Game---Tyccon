@@ -69,7 +69,7 @@ export class Server {
                 this.players[sessionId].body.destroy(true)
                 delete this.players[sessionId]
             })
-        })  
+        })
 
 
 

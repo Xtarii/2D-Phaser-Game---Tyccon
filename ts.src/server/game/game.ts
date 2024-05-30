@@ -36,6 +36,16 @@ export class ServerSocket extends Room<State> {
         this.setState(new State())
 
         console.log("Game Server Setup...")
+
+        // Player Update
+        this.onMessage("update player", (client: Client, data: { x: number, y: number}) => {
+            const player: Player | undefined = this.state.players.get(client.sessionId)
+            if(player === undefined) return // Returns if No Player
+
+            // Updates Player Position
+            player.x = data.x
+            player.y = data.y
+        })
     }
 
     onJoin(client: Client<this['clients'] extends ClientArray<infer U, any> ? U : never, this['clients'] extends ClientArray<infer _, infer U> ? U : never>, options?: any, auth?: (this['clients'] extends ClientArray<infer _, infer U> ? U : never) | undefined): void | Promise<any> {
