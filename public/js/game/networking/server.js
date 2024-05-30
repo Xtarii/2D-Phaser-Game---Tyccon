@@ -118,5 +118,8 @@ export class Server {
         console.log("Connected to UDP Server")
 
         console.log(this.room)
+
+
+        this.room.send("test", "Hello World!")
     }
 }

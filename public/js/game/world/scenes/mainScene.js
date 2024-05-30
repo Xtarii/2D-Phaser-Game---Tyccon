@@ -27,7 +27,7 @@ export class MainScene extends Phaser.Scene {
     }
 
 
-    create(){
+    async create(){
         MainScene.player = new Player()
 
 
