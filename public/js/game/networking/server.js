@@ -44,11 +44,12 @@ export class Server {
         }else this.socket = new Client(host) // Connects to Socket Server
         // Joins Server Room
         this.join().then(() => {
+            // Player join room event
             this.room.state.players.onAdd((player, sessionId) => {
                 if (sessionId !== this.room.sessionId)
                     game.scene.getScene("main").add.image(player.x, player.y, player.spriteID)
             })
-        })  
+        })
 
 
 
