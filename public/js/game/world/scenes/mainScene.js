@@ -23,7 +23,7 @@ export class MainScene extends Phaser.Scene {
      * Creates Main Scene Instance
      */
     constructor(){
-        super("main") // Sets Scene Name
+        super({ key: "main" }) // Sets Scene Name
     }
 
 
