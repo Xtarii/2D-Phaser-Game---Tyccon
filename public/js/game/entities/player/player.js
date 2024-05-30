@@ -71,6 +71,7 @@ export class Player extends Entity {
         if(this.keys.D.isDown) this.setVelocityX(this.speed)
 
         // updates player position
+        if(Game.server.room === undefined) return
         Game.server.room.send("update player", { x: this.x, y: this.y})
     }
 }
