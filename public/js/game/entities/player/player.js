@@ -53,6 +53,32 @@ export default class Player extends Entity {
 
         this.setDepth(100) // Sets Player to Front
         this.keys = this.scene.input.keyboard.addKeys("W,S,A,D")
+
+
+
+
+        /**
+         * Player Name Test
+         */
+        const style = {
+            fontSize: '50px',
+            fontFamily: 'Arial',
+            color: '#ffffff',
+            backgroundColor: '#2d2f2e5e'
+        }
+        const nameDisplayConfig = {
+            x: this.x - this.width / 2,
+            y: this.y - (this.height - this.height / 4),
+            padding: {
+                x: 50,
+                y: 5
+            },
+            text: `${this.name}   -   [ You ]`,
+            style: style
+        }
+        this.nameBrick = Game.scene.getScene("main").make.text(nameDisplayConfig)
+        this.nameBrick.setDepth(99)
+        this.nameBrick.setScale(0.13, 0.13)
     }
 
 
@@ -70,5 +96,15 @@ export default class Player extends Entity {
 
         // Updates player position
         Game.server.room.send("update player", { x: this.x, y: this.y})
+
+
+
+
+
+        /**
+         * Text Test Update
+         */
+        this.nameBrick.x = this.x - this.width / 2
+        this.nameBrick.y = this.y - (this.height - this.height / 4)
     }
 }
