@@ -1,5 +1,5 @@
 const { Client, Room } = require("colyseus.js")
-import { MainScene, checkGameInstances } from "../world/scenes/mainScene.js"
+import MainScene, { checkGameInstances } from "../world/scenes/mainScene.js"
 import { game } from "../game.js"
 
 
@@ -7,7 +7,7 @@ import { game } from "../game.js"
 /**
  * Game Server
  */
-export class Server {
+export default class Server {
     /**
      * Socket Connection
      *
@@ -47,7 +47,7 @@ export class Server {
             // Player join room event
             this.room.state.players.onAdd((player, sessionId) => {
                 if (sessionId === this.room.sessionId) return // Return if local player
-              
+
                 // Adds player to game
                 const obj = game.scene.getScene("main").add.image(player.x, player.y, player.spriteID)
                 const data = {
@@ -62,7 +62,7 @@ export class Server {
                     obj.x = player.x
                     obj.y = player.y
                 })
-                
+
             })
             // PLayer leave room event
             this.room.state.players.onRemove((player, sessionId) => {

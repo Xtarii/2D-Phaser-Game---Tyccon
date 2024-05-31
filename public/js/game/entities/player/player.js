@@ -1,12 +1,12 @@
-import { Game, game } from "../../game.js"
-import { Entity } from "../entity.js"
+import Game, { game } from "../../game.js"
+import Entity from "../entity.js"
 
 
 
 /**
  * Local Player Instance
  */
-export class Player extends Entity {
+export default class Player extends Entity {
     /**
      * Player Previus X Position
      */

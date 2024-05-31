@@ -2,7 +2,7 @@ const Phaser = require("phaser")
 
 
 
-export class Preloader extends Phaser.Scene {
+export default class Preloader extends Phaser.Scene {
     constructor(){
         super("preloader") // Sets Preload Scene key
     }

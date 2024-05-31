@@ -1,13 +1,13 @@
 const Phaser = require("phaser")
-import { Player } from "../../entities/player/player.js"
-import { Game } from "../../game.js"
+import Player from "../../entities/player/player.js"
+import Game from "../../game.js"
 
 
 
 /**
  * Main Scene
  */
-export class MainScene extends Phaser.Scene {
+export default class MainScene extends Phaser.Scene {
     /**
      * Local Player Object
      *

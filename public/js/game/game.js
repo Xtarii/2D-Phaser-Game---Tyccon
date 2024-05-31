@@ -6,9 +6,9 @@
  */
 const Phaser = require("phaser")
 
-import { Server } from "./networking/server.js"
-import { MainScene } from "./world/scenes/mainScene.js"
-import { Preloader } from "./world/scenes/preloader.js"
+import Server from "./networking/server.js"
+import MainScene from "./world/scenes/mainScene.js"
+import Preloader from "./world/scenes/preloader.js"
 
 
 
@@ -17,7 +17,7 @@ import { Preloader } from "./world/scenes/preloader.js"
  *
  * Game Instance and Tools
  */
-export class Game extends Phaser.Game {
+export default class Game extends Phaser.Game {
     /**
      * Sprite Size
      *
