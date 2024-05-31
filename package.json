@@ -19,6 +19,7 @@
     "colyseus.js": "^0.15.20",
     "express": "^4.19.2",
     "phaser": "^3.80.1",
+    "phaser3-rex-plugins": "^1.80.3",
     "phaser3spectorjs": "^0.0.8",
     "pug": "^3.0.2"
   }
