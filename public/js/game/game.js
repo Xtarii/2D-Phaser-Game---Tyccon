@@ -5,7 +5,6 @@
  * - OBS: Remove this after TESTING
  */
 const Phaser = require("phaser")
-// const RexUIPlugin = require("phaser3-rex-plugins/templates/ui/ui-plugin.js")
 
 import Server from "./networking/server.js"
 import MainScene from "./world/scenes/mainScene.js"
@@ -37,12 +36,6 @@ class BaseGame extends Phaser.Game {
      * @type {Server}
      */
     server
-    /**
-     * Rex UI Component for Game GUI
-     *
-     * @type {RexUIPlugin}
-     */
-    // rexUI
 
 
 
@@ -76,14 +69,6 @@ const config = {
             debug: true
         }
     },
-
-    // plugins: {
-    //     scene: [{
-    //         key: 'rexUI',
-    //         plugin: RexUIPlugin,
-    //         mapping: 'rexUI'
-    //     }]
-    // }
 }
 
 /**
