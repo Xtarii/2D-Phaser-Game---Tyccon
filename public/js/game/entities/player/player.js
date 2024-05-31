@@ -53,16 +53,6 @@ export default class Player extends Entity {
 
         this.setDepth(100) // Sets Player to Front
         this.keys = this.scene.input.keyboard.addKeys("W,S,A,D")
-
-
-
-
-
-
-        /**
-         * TEXT UI TEST
-         */
-        const text = ""
     }
 
 
