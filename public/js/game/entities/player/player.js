@@ -1,4 +1,4 @@
-import Game, { game } from "../../game.js"
+import { Game } from "../../game.js"
 import Entity from "../entity.js"
 
 
@@ -25,7 +25,7 @@ export default class Player extends Entity {
      */
     constructor(){
         super(
-            game.scene.getScene("main"),
+            Game.scene.getScene("main"),
 
             // Prespawn Position
             150 + Math.random() * (200 - -200) + -200,
@@ -53,14 +53,21 @@ export default class Player extends Entity {
 
         this.setDepth(100) // Sets Player to Front
         this.keys = this.scene.input.keyboard.addKeys("W,S,A,D")
+
+
+
+
+
+
+        /**
+         * TEXT UI TEST
+         */
+        const text = ""
     }
 
 
 
     update(){
-        if(Game.server.room === undefined) return // Return if no Server Room
-
-
         // Movement
         this.setVelocityX(this.body.velocity.x * this.dampSpeed)
         this.setVelocityY(this.body.velocity.y * this.dampSpeed)

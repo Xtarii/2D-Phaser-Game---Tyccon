@@ -5,6 +5,7 @@
  * - OBS: Remove this after TESTING
  */
 const Phaser = require("phaser")
+// const RexUIPlugin = require("phaser3-rex-plugins/templates/ui/ui-plugin.js")
 
 import Server from "./networking/server.js"
 import MainScene from "./world/scenes/mainScene.js"
@@ -17,7 +18,7 @@ import Preloader from "./world/scenes/preloader.js"
  *
  * Game Instance and Tools
  */
-export default class Game extends Phaser.Game {
+class BaseGame extends Phaser.Game {
     /**
      * Sprite Size
      *
@@ -25,7 +26,7 @@ export default class Game extends Phaser.Game {
      * sprites can use other sizes,
      * but 64x64 pixels is the base.
      */
-    static size = 64
+    size = 64
     /**
      * Game Server Instance
      *
@@ -35,7 +36,13 @@ export default class Game extends Phaser.Game {
      *
      * @type {Server}
      */
-    static server
+    server
+    /**
+     * Rex UI Component for Game GUI
+     *
+     * @type {RexUIPlugin}
+     */
+    // rexUI
 
 
 
@@ -46,21 +53,7 @@ export default class Game extends Phaser.Game {
      */
     constructor(config) {
         super(config) // Creates Game
-        Game.server = new Server() // Creates Server
-    }
-
-
-    /**
-     * Sleep Function
-     *
-     * @example
-     * await sleep(1000) // 1 second sleep
-     *
-     * @param {number} ms Milliseconds
-     * @returns Promise
-     */
-    static sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms))
+        this.server = new Server() // Creates Server
     }
 }
 
@@ -82,12 +75,35 @@ const config = {
         arcade: {
             debug: true
         }
-    }
+    },
+
+    // plugins: {
+    //     scene: [{
+    //         key: 'rexUI',
+    //         plugin: RexUIPlugin,
+    //         mapping: 'rexUI'
+    //     }]
+    // }
 }
 
 /**
  * Game Instance
  *
- * @type {Game}
+ * @type {BaseGame}
  */
-export const game = new Game(config)
+export const Game = new BaseGame(config)
+
+
+
+/**
+ * Sleep Function
+ *
+ * @example
+ * await sleep(1000) // 1 second sleep
+ *
+ * @param {number} ms Milliseconds
+ * @returns Promise
+ */
+export function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}

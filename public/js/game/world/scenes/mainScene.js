@@ -1,6 +1,6 @@
 const Phaser = require("phaser")
 import Player from "../../entities/player/player.js"
-import Game from "../../game.js"
+import { Game, sleep } from "../../game.js"
 
 
 
@@ -61,6 +61,8 @@ export default class MainScene extends Phaser.Scene {
     }
 
     update(){
+        if(Game.server === undefined || Game.server.room === undefined) return // Returns if no Server Connection
+
         MainScene.player.update()
     }
 }
@@ -83,6 +85,6 @@ export async function checkGameInstances() {
 
         // Exit Function
         if(loaded) break
-        await Game.sleep(1000) // Timeout 1 second
+        await sleep(1000) // Timeout 1 second
     }
 }

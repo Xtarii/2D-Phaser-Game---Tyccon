@@ -1,6 +1,6 @@
 const { Client, Room } = require("colyseus.js")
 import MainScene, { checkGameInstances } from "../world/scenes/mainScene.js"
-import { game } from "../game.js"
+import { Game } from "../game.js"
 
 
 
@@ -49,7 +49,7 @@ export default class Server {
                 if (sessionId === this.room.sessionId) return // Return if local player
 
                 // Adds player to game
-                const obj = game.scene.getScene("main").add.image(player.x, player.y, player.spriteID)
+                const obj = Game.scene.getScene("main").add.image(player.x, player.y, player.spriteID)
                 const data = {
                     name: player.name,
                     body: obj
@@ -71,6 +71,7 @@ export default class Server {
             })
         })
     }
+
 
 
     /**
