@@ -67,8 +67,6 @@ export default class Player extends Entity {
             backgroundColor: '#2d2f2e5e'
         }
         const nameDisplayConfig = {
-            x: this.x - this.width / 2,
-            y: this.y - (this.height - this.height / 4),
             padding: {
                 x: 50,
                 y: 5
@@ -79,6 +77,9 @@ export default class Player extends Entity {
         this.nameBrick = Game.scene.getScene("main").make.text(nameDisplayConfig)
         this.nameBrick.setDepth(99)
         this.nameBrick.setScale(0.13, 0.13)
+
+        this.nameBrick.x = this.x - (this.nameBrick.displayWidth / 2) // X Position
+        this.nameBrick.y = this.y - (this.height - this.height / 4) // Y Position
     }
 
 
@@ -104,7 +105,7 @@ export default class Player extends Entity {
         /**
          * Text Test Update
          */
-        this.nameBrick.x = this.x - this.width / 2
+        this.nameBrick.x = this.x - (this.nameBrick.displayWidth / 2)
         this.nameBrick.y = this.y - (this.height - this.height / 4)
     }
 }
