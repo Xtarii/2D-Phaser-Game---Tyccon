@@ -4,7 +4,7 @@
 
 import { BrowserWindow } from "electron"
 import { Emitter, EventEmitter, EventMap } from "./event/event"
-import { Server } from "./server/server"
+import Server from "./server/server"
 
 
 

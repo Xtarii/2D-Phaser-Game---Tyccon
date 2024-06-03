@@ -31,7 +31,7 @@ class State extends Schema {
  * Handels Game Backend data like player connections and
  * world build updates.
  */
-export class ServerSocket extends Room<State> {
+export default class ServerSocket extends Room<State> {
     onCreate(options: any): void | Promise<any> {
         this.setState(new State())
 

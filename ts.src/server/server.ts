@@ -4,7 +4,7 @@
 import express from 'express'
 import { Emitter, EventMap } from '../event/event'
 import { route } from './routes/home'
-import { ServerSocket } from './game/game'
+import ServerSocket from './game/game'
 import { Server as ColyseusServer } from 'colyseus'
 import { WebSocketTransport } from '@colyseus/ws-transport'
 
@@ -13,7 +13,7 @@ import { WebSocketTransport } from '@colyseus/ws-transport'
 /**
  * Server Instance
  */
-export class Server<T extends EventMap> {
+export default class Server<T extends EventMap> {
     /**
      * Server Port
      */
