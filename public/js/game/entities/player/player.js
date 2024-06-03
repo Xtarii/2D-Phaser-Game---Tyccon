@@ -52,7 +52,15 @@ export default class Player extends Entity {
 
 
         this.setDepth(100) // Sets Player to Front
+
+
+        //
+        // Only Player Needs This ------------------------------
+        //
         this.keys = this.scene.input.keyboard.addKeys("W,S,A,D")
+        //
+        //  ----------------------------------------------------
+        //
 
 
 
