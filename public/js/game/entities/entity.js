@@ -76,7 +76,7 @@ export default class Entity extends Physics.Arcade.Sprite {
             text: name,
             style: style
         }
-        this.namebar = Game.scene.getScene("main").make.text(nameDisplayConfig)
+        this.namebar = scene.make.text(nameDisplayConfig)
         this.namebar.setDepth(99)
         this.namebar.setScale(0.13, 0.13)
 
