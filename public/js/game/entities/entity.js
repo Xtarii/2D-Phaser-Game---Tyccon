@@ -49,11 +49,11 @@ export default class Entity extends Physics.Arcade.Sprite {
 
         // Collider setup
         const size = this.getBounds()
-        const x = size.width / 3
-        const y = size.height / 2
+        const width = size.width / 3
+        const height = size.height / 2
 
-        this.body.setSize((size.width - x), (size.height - y))
-        this.body.setOffset(x / 2, y)
+        this.body.setSize((size.width - width), (size.height - height))
+        this.body.setOffset(width / 2, height)
         this.setDepth(detph) // Sets Entity render detph
 
 
@@ -84,7 +84,7 @@ export default class Entity extends Physics.Arcade.Sprite {
         this.namebar.y = this.y - (this.height - this.height / 4) // Y Position
     }
 
-    
+
 
     update() {
         this.namebar.x = this.x - (this.namebar.displayWidth / 2)
