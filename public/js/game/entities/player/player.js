@@ -8,19 +8,6 @@ import Entity from "../entity.js"
  */
 export default class Player extends Entity {
     /**
-     * Player Previus X Position
-     */
-    prevX = 0
-    /**
-     * Player Previus Y Position
-     */
-    prevY = 0
-
-
-
-
-
-    /**
      * Creates Player Instance
      */
     constructor(){
@@ -33,13 +20,11 @@ export default class Player extends Entity {
 
             // Player Avatar
             localStorage.getItem("spriteID"),
-            `${localStorage.getItem("playerName")} - [ You ]`, // Sets Player Name
+            `${localStorage.getItem("playerName")}   -   [ You ]`, // Sets Player Name
             100 // Player detph
         )
 
-        this.prevX = this.x
-        this.prevY = this.y
-
+        // Key Listeners
         this.keys = this.scene.input.keyboard.addKeys("W,S,A,D")
     }
 
