@@ -1,6 +1,7 @@
 const { Client, Room } = require("colyseus.js")
 import MainScene, { checkGameInstances } from "../world/scenes/mainScene.js"
 import { Game } from "../game.js"
+import NetworkPlayer from "./networkObjects/networkPlayer.js"
 
 
 
@@ -23,6 +24,8 @@ export default class Server {
 
     /**
      * Clients TEST
+     *
+     * @type { string: NetworkPlayer }
      */
     players = {}
 
@@ -48,25 +51,35 @@ export default class Server {
             this.room.state.players.onAdd((player, sessionId) => {
                 if (sessionId === this.room.sessionId) return // Return if local player
 
+
+                // Creates Network Player Object
+                const networkPlayer = new NetworkPlayer(
+                    Game.scene.getScene("main"), // Scene
+
+                    // Position
+                    player.x,
+                    player.y,
+
+                    // Extra Data
+                    player.spriteID,
+                    player.name,
+                    99 // Scene Depth
+                )
+
                 // Adds player to game
-                const obj = Game.scene.getScene("main").add.image(player.x, player.y, player.spriteID)
-                const data = {
-                    name: player.name,
-                    body: obj
-                }
-                this.players[sessionId] = data
+                this.players[sessionId] = networkPlayer
 
 
                 // player update event
                 player.onChange(() => {
-                    obj.x = player.x
-                    obj.y = player.y
+                    networkPlayer.x = player.x
+                    networkPlayer.x = player.y
                 })
-
             })
+
             // PLayer leave room event
             this.room.state.players.onRemove((player, sessionId) => {
-                this.players[sessionId].body.destroy(true)
+                this.players[sessionId].destroy(true)
                 delete this.players[sessionId]
             })
         })
