@@ -79,7 +79,7 @@ export default class Player extends Entity {
         this.nameBrick.setScale(0.13, 0.13)
 
         this.nameBrick.x = this.x - (this.nameBrick.displayWidth / 2) // X Position
-        this.nameBrick.y = this.y - (this.height - this.height / 4) // Y Position
+        this.nameBrick.y = this.y - (this.height - this.height / 8) // Y Position
     }
 
 
@@ -106,6 +106,6 @@ export default class Player extends Entity {
          * Text Test Update
          */
         this.nameBrick.x = this.x - (this.nameBrick.displayWidth / 2)
-        this.nameBrick.y = this.y - (this.height - this.height / 4)
+        this.nameBrick.y = this.y - (this.height - this.height / 8)
     }
 }
