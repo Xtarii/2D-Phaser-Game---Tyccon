@@ -38,7 +38,56 @@ export default class Entity extends Physics.Arcade.Sprite {
      * @param {number} y Y Position
      * @param {string} spriteID Sprite ID
      * @param {string} name Entity Name
+     * @param {number} depth Entity render Depth
      */
-    constructor(scene, x, y, spriteID, name){
+    constructor(scene, x, y, spriteID, name, detph){
+        super(scene, x, y, spriteID) // Creating parent(PAPPA)
+
+        // Add to scene
+        this.scene.add.existing(this)
+        this.scene.physics.add.existing(this)
+
+        // Collider setup
+        const size = this.getBounds()
+        const x = size.width / 3
+        const y = size.height / 2
+
+        this.body.setSize((size.width - x), (size.height - y))
+        this.body.setOffset(x / 2, y)
+        this.setDepth(detph) // Sets Entity render detph
+
+
+
+
+
+
+        // WORK (IN/LE) PROCESS
+        const style = {
+            fontSize: '50px',
+            fontFamily: 'Arial',
+            color: '#cfcfcf',
+            backgroundColor: '#2d2f2e5e'
+        }
+        const nameDisplayConfig = {
+            padding: {
+                x: 50,
+                y: 5
+            },
+            text: name,
+            style: style
+        }
+        this.namebar = Game.scene.getScene("main").make.text(nameDisplayConfig)
+        this.namebar.setDepth(99)
+        this.namebar.setScale(0.13, 0.13)
+
+        this.namebar.x = this.x - (this.namebar.displayWidth / 2) // X Position
+        this.namebar.y = this.y - (this.height - this.height / 4) // Y Position
+    }
+
+    
+
+    update() {
+        this.namebar.x = this.x - (this.namebar.displayWidth / 2)
+        this.namebar.y = this.y - (this.height - this.height / 4)
     }
 }

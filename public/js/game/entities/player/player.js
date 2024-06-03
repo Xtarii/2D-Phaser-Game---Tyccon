@@ -32,24 +32,10 @@ export default class Player extends Entity {
             150 + Math.random() * (200 - -200) + -200,
 
             // Player Avatar
-            localStorage.getItem("spriteID")
+            localStorage.getItem("spriteID"),
+            localStorage.getItem("playerName"), // Sets Player Name
+            100 // Player detph
         )
-        this.name = localStorage.getItem("playerName") // Sets Player Name
-
-        this.scene.add.existing(this)
-        this.scene.physics.add.existing(this)
-
-
-        // Collider Size
-        const size = this.getBounds()
-        const x = size.width / 3
-        const y = size.height / 2
-
-        this.body.setSize((size.width - x), (size.height - y))
-        this.body.setOffset(x / 2, y)
-
-
-        this.setDepth(100) // Sets Player to Front
 
 
         //
@@ -65,30 +51,6 @@ export default class Player extends Entity {
 
 
 
-
-        /**
-         * Player Name Test
-         */
-        const style = {
-            fontSize: '50px',
-            fontFamily: 'Arial',
-            color: '#cfcfcf',
-            backgroundColor: '#2d2f2e5e'
-        }
-        const nameDisplayConfig = {
-            padding: {
-                x: 50,
-                y: 5
-            },
-            text: `${this.name}   -   [ You ]`,
-            style: style
-        }
-        this.nameBrick = Game.scene.getScene("main").make.text(nameDisplayConfig)
-        this.nameBrick.setDepth(99)
-        this.nameBrick.setScale(0.13, 0.13)
-
-        this.nameBrick.x = this.x - (this.nameBrick.displayWidth / 2) // X Position
-        this.nameBrick.y = this.y - (this.height - this.height / 4) // Y Position
     }
 
 
@@ -110,11 +72,6 @@ export default class Player extends Entity {
 
 
 
-
-        /**
-         * Text Test Update
-         */
-        this.nameBrick.x = this.x - (this.nameBrick.displayWidth / 2)
-        this.nameBrick.y = this.y - (this.height - this.height / 4)
+        super.update()
     }
 }
