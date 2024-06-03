@@ -21,7 +21,7 @@ export default class Entity extends Physics.Arcade.Sprite {
     /**
      * Entity Name
      */
-    name = "Entity"
+    name
 
 
 
@@ -42,6 +42,7 @@ export default class Entity extends Physics.Arcade.Sprite {
      */
     constructor(scene, x, y, spriteID, name, detph){
         super(scene, x, y, spriteID) // Creating parent(PAPPA)
+        this.name = name // Entity Name
 
         // Add to scene
         this.scene.add.existing(this)
