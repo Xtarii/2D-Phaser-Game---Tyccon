@@ -35,8 +35,6 @@ export default class Player extends Entity {
             localStorage.getItem("spriteID")
         )
         this.name = localStorage.getItem("playerName") // Sets Player Name
-        this.prevX = this.x
-        this.prevY = this.y
 
         this.scene.add.existing(this)
         this.scene.physics.add.existing(this)
@@ -57,6 +55,9 @@ export default class Player extends Entity {
         //
         // Only Player Needs This ------------------------------
         //
+        this.prevX = this.x
+        this.prevY = this.y
+
         this.keys = this.scene.input.keyboard.addKeys("W,S,A,D")
         //
         //  ----------------------------------------------------
