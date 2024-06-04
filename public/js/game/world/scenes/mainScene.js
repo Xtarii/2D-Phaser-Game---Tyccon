@@ -47,9 +47,7 @@ export default class MainScene extends Phaser.Scene {
         wall.setCollisionBetween(0, 100)
 
 
-        console.log(map.getTileLayerNames())
         const dec = map.createLayer("decoration", tiles)
-        console.log(dec.data)
 
 
 
@@ -57,6 +55,9 @@ export default class MainScene extends Phaser.Scene {
         ground.y = -ground.height / 2
         wall.x = -wall.width / 2
         wall.y = -wall.height / 2
+
+        dec.x = -dec.width / 2
+        dec.y = -dec.height / 2
 
 
         this.cameras.main.startFollow(MainScene.player, true, 0.07, 0.07) // Camera Follow Player with small Delay

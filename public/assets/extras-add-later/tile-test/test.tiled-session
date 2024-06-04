@@ -3,10 +3,11 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "P:/games/2D Phaser Game - Tycoon/public/assets/tiles/hotel/hotel tiles config.tmx",
+    "activeFile": "P:/games/2D Phaser Game - Tycoon/public/assets/tiles/hotel/hotel tilemap.json",
     "expandedProjectPaths": [
         "."
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
             "scaleInEditor": 1
@@ -19,12 +20,23 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
-        "P:/games/2D Phaser Game - Tycoon/public/assets/tiles/hotel/hotel tiles config.tmx": {
-            "scale": 0.75,
+        "P:/games/2D Phaser Game - Tycoon/public/assets/tiles/hotel/hotel tilemap.json": {
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 3118,
-                "y": 6057.333333333333
+                "x": 3346.5,
+                "y": 6035
+            }
+        },
+        "P:/games/2D Phaser Game - Tycoon/public/assets/tiles/hotel/hotel tilemap.json#Hotel tiles": {
+            "scaleInDock": 1
+        },
+        "P:/games/2D Phaser Game - Tycoon/public/assets/tiles/hotel/hotel tiles config.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 3243,
+                "y": 5846
             }
         },
         "P:/games/2D Phaser Game - Tycoon/public/assets/tiles/hotel/hotel tiles config.tmx#Hotel tiles": {
@@ -51,11 +63,12 @@
     "map.tileWidth": 64,
     "map.width": 100,
     "openFiles": [
-        "P:/games/2D Phaser Game - Tycoon/public/assets/tiles/hotel/hotel tiles config.tmx"
+        "P:/games/2D Phaser Game - Tycoon/public/assets/tiles/hotel/hotel tilemap.json"
     ],
     "project": "test.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "P:/games/2D Phaser Game - Tycoon/public/assets/tiles/hotel/hotel tilemap.json",
         "P:/games/2D Phaser Game - Tycoon/public/assets/tiles/hotel/hotel tiles config.tmx",
         "tilemap.json"
     ],
