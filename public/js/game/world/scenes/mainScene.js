@@ -37,8 +37,8 @@ export default class MainScene extends Phaser.Scene {
         // const map = this.make.tilemap("map")
         // map.addTilesetImage("floor-map", "floor")
 
-        const map = this.make.tilemap({key: "tilemap"})
-        const tiles = map.addTilesetImage("Hotel tiles", "tileset")
+        const map = this.make.tilemap({key: "tilemaptest"})
+        const tiles = map.addTilesetImage("64 upscale", "tilset2")
         const ground = map.createLayer("ground", tiles)
 
 
