@@ -19,8 +19,8 @@ export default class Player extends Entity {
             2900 + Math.random() * ((64 * 3) - -(64 * 3)) + -(64 * 3),
 
             // Player Avatar
-            localStorage.getItem("spriteID"),
-            `${localStorage.getItem("playerName")}   -   [ You ]`, // Sets Player Name
+            Player.readPlayerInfo("spriteID"),
+            `${Player.readPlayerInfo("name")}   -   [ You ]`, // Sets Player Name
             100 // Player detph
         )
 
@@ -52,6 +52,15 @@ export default class Player extends Entity {
 
 
 
-    readPlayerData = (key) => {
+    /**
+     * Reads Data from Player Info
+     *
+     * @param {string} key Key
+     * @returns Data
+     */
+    static readPlayerInfo = (key) => {
+        const data = JSON.parse(localStorage.getItem("player info")) // Reads Player Info
+        if(data === null) return null
+        return data[key]
     }
 }
