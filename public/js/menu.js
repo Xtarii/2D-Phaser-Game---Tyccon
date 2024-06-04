@@ -1,3 +1,9 @@
+document.getElementById("name").value = localStorage.getItem("playerName")
+document.getElementById("spriteID").value = localStorage.getItem("spriteID")
+
+
+
+
 document.getElementById("connect").addEventListener("click", () => {
     // Player Info
     let name = document.getElementById("name").value

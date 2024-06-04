@@ -81,6 +81,7 @@ export default class Server {
 
             // PLayer leave room event
             this.room.state.players.onRemove((player, sessionId) => {
+                this.players[sessionId].namebar.destroy(true)
                 this.players[sessionId].destroy(true)
                 delete this.players[sessionId]
             })
