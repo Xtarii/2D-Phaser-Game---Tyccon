@@ -73,7 +73,7 @@ export default class Server {
                 // player update event
                 player.onChange(() => {
                     networkPlayer.x = player.x
-                    networkPlayer.x = player.y
+                    networkPlayer.y = player.y
 
                     networkPlayer.update() // Updates Name Position
                 })
