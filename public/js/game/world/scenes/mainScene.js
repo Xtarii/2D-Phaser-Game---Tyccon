@@ -47,6 +47,11 @@ export default class MainScene extends Phaser.Scene {
         wall.setCollisionBetween(0, 100)
 
 
+        console.log(map.getTileLayerNames())
+        const dec = map.createLayer("decoration", tiles)
+        console.log(dec.data)
+
+
 
         ground.x = -ground.width / 2
         ground.y = -ground.height / 2
