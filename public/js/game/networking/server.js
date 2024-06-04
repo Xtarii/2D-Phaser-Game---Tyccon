@@ -25,7 +25,7 @@ export default class Server {
     /**
      * Clients TEST
      *
-     * @type { string: NetworkPlayer }
+     * @type {Object.<string, NetworkPlayer>}
      */
     players = {}
 
@@ -74,6 +74,8 @@ export default class Server {
                 player.onChange(() => {
                     networkPlayer.x = player.x
                     networkPlayer.x = player.y
+
+                    networkPlayer.update() // Updates Name Position
                 })
             })
 
