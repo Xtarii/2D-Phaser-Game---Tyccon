@@ -15,8 +15,8 @@ export default class Player extends Entity {
             Game.scene.getScene("main"),
 
             // Prespawn Position
-            150 + Math.random() * (200 - -200) + -200,
-            150 + Math.random() * (200 - -200) + -200,
+            0 + Math.random() * ((64 * 3) - -(64 * 3)) + -(64 * 3),
+            2900 + Math.random() * ((64 * 3) - -(64 * 3)) + -(64 * 3),
 
             // Player Avatar
             localStorage.getItem("spriteID"),

@@ -37,8 +37,8 @@ export default class MainScene extends Phaser.Scene {
         // const map = this.make.tilemap("map")
         // map.addTilesetImage("floor-map", "floor")
 
-        const map = this.make.tilemap({key: "tilemaptest"})
-        const tiles = map.addTilesetImage("64 upscale", "tilset2")
+        const map = this.make.tilemap({key: "hotel tilemap"})
+        const tiles = map.addTilesetImage("Hotel tiles", "hotel tileset")
         const ground = map.createLayer("ground", tiles)
 
 
@@ -47,17 +47,24 @@ export default class MainScene extends Phaser.Scene {
         wall.setCollisionBetween(0, 100)
 
 
-        ground.y = -1200
-        ground.x = -600
-        wall.y = -1200
-        wall.x = -600
+
+        ground.x = -ground.width / 2
+        ground.y = -ground.height / 2
+        wall.x = -wall.width / 2
+        wall.y = -wall.height / 2
 
 
         this.cameras.main.startFollow(MainScene.player, true, 0.07, 0.07) // Camera Follow Player with small Delay
         this.cameras.main.setZoom(1.7)
 
         // Camera Bound ( Can't move outside this point ) set to map size
-        this.cameras.main.setBounds(ground.x - 15, ground.y - 15, 1630, 1630)
+        this.cameras.main.setBounds(
+            -ground.width / 2 - 15,
+            -ground.height / 2 - 15,
+
+            ground.width + 30,
+            ground.height + 30
+        )
     }
 
     update(){

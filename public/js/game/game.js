@@ -83,8 +83,9 @@ export const Game = new BaseGame(config)
 /**
  * Sleep Function
  *
- * @example
+ * ```js
  * await sleep(1000) // 1 second sleep
+ * ```
  *
  * @param {number} ms Milliseconds
  * @returns Promise
