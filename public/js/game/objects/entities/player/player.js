@@ -55,10 +55,23 @@ export default class Player extends Entity {
 
         // Interaction Test
         const obj = this.findClosestObect()
-        if(obj === (null || undefined)) return
+        if(obj === (null || undefined)) {
+            this.interact = false
+            if(this.interactButton !== (null || undefined)) this.interactButton.destroy(true)
+            return
+        }
 
-        // Display Interact Button
-        console.log(obj.obj.name)
+
+        if(this.interact === false){
+            this.interactButton = this.scene.add.image(this.x, this.y, "interact key", 0)
+            this.interactButton.setDepth(101)
+            this.interact = true
+        }
+
+        if(this.interactButton !== (null || undefined)){
+            this.interactButton.x = obj.obj.x
+            this.interactButton.y = obj.obj.y
+        }
     }
 
 
