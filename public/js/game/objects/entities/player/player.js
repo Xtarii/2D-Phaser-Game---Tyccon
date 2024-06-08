@@ -69,8 +69,8 @@ export default class Player extends Entity {
         }
 
         if(this.interactButton !== (null || undefined)){
-            this.interactButton.x = obj.obj.x
-            this.interactButton.y = obj.obj.y
+            this.interactButton.x = obj.obj.x - ((obj.obj.x - this.x) / 16)
+            this.interactButton.y = obj.obj.y - ((obj.obj.y - this.y) / 16)
         }
     }
 
@@ -92,7 +92,7 @@ export default class Player extends Entity {
                 Math.pow(objects[i].x - this.x, 2) + Math.pow(objects[i].y - this.y, 2)
             )
 
-            if(distance < 1 * 64)
+            if(distance < 1.5 * 64)
                 closest.push({obj: objects[i], distance})
         }
 
