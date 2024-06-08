@@ -49,5 +49,42 @@ export default class Player extends Entity {
 
 
         super.update()
+
+
+
+
+        // Interaction Test
+        const obj = this.findClosestObect()
+        if(obj === (null || undefined)) return
+
+        // Display Interact Button
+        console.log(obj.obj.name)
+    }
+
+
+
+
+    findClosestObect = () => {
+        // Find Objects In scene
+        const objects = Game.scene.getScene("main").children.list
+        const closest = []
+
+
+        for(var i in objects){
+            // Checks if Interactable
+            if(objects[i].interactable === (null || undefined) || objects[i].interactable === false) continue
+
+            // Handles Interactable Objects
+            const distance = Math.sqrt(
+                Math.pow(objects[i].x - this.x, 2) + Math.pow(objects[i].y - this.y, 2)
+            )
+
+            if(distance < 1 * 64)
+                closest.push({obj: objects[i], distance})
+        }
+
+        // Return Closest Object
+        closest.sort((a, b) => a.distance - b.distance)
+        return closest[0]
     }
 }

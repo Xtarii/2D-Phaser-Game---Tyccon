@@ -32,7 +32,8 @@ export default class MainScene extends Phaser.Scene {
 
     async create(){
         // Test Interaction Block
-        new TestBlockInteraction()
+        new TestBlockInteraction(0, 2900, "1")
+        new TestBlockInteraction(100, 2900, "2")
 
 
 
