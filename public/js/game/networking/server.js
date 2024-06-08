@@ -2,7 +2,7 @@ const { Client, Room } = require("colyseus.js")
 import MainScene, { checkGameInstances } from "../world/scenes/mainScene.js"
 import { Game } from "../game.js"
 import NetworkPlayer from "./networkObjects/networkPlayer.js"
-import Player from "../entities/player/player.js"
+import { readPlayerInfo } from "../../utils/data/playerDataHandler.js"
 
 
 
@@ -104,8 +104,8 @@ export default class Server {
 
         // Constructs Player Data
         const data = {
-            name: Player.readPlayerInfo("name"),
-            spriteID: Player.readPlayerInfo("spriteID"),
+            name: readPlayerInfo("name"),
+            spriteID: readPlayerInfo("spriteID"),
 
             // Position
             x: MainScene.player.x,

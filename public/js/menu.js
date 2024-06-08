@@ -1,3 +1,7 @@
+import { readPlayerInfo } from "./utils/data/playerDataHandler.js"
+
+
+
 /**
  * Player Character Information
  */
@@ -13,8 +17,8 @@ const playerInfo = {
 }
 
 // Reads Player Info
-playerInfo.name = read("name") || playerInfo.name
-playerInfo.spriteID = read("spriteID") || playerInfo.spriteID
+playerInfo.name = readPlayerInfo("name") || playerInfo.name
+playerInfo.spriteID = readPlayerInfo("spriteID") || playerInfo.spriteID
 
 
 // Applies Data to Front-end Inputs
@@ -38,17 +42,3 @@ document.getElementById("connect").addEventListener("click", () => {
     localStorage.setItem("host", document.getElementById("server").value)
     location.href = "/game"
 })
-
-
-
-/**
- * Reads Data from Player Info
- *
- * @param {string} key Key
- * @returns Data
- */
-function read(key){
-    const data = JSON.parse(localStorage.getItem("player info")) // Parse JSON from "player info"
-    if(data === null) return null
-    return data[key] // Returns Data
-}

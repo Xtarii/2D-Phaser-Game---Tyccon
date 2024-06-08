@@ -1,3 +1,4 @@
+import { readPlayerInfo } from "../../../utils/data/playerDataHandler.js"
 import { Game } from "../../game.js"
 import Entity from "../entity.js"
 
@@ -19,8 +20,8 @@ export default class Player extends Entity {
             2900 + Math.random() * ((64 * 3) - -(64 * 3)) + -(64 * 3),
 
             // Player Avatar
-            Player.readPlayerInfo("spriteID"),
-            `${Player.readPlayerInfo("name")}   -   [ You ]`, // Sets Player Name
+            readPlayerInfo("spriteID"),
+            `${readPlayerInfo("name")}   -   [ You ]`, // Sets Player Name
             100 // Player detph
         )
 
@@ -48,19 +49,5 @@ export default class Player extends Entity {
 
 
         super.update()
-    }
-
-
-
-    /**
-     * Reads Data from Player Info
-     *
-     * @param {string} key Key
-     * @returns Data
-     */
-    static readPlayerInfo = (key) => {
-        const data = JSON.parse(localStorage.getItem("player info")) // Reads Player Info
-        if(data === null) return null
-        return data[key]
     }
 }
