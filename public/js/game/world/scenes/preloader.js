@@ -14,6 +14,8 @@ export default class Preloader extends Phaser.Scene {
         this.load.image("player", "assets/extras-add-later/people/fat guy 2.0.png") // DEBUG
         this.load.image("phak", "assets/extras-add-later/people/Phak.png")
 
+        this.load.image("Dr. Time", "assets/characters/dev/Dr. Time.png")
+
         this.load.image("big guy", "assets/extras-add-later/people/morbidly obese guy.png")
         this.load.image("Mohammed", "assets/extras-add-later/people/Mohammed.png")
 
