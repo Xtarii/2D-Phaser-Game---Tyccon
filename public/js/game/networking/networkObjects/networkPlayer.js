@@ -1,4 +1,4 @@
-import Entity from "../../entities/entity.js"
+import Entity from "../../objects/entities/entity.js"
 
 
 

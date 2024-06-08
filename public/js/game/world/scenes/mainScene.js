@@ -1,6 +1,6 @@
 const Phaser = require("phaser")
 import { sleep } from "../../../utils/time.js"
-import Player from "../../entities/player/player.js"
+import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
 
 

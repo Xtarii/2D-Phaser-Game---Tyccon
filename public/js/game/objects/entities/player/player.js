@@ -1,5 +1,5 @@
-import { readPlayerInfo } from "../../../utils/data/playerDataHandler.js"
-import { Game } from "../../game.js"
+import { readPlayerInfo } from "../../../../utils/data/playerDataHandler.js"
+import { Game } from "../../../game.js"
 import Entity from "../entity.js"
 
 
@@ -16,8 +16,8 @@ export default class Player extends Entity {
             Game.scene.getScene("main"),
 
             // Prespawn Position
-            0 + Math.random() * ((64 * 3) - -(64 * 3)) + -(64 * 3),
-            2900 + Math.random() * ((64 * 3) - -(64 * 3)) + -(64 * 3),
+            0 + Math.random() * ((64 * 2) - -(64 * 2)) + -(64 * 2),
+            2900 + Math.random() * ((64 * 2) - -(64 * 2)) + -(64 * 2),
 
             // Player Avatar
             readPlayerInfo("spriteID"),
