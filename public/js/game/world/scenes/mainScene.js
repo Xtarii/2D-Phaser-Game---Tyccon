@@ -3,6 +3,8 @@ import { sleep } from "../../../utils/time.js"
 import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
 
+import TestBlockInteraction from "../../objects/block/testblock.js"
+
 
 
 /**
@@ -29,6 +31,14 @@ export default class MainScene extends Phaser.Scene {
 
 
     async create(){
+        // Test Interaction Block
+        new TestBlockInteraction()
+
+
+
+
+
+
         MainScene.player = new Player()
 
 
