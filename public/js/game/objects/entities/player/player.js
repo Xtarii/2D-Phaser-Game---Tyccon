@@ -1,6 +1,8 @@
 import { readPlayerInfo } from "../../../../utils/data/playerDataHandler.js"
+import { sleep } from "../../../../utils/time.js"
 import { Game } from "../../../game.js"
 import Entity from "../entity.js"
+import InteractionHandler from "./interact.js"
 
 
 
@@ -26,7 +28,11 @@ export default class Player extends Entity {
         )
 
         // Key Listeners
-        this.keys = this.scene.input.keyboard.addKeys("W,S,A,D")
+        this.keys = this.scene.input.keyboard.addKeys("W,S,A,D,E")
+
+
+        // Component Setup
+        this.interaction = new InteractionHandler(this)
     }
 
 
@@ -53,9 +59,11 @@ export default class Player extends Entity {
 
 
 
+        // Gets Closest Object to Player
+        const object = this.interaction.getClosestObect(this.width)
+
         // Interaction Test
-        const obj = this.findClosestObect()
-        if(obj === (null || undefined)) {
+        if(!object) {
             this.interact = false
             if(this.interactButton !== (null || undefined)) this.interactButton.destroy(true)
             return
@@ -69,35 +77,16 @@ export default class Player extends Entity {
         }
 
         if(this.interactButton !== (null || undefined)){
-            this.interactButton.x = obj.obj.x - ((obj.obj.x - this.x) / 16)
-            this.interactButton.y = obj.obj.y - ((obj.obj.y - this.y) / 16)
-        }
-    }
-
-
-
-
-    findClosestObect = () => {
-        // Find Objects In scene
-        const objects = Game.scene.getScene("main").children.list
-        const closest = []
-
-
-        for(var i in objects){
-            // Checks if Interactable
-            if(objects[i].interactable === (null || undefined) || objects[i].interactable === false) continue
-
-            // Handles Interactable Objects
-            const distance = Math.sqrt(
-                Math.pow(objects[i].x - this.x, 2) + Math.pow(objects[i].y - this.y, 2)
-            )
-
-            if(distance < 1.5 * 64)
-                closest.push({obj: objects[i], distance})
+            this.interactButton.x = object.body.x - ((object.body.x - this.x) / 32)
+            this.interactButton.y = object.body.y - ((object.body.y - this.y) / 32)
         }
 
-        // Return Closest Object
-        closest.sort((a, b) => a.distance - b.distance)
-        return closest[0]
+
+
+        if(this.interact === true && this.keys.E.isDown){
+            this.interactButton.setTexture("interact key", 1)
+
+            sleep(1500).then(() => this.interactButton.setTexture("interact key", 0))
+        }
     }
 }
