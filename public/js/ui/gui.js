@@ -49,7 +49,7 @@ export default class UI extends GameObjects.Image {
      *
      * @param  {...UI} items UI Items
      */
-    static addUIComponents = (...items) => { this.#UIComponents.push(items) }
+    static addUIComponents = (...items) => { this.#UIComponents.push(...items) }
     /**
      * Removes UI Item at Index from UI Component List
      *
@@ -70,6 +70,16 @@ export default class UI extends GameObjects.Image {
         }
 
         this.#UIComponents = list // Overwrites UI Component List
+    }
+
+    /**
+     * Updates All Registerd UI Components from Component List
+     *
+     * Loops through every UI component and calls Update on it
+     */
+    static updateAll = () => {
+        const uis = this.getUIComponents() // Gets Copy of UI list to avoid Errors
+        for(var x in uis) uis[x].update() // Updates UI Component
     }
 
 
@@ -102,8 +112,9 @@ export default class UI extends GameObjects.Image {
         super(
             scene, // Scene
 
-            (placementType === UI.placementType.static || placementType == null) ? scene.cameras.main.x + x : x,
-            (placementType === UI.placementType.static || placementType == null) ? scene.cameras.main.y + y : y,
+            // Position
+            x,
+            y,
 
             // UI Image
             image,
@@ -112,6 +123,7 @@ export default class UI extends GameObjects.Image {
 
         // Sets Placement Type to Static
         this.#placementType = placementType != null ? placementType : UI.placementType.static
+        if(this.#placementType === UI.placementType.static) this.setScrollFactor(0)
         UI.addUIComponents(this) // Adds To Referance List
 
 
@@ -130,7 +142,7 @@ export default class UI extends GameObjects.Image {
     setPlacementType = (type) => this.#placementType = type
 
 
-    destroy = () => {
+    destroy(){
         UI.removeUIComponent(this) // Remove This from UI List
         super.destroy(true) // Destroy This UI Object
     }

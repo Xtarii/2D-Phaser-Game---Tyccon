@@ -2,6 +2,7 @@ const Phaser = require("phaser")
 import { sleep } from "../../../utils/time.js"
 import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
+import UI from "../../../ui/gui.js"
 
 import TestBlockInteraction from "../../objects/block/testblock.js"
 
@@ -34,6 +35,8 @@ export default class MainScene extends Phaser.Scene {
         // Test Interaction Block
         new TestBlockInteraction(0, 2900, "1")
         new TestBlockInteraction(100, 2900, "2")
+
+        new UI(this, 400, 300, "interact key")
 
 
 
@@ -89,6 +92,11 @@ export default class MainScene extends Phaser.Scene {
         if(Game.server === undefined || Game.server.room === undefined) return // Returns if no Server Connection
 
         MainScene.player.update()
+
+
+
+        // UI Update
+        UI.updateAll()
     }
 }
 
