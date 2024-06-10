@@ -78,7 +78,7 @@ export default class InteractionHandler {
 
         for(var i in objects){
             // Checks if Interactable
-            if(objects[i].interactable === (null || undefined) || objects[i].interactable === false) continue
+            if(objects[i].interactable == null || objects[i].interactable === false) continue
 
 
             // Gets Distance from parent

@@ -65,7 +65,7 @@ export default class Player extends Entity {
         // Interaction Test
         if(!object) {
             this.interact = false
-            if(this.interactButton !== (null || undefined)) this.interactButton.destroy(true)
+            if(this.interactButton != null) this.interactButton.destroy(true)
             return
         }
 
@@ -76,7 +76,7 @@ export default class Player extends Entity {
             this.interact = true
         }
 
-        if(this.interactButton !== (null || undefined)){
+        if(this.interactButton != null){
             this.interactButton.x = object.body.x - ((object.body.x - this.x) / 32)
             this.interactButton.y = object.body.y - ((object.body.y - this.y) / 32)
         }
