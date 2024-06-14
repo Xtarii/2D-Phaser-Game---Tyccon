@@ -136,8 +136,10 @@ export default class UI extends GameObjects.Image {
             /// ============================
             ///         470.5882353
 
-            this.x = camera.displayWidth + x
-            this.y = camera.displayHeight + y
+            this.x = (camera.width / 2 - camera.displayWidth / 2) + x
+            this.y = (camera.height / 2 - camera.displayHeight / 2) + y
+
+            console.log(this.x)
         }
         UI.addUIComponents(this) // Adds To Referance List
 
