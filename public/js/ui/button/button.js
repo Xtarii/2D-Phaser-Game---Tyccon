@@ -7,6 +7,17 @@ import UI from "../gui.js"
  */
 export default class Button extends UI {
     /**
+     * Button Normal Tint Color
+     *
+     * @readonly
+     */
+    static NORMAL_TINT = 0xd0d0d0
+
+
+
+
+
+    /**
      * Creates Button Instance
      *
      * @param  {...{
