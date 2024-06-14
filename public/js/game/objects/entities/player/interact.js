@@ -1,3 +1,6 @@
+import Button from "../../../../ui/button/button.js"
+import UI from "../../../../ui/gui.js"
+import { sleep } from "../../../../utils/time.js"
 import { Game } from "../../../game.js"
 import Entity from "../entity.js"
 
@@ -6,7 +9,7 @@ import Entity from "../entity.js"
 /**
  * Interaction Handler Component
  *
- * Handles Interaction
+ * Handles Interaction for Player
  */
 export default class InteractionHandler {
     /**
@@ -27,7 +30,7 @@ export default class InteractionHandler {
          *
          * UI Button for indicating a interaction
          *
-         * @type {Phaser.GameObjects.GameObject}
+         * @type {Button}
          */
         indicator: null
     }
@@ -48,16 +51,105 @@ export default class InteractionHandler {
 
 
     /**
+     * Handles Interactions
+     *
+     * Checks for Interactions. Creates, updates and ends
+     * interaction objects
+     *
+     * @param {number} range Interaction Range
+     */
+    handleInteractions = (range) => {
+        // Checks for interaction
+        const interaction = this.checkInteraction(range)
+
+        // Handles New Interaction
+        if(interaction){
+            if(!this.interact.indicator) this.#newInteraction() // New Interaction
+            else this.#update() // Update Interaction
+
+        // No Interaction
+        }else{
+            if(this.interact.indicator) this.#endInteraction() // End Interaction
+        }
+    }
+
+
+
+    /**
+     * Setup for new Interaction
+     *
+     * Creates Interact Button
+     */
+    #newInteraction = () => {
+        const x = this.interact.target.x - ((this.interact.target.x - this.parent.x) / 32)
+        const y = this.interact.target.y - ((this.interact.target.y - this.parent.y) / 32)
+
+        // Creates Interact Button
+        this.interact.indicator = new Button(
+            this.parent.scene,
+
+            x,
+            y,
+
+            "interact key",
+            null,
+
+            UI.placementType.dynamic
+        ) // Creates Button
+    }
+
+    /**
+     * Ends Interaction
+     *
+     * Removes Interact Button
+     */
+    #endInteraction = () => {
+        // Removes Interact Button
+        this.interact.indicator.destroy()
+        this.interact.indicator = null
+    }
+
+    /**
+     * Interaction Update
+     *
+     * Updates if current Interaction
+     */
+    #update = () => {
+        // Updates Interact Button
+        this.interact.indicator.x = this.interact.target.x - ((this.interact.target.x - this.parent.x) / 32)
+        this.interact.indicator.y = this.interact.target.y - ((this.interact.target.y - this.parent.y) / 32)
+
+
+        /// TEST KEY DOWN DURATION - THIS WILL BE IN INTERACT OBJECT LATER
+        this.interact.target.delay = 250
+
+
+        // Checks for interaction Event
+        if(this.parent.scene.input.keyboard.checkDown(this.parent.keys.E, this.interact.target.delay)){
+
+            /// BUTTON TEST
+            this.interact.indicator.setTint(Button.NORMAL_TINT)
+            sleep(3000).then(() => this.interact.indicator.clearTint())
+
+            // Call on Target Interact Function
+        }
+    }
+
+
+
+    /**
      * Checks for Interaction Target
      *
      * If object is within distance, then {@link interact} target is set
      * to closest object.
      *
      * @param {number} range Max Distance
+     * @returns Interaction Status
      */
     checkInteraction = (range) => {
-        const object = this.getClosestObect(this.parent, range) // Gets Closest Object
+        const object = this.getClosestObect(range) // Gets Closest Object
         this.interact.target = object.body // Sets Interact Target
+        return this.interact.target != null // Return Interaction Status
     }
 
 
@@ -90,8 +182,8 @@ export default class InteractionHandler {
             if(distance < (range || distance + 1)) closest.push({body: objects[i], distance})
         }
 
-        // Return Closest Object
+        // Sorts Closest Objects
         closest.sort((a, b) => a.distance - b.distance)
-        return closest[0] || null // Returns Closest Object or Null ( I don't like undefined )
+        return closest[0] || {body: null, distance: null} // Returns Closest Object
     }
 }
