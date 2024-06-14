@@ -13,7 +13,9 @@ export default class UI extends GameObjects.Image {
     /**
      * UI Placement Type
      *
-     * Controls where on screen UI should be placed
+     * Controls where on screen UI should be placedz
+     *
+     * @readonly
      */
     static placementType = {
         /**
@@ -21,6 +23,8 @@ export default class UI extends GameObjects.Image {
          *
          * Place UI Element after camera position
          * so UI element is always visible to camera
+         *
+         * @readonly
          */
         static: 0,
         /**
@@ -28,6 +32,8 @@ export default class UI extends GameObjects.Image {
          *
          * Place UI Element in World Position,
          * may not be in camera view
+         *
+         * @readonly
          */
         dynamic: 1
     }
