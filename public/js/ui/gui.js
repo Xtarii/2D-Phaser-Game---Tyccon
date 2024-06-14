@@ -123,7 +123,22 @@ export default class UI extends GameObjects.Image {
 
         // Sets Placement Type to Static
         this.#placementType = placementType != null ? placementType : UI.placementType.static
-        if(this.#placementType === UI.placementType.static) this.setScrollFactor(0)
+        if(this.#placementType === UI.placementType.static){
+            this.setScrollFactor(0) // Sets Scroll Factor to 0, object won't move with camera
+
+            // Sets Canvas Position
+            const camera = scene.cameras.main
+
+            /// 800 pixel Canvas
+            /// 1.7 camera zoom
+            ///
+            /// 800 / 1.7 = Pixels in Canvas
+            /// ============================
+            ///         470.5882353
+
+            this.x = camera.displayWidth + x
+            this.y = camera.displayHeight + y
+        }
         UI.addUIComponents(this) // Adds To Referance List
 
 
