@@ -5,6 +5,7 @@ import { Game } from "../../game.js"
 import UI from "../../../ui/gui.js"
 
 import TestBlockInteraction from "../../objects/block/testblock.js"
+import Button from "../../../ui/button/button.js"
 
 
 
@@ -36,7 +37,13 @@ export default class MainScene extends Phaser.Scene {
         new TestBlockInteraction(0, 2900, "1")
         new TestBlockInteraction(100, 2900, "2")
 
-        new UI(this, 400, 300, "interact key")
+
+        this.cameras.main.setZoom(1.7)
+
+        const button = new Button(this, 16 / 2, 16 / 2, "interact key")
+        button.on("pointerdown", () => {
+            console.log("CLICK")
+        })
 
 
 
