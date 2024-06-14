@@ -129,7 +129,7 @@ export default class InteractionHandler {
 
             /// BUTTON TEST
             this.interact.indicator.setTint(Button.NORMAL_TINT)
-            sleep(3000).then(() => this.interact.indicator.clearTint())
+            sleep(3000).then(() => this.interact.indicator?.clearTint())
 
             // Call on Target Interact Function
         }
