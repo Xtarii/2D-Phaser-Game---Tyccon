@@ -1,0 +1,19 @@
+{
+  "name": "application",
+  "version": "1.0.0",
+  "description": "Main Application",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "tsc && electron ."
+  },
+  "author": "Evil, INC",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^31.0.2",
+    "typescript": "^5.5.2"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
