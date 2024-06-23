@@ -2,3 +2,4 @@ node_modules/
 dist/
 .turbo/
 NVIDIA Corporation/
+package-lock.json
