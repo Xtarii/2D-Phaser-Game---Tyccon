@@ -1,0 +1,19 @@
+{
+  "name": "@obesity/components",
+  "version": "1.0.0",
+  "description": "Application and Game Components",
+
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+
+  "scripts": {
+    "start": "tsc"
+  },
+
+  "author": "Evil, INC",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^5.5.2"
+  }
+}

@@ -5,6 +5,15 @@
 import { BrowserWindow } from "electron"
 import { Emitter, EventEmitter, EventMap } from "./event/event"
 import Server from "./server/server"
+import { readApplicationConfig } from "@obesity/components"
+
+
+
+// Application Config Type
+type DEV = {
+    isDev?: boolean
+    url?: string
+}
 
 
 
@@ -44,6 +53,10 @@ export class Application {
      * Creates Application Instance
      */
     constructor(){
+        // Reads Application Config
+        const data = readApplicationConfig<DEV>("_dev.config")
+
+
         // Window Instance
         this.window = new BrowserWindow({
             width: 1500,
@@ -55,13 +68,13 @@ export class Application {
                 contextIsolation: false
             },
         })
-        // this.window.removeMenu()                   // Debug Menu Removal
+        if(!data?.isDev) this.window.removeMenu()      // Debug Menu Removal
 
         this.events = new EventEmitter()              // Creates Event Handler
         Application.server = new Server(this.events)  // Creates Host Server Instance
 
 
         // Window Setup
-        this.window.loadURL(`http://localhost:${Application.server.PORT}/`) // Loads Home Page
+        this.window.loadURL(data?.url || `http://localhost:${Application.server.PORT}/`) // Loads Home Page
     }
 }

@@ -4,6 +4,7 @@
   "description": "A 2D Tycoon",
   "private": true,
   "workspaces": [
+    "components",
     "application"
   ],
   "scripts": {
@@ -23,6 +24,7 @@
   },
   "dependencies": {
     "@colyseus/schema": "^2.0.32",
+    "@obesity/components": "^1.0.0",
     "colyseus": "^0.15.17",
     "colyseus.js": "^0.15.20",
     "express": "^4.19.2",
