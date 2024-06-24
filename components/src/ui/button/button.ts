@@ -7,7 +7,7 @@ import UI, { PlacementType } from "../ui"
 /**
  * Button Tint types
  */
-enum TINT {
+export enum TINT {
     /**
      * Button Normal Tint
      */
