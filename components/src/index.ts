@@ -1,10 +1,4 @@
 /**
- * Configs Util
+ * UI Components
  */
-export * from "./utils/configs"
-
-
-/**
- * Game Components
- */
-export * from "./components"
+export * from "./ui"
