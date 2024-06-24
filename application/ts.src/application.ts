@@ -5,7 +5,7 @@
 import { BrowserWindow } from "electron"
 import { Emitter, EventEmitter, EventMap } from "./event/event"
 import Server from "./server/server"
-import { readApplicationConfig } from "@obesity/components"
+import { readApplicationConfig } from "@obesity/utils"
 
 
 
