@@ -1,5 +1,5 @@
 const Phaser = require("phaser")
-import { sleep } from "../../../utils/time.js"
+const { sleep } = require("@obesity/utils")
 import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
 

@@ -1,5 +1,5 @@
 const { Button, TINT, PlacementType } = require("@obesity/components")
-import { sleep } from "../../../../utils/time.js"
+const { sleep } = require("@obesity/utils")
 import { Game } from "../../../game.js"
 import Entity from "../entity.js"
 
