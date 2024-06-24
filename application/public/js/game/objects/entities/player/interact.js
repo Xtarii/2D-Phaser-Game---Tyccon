@@ -1,5 +1,4 @@
-import Button from "../../../../ui/button/button.js"
-import UI from "../../../../ui/gui.js"
+const { Button, TINT, PlacementType } = require("@obesity/components")
 import { sleep } from "../../../../utils/time.js"
 import { Game } from "../../../game.js"
 import Entity from "../entity.js"
@@ -94,7 +93,7 @@ export default class InteractionHandler {
             "interact key",
             null,
 
-            UI.placementType.dynamic
+            PlacementType.dynamic
         ) // Creates Button
     }
 
@@ -128,7 +127,7 @@ export default class InteractionHandler {
         if(this.parent.scene.input.keyboard.checkDown(this.parent.keys.E, this.interact.target.delay)){
 
             /// BUTTON TEST
-            this.interact.indicator.setTint(Button.NORMAL_TINT)
+            this.interact.indicator.setTint(TINT.NORMAL_TINT)
             sleep(3000).then(() => this.interact.indicator?.clearTint())
 
             // Call on Target Interact Function

@@ -2,10 +2,9 @@ const Phaser = require("phaser")
 import { sleep } from "../../../utils/time.js"
 import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
-import UI from "../../../ui/gui.js"
 
 import TestBlockInteraction from "../../objects/block/testblock.js"
-import Button from "../../../ui/button/button.js"
+const { Button, UI } = require("@obesity/components")
 
 
 
@@ -103,7 +102,8 @@ export default class MainScene extends Phaser.Scene {
 
 
         // UI Update
-        UI.updateAll()
+        const uis = UI.getUIComponents()
+        for(var x in uis) uis[x].update() // Updates UI
     }
 }
 
