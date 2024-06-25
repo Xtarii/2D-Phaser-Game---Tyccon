@@ -44,7 +44,7 @@ export namespace PlayerData {
      * @returns Player Data
      */
     export function readPlayerData() : Player {
-        const FILE = path.join(PATH, "player.data.json") // Data File
+        const FILE = path.join(PATH, "account.json") // Data File
 
         // Default Player Data
         const defaultData: Player = {
@@ -79,7 +79,7 @@ export namespace PlayerData {
      * @param data Player Data
      */
     export function storePlayerData(data: Player){
-        const FILE = path.join(PATH, "player.data.json") // Data File
+        const FILE = path.join(PATH, "account.json") // Data File
 
         // Player Data
         const playerData: Player = {
