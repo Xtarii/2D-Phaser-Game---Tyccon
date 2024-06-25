@@ -8,7 +8,7 @@ import fs from "fs"
  *
  * Located in ```%APPDATA%/obesity-hotel/```
  */
-const APPDATA = path.join(
+export const APPDATA = path.join(
     //      Windows             Linux         None
     process.env.APPDATA || process.env.HOME || "",
     "obesity-hotel"
