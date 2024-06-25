@@ -1,4 +1,5 @@
-import { readPlayerInfo } from "../../../../utils/data/playerDataHandler.js"
+const { PlayerData } = require("@obesity/utils")
+
 import { Game } from "../../../game.js"
 import Entity from "../entity.js"
 import InteractionHandler from "./interact.js"
@@ -21,8 +22,8 @@ export default class Player extends Entity {
             2900 + Math.random() * ((64 * 2) - -(64 * 2)) + -(64 * 2),
 
             // Player Avatar
-            readPlayerInfo("spriteID"),
-            `${readPlayerInfo("name")}   -   [ You ]`, // Sets Player Name
+            PlayerData.readPlayerData().spriteID,
+            `${PlayerData.readPlayerData().name}   -   [ You ]`, // Sets Player Name
             100 // Player detph
         )
 
