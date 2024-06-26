@@ -1,7 +1,12 @@
-const { Button, TINT, PlacementType } = require("@obesity/components")
+const {
+    Button,
+    TINT,
+    PlacementType,
+
+    Entity
+} = require("@obesity/components")
 const { sleep } = require("@obesity/utils")
 import { Game } from "../../../game.js"
-import Entity from "../entity.js"
 
 
 
@@ -41,7 +46,7 @@ export default class InteractionHandler {
     /**
      * Creates Interaction Handler Instance
      *
-     * @param {Entity} parent Parent
+     * @param {Entity.BaseEntity} parent Parent
      */
     constructor(parent){
         this.parent = parent
