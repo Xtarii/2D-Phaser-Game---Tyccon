@@ -3,7 +3,8 @@ const {
     TINT,
     PlacementType,
 
-    Entity
+    Entity,
+    Interactable
 } = require("@obesity/components")
 const { sleep } = require("@obesity/utils")
 import { Game } from "../../../game.js"
@@ -46,7 +47,7 @@ export default class InteractionHandler {
     /**
      * Creates Interaction Handler Instance
      *
-     * @param {Entity.BaseEntity} parent Parent
+     * @param {Entity} parent Parent
      */
     constructor(parent){
         this.parent = parent
@@ -174,7 +175,7 @@ export default class InteractionHandler {
 
         for(var i in objects){
             // Checks if Interactable
-            if(objects[i].interactable == null || objects[i].interactable === false) continue
+            if(!(objects[i] instanceof Interactable)) continue
 
 
             // Gets Distance from parent
