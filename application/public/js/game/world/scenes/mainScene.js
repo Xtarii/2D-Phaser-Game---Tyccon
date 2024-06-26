@@ -4,7 +4,7 @@ import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
 
 import TestBlockInteraction from "../../objects/block/testblock.js"
-const { Button, UI, TINT } = require("@obesity/components")
+const { Button, UI } = require("@obesity/components")
 
 
 
