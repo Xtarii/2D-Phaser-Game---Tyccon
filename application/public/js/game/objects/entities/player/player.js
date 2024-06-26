@@ -9,7 +9,7 @@ import InteractionHandler from "./interact.js"
 /**
  * Local Player Instance
  */
-export default class Player extends Entity.BaseEntity {
+export default class Player extends Entity {
     /**
      * Creates Player Instance
      */
