@@ -8,6 +8,11 @@ export * from "./utils/configs"
  */
 export * from "./utils/time"
 
+/**
+ * Event Util
+ */
+export * from "./utils/event/event"
+
 
 /**
  * Data Managers
