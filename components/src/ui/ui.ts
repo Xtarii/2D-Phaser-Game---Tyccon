@@ -16,8 +16,8 @@ export enum PlacementType{
      *
      * UI Objects with static is placed in camera view.
      * When the camera moves the UI Objects
-     * stay in place. There world maitrix is set to
-     * be relativ to camera.
+     * stay in place. There world matrix is set to
+     * be relative to camera.
      */
     static,
 
@@ -136,7 +136,7 @@ export default class UI extends GameObjects.Image {
      * Creates UI Object Instance
      *
      * ```ts
-     * // Defualt
+     * // Default
      * placementType = static
      * ```
      *
@@ -163,7 +163,7 @@ export default class UI extends GameObjects.Image {
         // Sets Object Placement Type
         this._placementType = placementType ? placementType : PlacementType.static
         if(this._placementType === PlacementType.static){
-            this.setScrollFactor(0) // Sets to not move becuse of camera
+            this.setScrollFactor(0) // Sets to not move because of camera
 
             // Gets Canvas Position
             const camera = scene.cameras.main
@@ -185,8 +185,9 @@ export default class UI extends GameObjects.Image {
 
     destroy() {
         UI.removeUIComponentObject(this) // Removes From Scene
-        super.destroy(true) // Destorys GameObject
+        super.destroy(true) // Destroys GameObject
     }
+
 
 
 
