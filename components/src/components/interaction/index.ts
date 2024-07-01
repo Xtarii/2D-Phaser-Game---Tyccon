@@ -1,4 +1,10 @@
 /**
- * Interactable
+ * Interact Component
  */
-export * from "./interactable"
+export * from "./interact"
+
+
+/**
+ * Intractable
+ */
+export * from "./Intractable"

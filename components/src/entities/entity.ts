@@ -13,14 +13,14 @@ export abstract class Entity extends Physics.Arcade.Sprite {
     /**
      * Entity damp speed
      *
-     * Damping Entity speed, to deley abropt stop
+     * Damping Entity speed, to delay abrupt stop
     */
     dampSpeed: number = 0.7
 
     /**
      * Entity Name Bar
      */
-    namebar
+    nameBar
 
 
 
@@ -76,18 +76,18 @@ export abstract class Entity extends Physics.Arcade.Sprite {
             text: name,
             style: style
         }
-        this.namebar = scene.make.text(nameDisplayConfig)
-        this.namebar.setDepth(99)
-        this.namebar.setScale(0.13, 0.13)
+        this.nameBar = scene.make.text(nameDisplayConfig)
+        this.nameBar.setDepth(99)
+        this.nameBar.setScale(0.13, 0.13)
 
-        this.namebar.x = this.x - (this.namebar.displayWidth / 2) // X Position
-        this.namebar.y = this.y - (this.height - this.height / 4) // Y Position
+        this.nameBar.x = this.x - (this.nameBar.displayWidth / 2) // X Position
+        this.nameBar.y = this.y - (this.height - this.height / 4) // Y Position
     }
 
 
 
     update() {
-        this.namebar.x = this.x - (this.namebar.displayWidth / 2)
-        this.namebar.y = this.y - (this.height - this.height / 4)
+        this.nameBar.x = this.x - (this.nameBar.displayWidth / 2)
+        this.nameBar.y = this.y - (this.height - this.height / 4)
     }
 }
