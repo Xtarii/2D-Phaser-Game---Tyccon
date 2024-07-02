@@ -24,6 +24,8 @@ export default class Preloader extends Phaser.Scene {
         this.load.image("big guy", "assets/extras-add-later/people/morbidly obese guy.png")
         this.load.image("Mohammed", "assets/extras-add-later/people/Mohammed.png")
 
+        this.load.image("Ben 10", "assets/extras-add-later/people/Ben 10.png")
+
 
 
         this.load.image("tileset", "assets/extras-add-later/Hotel tiles.png")

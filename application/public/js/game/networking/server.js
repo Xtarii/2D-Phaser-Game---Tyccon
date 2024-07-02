@@ -1,8 +1,9 @@
 const { Client, Room } = require("colyseus.js")
+const { PlayerData } = require("@obesity/utils")
+
 import MainScene, { checkGameInstances } from "../world/scenes/mainScene.js"
 import { Game } from "../game.js"
 import NetworkPlayer from "./networkObjects/networkPlayer.js"
-import { readPlayerInfo } from "../../utils/data/playerDataHandler.js"
 
 
 
@@ -101,11 +102,12 @@ export default class Server {
     join = async () => {
         await checkGameInstances() // Check if Game is fully loaded
 
+        const playerData = PlayerData.readPlayerData()
 
         // Constructs Player Data
         const data = {
-            name: readPlayerInfo("name"),
-            spriteID: readPlayerInfo("spriteID"),
+            name: playerData.name,
+            spriteID: playerData.spriteID,
 
             // Position
             x: MainScene.player.x,

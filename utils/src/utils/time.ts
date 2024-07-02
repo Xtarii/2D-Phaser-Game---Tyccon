@@ -5,9 +5,9 @@
  * await sleep(1000) // 1 second sleep
  * ```
  *
- * @param {number} ms Milliseconds
+ * @param ms Milliseconds
  * @returns Promise
  */
-export function sleep(ms) {
+export function sleep(ms: number): Promise<null> {
     return new Promise(resolve => setTimeout(resolve, ms))
 }

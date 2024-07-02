@@ -1,11 +1,10 @@
 const Phaser = require("phaser")
-import { sleep } from "../../../utils/time.js"
+const { sleep } = require("@obesity/utils")
 import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
-import UI from "../../../ui/gui.js"
 
-import TestBlockInteraction from "../../objects/block/testblock.js"
-import Button from "../../../ui/button/button.js"
+
+const { Button, UI } = require("@obesity/components")
 
 
 
@@ -33,16 +32,14 @@ export default class MainScene extends Phaser.Scene {
 
 
     async create(){
-        // Test Interaction Block
-        new TestBlockInteraction(0, 2900, "1")
-        new TestBlockInteraction(100, 2900, "2")
+        this.cameras.main.setZoom(1.7) // Camera Zoom
 
 
-        this.cameras.main.setZoom(1.7)
-
+        // Test Button
         const button = new Button(this, 16 / 2, 16 / 2, "interact key")
-        button.on("pointerdown", () => {
-            console.log("CLICK")
+        button.addButtonClickCallback(() => {
+            if(!MainScene.player.buildMode.run) MainScene.player.buildMode.enter() // Enters Build Mode
+            else if(MainScene.player.buildMode.run) MainScene.player.buildMode.exit() // Stops Build Mode
         })
 
 
@@ -83,7 +80,6 @@ export default class MainScene extends Phaser.Scene {
 
 
         this.cameras.main.startFollow(MainScene.player, true, 0.07, 0.07) // Camera Follow Player with small Delay
-        this.cameras.main.setZoom(1.7)
 
         // Camera Bound ( Can't move outside this point ) set to map size
         this.cameras.main.setBounds(
@@ -103,7 +99,8 @@ export default class MainScene extends Phaser.Scene {
 
 
         // UI Update
-        UI.updateAll()
+        const uis = UI.getUIComponents()
+        for(var x in uis) uis[x].update() // Updates UI
     }
 }
 

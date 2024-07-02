@@ -4,25 +4,32 @@
   "description": "A 2D Tycoon",
   "private": true,
   "workspaces": [
+    "utils",
+    "components",
     "application"
   ],
   "scripts": {
     "dev": "next dev && electron .",
+
+    "build-dev": "turbo run build-dev",
+
     "build": "next build",
-    "start": "turbo run start",
+    "start": "turbo run start --parallel",
     "lint": "next lint"
   },
   "author": "Evil, INC",
   "license": "ISC",
   "packageManager": "npm@10.8.1",
   "devDependencies": {
+    "@obesity/utils": "^1.0.0",
     "@types/express": "^4.17.21",
     "electron": "^30.0.6",
     "turbo": "^2.0.4",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.2"
   },
   "dependencies": {
     "@colyseus/schema": "^2.0.32",
+    "@obesity/components": "^1.0.0",
     "colyseus": "^0.15.17",
     "colyseus.js": "^0.15.20",
     "express": "^4.19.2",
