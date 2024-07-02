@@ -9,6 +9,11 @@ export abstract class Component {
      */
     protected parent: Phaser.GameObjects.GameObject
 
+    /**
+     * Component Run Mode
+     */
+    private _run: boolean = true
+
 
 
     /**
@@ -47,4 +52,17 @@ export abstract class Component {
      * component is removed.
      */
     end = () => {}
+
+
+
+
+
+    /**
+     * Component Run Mode
+     *
+     * If false this component will not be called in update.
+     * By default this is true ( this will run this component ).
+     */
+    set run(status: boolean) { this._run = status }
+    get run(): boolean { return this._run }
 }

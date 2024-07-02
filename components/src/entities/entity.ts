@@ -97,7 +97,7 @@ export abstract class Entity extends Physics.Arcade.Sprite {
     update() {
         // Update Components
         const components = this.components
-        for(var i in components) components[i].update()
+        for(var i in components) if(components[i].run) components[i].update() // Runs Update if component is active
 
 
         this.nameBar.x = this.x - (this.nameBar.displayWidth / 2)
