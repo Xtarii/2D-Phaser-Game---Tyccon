@@ -4,7 +4,7 @@ import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
 
 
-const { Button, UI, TestBlockInteraction } = require("@obesity/components")
+const { Button, UI } = require("@obesity/components")
 
 
 
@@ -32,13 +32,10 @@ export default class MainScene extends Phaser.Scene {
 
 
     async create(){
-        // Test Interaction Block
-        new TestBlockInteraction(this, 0, 2900, "1")
-        new TestBlockInteraction(this, 100, 2900, "2")
+        this.cameras.main.setZoom(1.7) // Camera Zoom
 
 
-        this.cameras.main.setZoom(1.7)
-
+        // Test Button
         const button = new Button(this, 16 / 2, 16 / 2, "interact key")
         button.addButtonClickCallback(() => {
             console.log("CLICK")

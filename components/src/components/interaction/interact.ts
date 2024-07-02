@@ -136,33 +136,3 @@ export class Interact extends Component {
     set range(range: number) { this._range = range }
     get range(): number { return this._range }
 }
-
-
-
-
-
-
-
-/**
- * DEBUG TEST THING
- */
-
-
-
-export class TestBlockInteraction extends Physics.Arcade.Sprite implements Intractable {
-    constructor(scene: Phaser.Scene, x: number, y: number, name: string){
-        super(scene, x, y, "player")
-        this.setDepth(1)
-
-        this.name = name
-
-
-        this.scene.add.existing(this)
-        this.scene.physics.add.existing(this)
-    }
-    delay = 100
-
-
-    interact = () => {
-    }
-}
