@@ -6,6 +6,8 @@ const {
     Button,
     TINT,
     PlacementType,
+
+    BuildMode
 } = require("@obesity/components")
 
 import { Game } from "../../../game.js"
@@ -42,6 +44,9 @@ export default class Player extends Entity {
 
         // Component Setup
         this.interaction = this.addComponent(Interact, this.width)
+
+        this.buildMode = this.addComponent(BuildMode) // Player Build Mode
+        this.buildMode.run = false // Turns off build mode
 
 
         // Interaction Handling

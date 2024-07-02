@@ -38,7 +38,8 @@ export default class MainScene extends Phaser.Scene {
         // Test Button
         const button = new Button(this, 16 / 2, 16 / 2, "interact key")
         button.addButtonClickCallback(() => {
-            console.log("CLICK")
+            if(!MainScene.player.buildMode.run) MainScene.player.buildMode.enter() // Enters Build Mode
+            else if(MainScene.player.buildMode.run) MainScene.player.buildMode.exit() // Stops Build Mode
         })
 
 
