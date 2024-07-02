@@ -10,8 +10,11 @@
   ],
   "scripts": {
     "dev": "next dev && electron .",
+
+    "build-dev": "turbo run build-dev",
+
     "build": "next build",
-    "start": "turbo run start",
+    "start": "turbo run start --parallel",
     "lint": "next lint"
   },
   "author": "Evil, INC",
