@@ -32,7 +32,7 @@ export class Interact extends Component {
         /**
          * Interaction Start and Update Event
          */
-        "interaction": undefined
+        "interaction": Phaser.GameObjects.GameObject | null
         /**
          * Interaction End Event
          */
@@ -60,7 +60,7 @@ export class Interact extends Component {
         const interaction = this.checkInteraction(this._range)
 
         // If Interaction
-        if(interaction) this.event.emit("interaction", undefined)
+        if(interaction) this.event.emit("interaction", this.target)
         else this.event.emit("no interaction", undefined)
     }
 

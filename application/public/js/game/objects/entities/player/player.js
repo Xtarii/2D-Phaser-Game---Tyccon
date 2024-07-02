@@ -41,16 +41,16 @@ export default class Player extends Entity {
 
 
         // Component Setup
-        this.interaction = new Interact(this)
+        this.interaction = this.addComponent(Interact, this.width)
 
 
         // Interaction Handling
-        this.interaction.event.on("interaction", () => {
+        this.interaction.event.on("interaction", (target) => {
             // Gets Position between player and interact object
-            const targetX = this.interaction.target.body.position.x
-            const targetY = this.interaction.target.body.position.y
-            const targetWidth = this.interaction.target.body.gameObject.width
-            const targetHeight = this.interaction.target.body.gameObject.height
+            const targetX = target.body.position.x
+            const targetY = target.body.position.y
+            const targetWidth = target.body.gameObject.width
+            const targetHeight = target.body.gameObject.height
 
             const x = (targetX + targetWidth / 2) - (((targetX + targetWidth / 2) - this.x) / 32)
             const y = (targetY + targetHeight / 2) - (((targetY + targetHeight / 2) - this.y) / 32)
@@ -89,13 +89,7 @@ export default class Player extends Entity {
 
 
 
-        super.update()
-
-
-
-
-        // Player Interactions
-        this.interaction.update()
+        super.update() // Super Update
 
 
 

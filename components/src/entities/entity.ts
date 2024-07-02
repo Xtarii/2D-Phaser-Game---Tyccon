@@ -1,4 +1,5 @@
 import { Physics } from "phaser"
+import { Component } from ".."
 
 
 
@@ -21,6 +22,13 @@ export abstract class Entity extends Physics.Arcade.Sprite {
      * Entity Name Bar
      */
     nameBar
+
+    /**
+     * Component List
+     *
+     * Holds all entity Components
+     */
+    private _components: Component[] = []
 
 
 
@@ -87,7 +95,53 @@ export abstract class Entity extends Physics.Arcade.Sprite {
 
 
     update() {
+        // Update Components
+        const components = this.components
+        for(var i in components) components[i].update()
+
+
         this.nameBar.x = this.x - (this.nameBar.displayWidth / 2)
         this.nameBar.y = this.y - (this.height - this.height / 4)
     }
+
+
+
+    /**
+     * Adds Component Instance to this Entity
+     *
+     * @param component Component
+     * @param args Component argument
+     * @returns Component Instance
+     */
+    readonly addComponent = <T extends Component>(component: new (parent: Phaser.GameObjects.GameObject, ...args: any[]) => T, ...args: any[]): T => {
+        // Creates Component Instance
+        const comp = new component(this, args)
+        this._components.push(comp) // Adds to List
+        comp.start() // Calls Component Start
+        return comp // Returns Component Instance
+    }
+
+    /**
+     * Removes Component Instance
+     *
+     * @param component Component Instance
+     */
+    readonly removeComponent = <T extends Component>(component: T) => {
+        const newList: Component[] = [] // New Component List
+
+        for(var i in this._components) {
+            if(component === this._components[i]) {
+                this._components[i].end() // Calls Component End
+                delete this._components[i]
+                continue
+            }
+            newList.push(this._components[i]) // Adds Component to New List
+        }
+        this._components = newList // Updates Old List
+    }
+
+    /**
+     * Entity Components
+     */
+    get components(): Component[] { return [...this._components] }
 }
