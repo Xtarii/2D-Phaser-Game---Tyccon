@@ -7,7 +7,7 @@ export abstract class Component {
     /**
      * Component Parent Reference
      */
-    protected parent: Phaser.GameObjects.GameObject
+    protected parent: Phaser.GameObjects.Sprite
 
     /**
      * Component Run Mode
@@ -24,7 +24,7 @@ export abstract class Component {
      *
      * @param parent Component Parent
      */
-    constructor(parent: Phaser.GameObjects.GameObject){
+    constructor(parent: Phaser.GameObjects.Sprite){
         this.parent = parent // Sets Component Parent
     }
 

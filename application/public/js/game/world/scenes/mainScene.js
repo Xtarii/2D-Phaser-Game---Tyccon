@@ -4,7 +4,7 @@ import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
 
 
-const { Button, UI } = require("@obesity/components")
+const { Button, UI, addInteractableObject } = require("@obesity/components")
 
 
 
@@ -41,6 +41,13 @@ export default class MainScene extends Phaser.Scene {
             if(!MainScene.player.buildMode.run) MainScene.player.buildMode.enter() // Enters Build Mode
             else if(MainScene.player.buildMode.run) MainScene.player.buildMode.exit() // Stops Build Mode
         })
+
+
+
+        const t = this.add.sprite(0, 2900, "player")
+        t.setDepth(55)
+
+        addInteractableObject(t, () => {console.log("OK")})
 
 
 

@@ -50,15 +50,12 @@ export default class Player extends Entity {
 
 
         // Interaction Handling
-        this.interaction.event.on("interaction", (target) => {
+        this.interaction.event.on("interaction", (event) => {
             // Gets Position between player and interact object
-            const targetX = target.body.position.x
-            const targetY = target.body.position.y
-            const targetWidth = target.body.gameObject.width
-            const targetHeight = target.body.gameObject.height
-
-            const x = (targetX + targetWidth / 2) - (((targetX + targetWidth / 2) - this.x) / 32)
-            const y = (targetY + targetHeight / 2) - (((targetY + targetHeight / 2) - this.y) / 32)
+            const targetX = event.target.x
+            const targetY = event.target.y
+            const x = targetX - (targetX - this.x) / 32
+            const y = targetY - (targetY - this.y) / 32
 
             // Updates Button Position
             if(this.interactButton) {
@@ -102,12 +99,15 @@ export default class Player extends Entity {
         // Checks for interaction Event
         if(this.interaction.target) {
             if(this.scene.input.keyboard.checkDown(this.keys.E, this.interaction.target.delay)){
-
                 /// BUTTON TEST
                 this.interactButton.setTint(TINT.NORMAL_TINT)
                 sleep(3000).then(() => this.interactButton?.clearTint())
 
                 // Call on Target Interact Function
+                sleep(100).then(async () => {
+                    this.interaction.target.callback()
+                    sleep(2900)
+                })
             }
         }
     }
