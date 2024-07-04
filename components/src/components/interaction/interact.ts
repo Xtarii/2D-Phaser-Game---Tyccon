@@ -1,4 +1,3 @@
-import { Physics } from "phaser"
 import { Component } from "../component"
 import { Intractable } from "./Intractable"
 import { Emitter, EventEmitter } from "@obesity/utils"
