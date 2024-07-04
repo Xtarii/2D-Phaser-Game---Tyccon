@@ -58,12 +58,12 @@ export namespace PlayerData {
 
         // Looks for "FILE"
         if(!fs.existsSync(FILE)) {
-            // Creates File and writes defualt data
+            // Creates File and writes default data
             fs.writeFile(FILE, JSON.stringify(defaultData, null, 2), (err) => {
                 if(err) console.log("[ ERROR ] : " + err)
             })
 
-            return defaultData // Return Defualt Data
+            return defaultData // Return Default Data
         }
 
         const data: Player = JSON.parse(fs.readFileSync(FILE, "utf8")) // Reads Data

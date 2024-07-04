@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "outDir": "dist",
-        "rootDir": "src",
+        "rootDir": "packages",
 
         "declaration": true,
         "module": "CommonJS",
@@ -11,9 +11,9 @@
 
         "baseUrl": ".",
         "paths": {
-            "@utils/*": ["src/*"]
+            "@utils/*": ["packages/*"]
         }
     },
 
-    "include": ["src/**/*"]
+    "include": ["packages/**/*"]
 }

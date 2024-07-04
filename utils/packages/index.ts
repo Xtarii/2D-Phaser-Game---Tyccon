@@ -17,4 +17,4 @@ export * from "./utils/event/event"
 /**
  * Data Managers
  */
-export * from "./utils/dataManager"
+export * from "./utils/data"
