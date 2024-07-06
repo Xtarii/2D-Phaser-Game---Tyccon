@@ -1,6 +1,6 @@
 import path from "path"
 import fs from "fs"
-import { APPDATA } from "../../configs"
+import { APPDATA } from "@obesity-utils/configuration"
 
 
 

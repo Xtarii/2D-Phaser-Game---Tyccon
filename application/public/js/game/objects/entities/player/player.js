@@ -1,4 +1,4 @@
-const { PlayerData, sleep } = require("@obesity/utils")
+const { PlayerData, sleep } = require("@obesity-utils/main")
 const {
     Entity,
     Interact,

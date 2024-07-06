@@ -1,5 +1,5 @@
 const Phaser = require("phaser")
-const { sleep } = require("@obesity/utils")
+const { sleep } = require("@obesity-utils/main")
 import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
 

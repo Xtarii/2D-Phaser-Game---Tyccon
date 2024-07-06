@@ -1,5 +1,5 @@
 const { Client, Room } = require("colyseus.js")
-const { PlayerData } = require("@obesity/utils")
+const { PlayerData } = require("@obesity-utils/main")
 
 import MainScene, { checkGameInstances } from "../world/scenes/mainScene.js"
 import { Game } from "../game.js"
@@ -83,7 +83,7 @@ export default class Server {
 
             // PLayer leave room event
             this.room.state.players.onRemove((player, sessionId) => {
-                this.players[sessionId].namebar.destroy(true)
+                this.players[sessionId].nameBar.destroy(true)
                 this.players[sessionId].destroy(true)
                 delete this.players[sessionId]
             })

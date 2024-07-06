@@ -1,20 +1,22 @@
 {
-  "name": "@obesity/utils",
+  "name": "@obesity-utils/main",
   "version": "1.0.0",
-  "description": "Application Utils",
-
-  "private": true,
+  "description": "Main util Package",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-
+  "private": true,
+  "workspaces": [
+    "packages/**/*"
+  ],
   "scripts": {
-    "build-dev": "tsc",
     "start": "tsc"
   },
-
   "author": "Evil, INC",
   "license": "ISC",
   "dependencies": {
-    "typescript": "^5.5.2"
+    "@obesity-utils/configuration": "^1.0.0",
+    "@obesity-utils/data": "^1.0.0",
+    "@obesity-utils/event": "^1.0.0",
+    "@obesity-utils/time": "^1.0.0"
   }
 }

@@ -1,5 +1,5 @@
 import UI, { PlacementType } from "../ui"
-import { sleep } from "@obesity/utils"
+import { sleep } from "@obesity-utils/main"
 
 
 
@@ -24,7 +24,7 @@ export default class Button extends UI {
     /**
      * Creates Button Instance
      *
-     * @param args Button Argmuents
+     * @param args Button Arguments
      */
     constructor(...args: [Phaser.Scene, number, number, string, number?, PlacementType?]) {
         super(args[0], args[1], args[2], args[3], args[4], args[5])

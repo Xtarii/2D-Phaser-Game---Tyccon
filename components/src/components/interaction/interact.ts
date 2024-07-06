@@ -1,6 +1,6 @@
 import { Component } from "../component"
 import { getInteractableObjects } from "./Intractable"
-import { Emitter, EventEmitter } from "@obesity/utils"
+import { Emitter, EventEmitter } from "@obesity-utils/main"
 
 
 
