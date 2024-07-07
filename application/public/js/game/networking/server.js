@@ -1,5 +1,5 @@
 const { Client, Room } = require("colyseus.js")
-const { PlayerData } = require("@obesity-utils/main")
+const { PlayerData } = require("obesity-utils")
 
 import MainScene, { checkGameInstances } from "../world/scenes/mainScene.js"
 import { Game } from "../game.js"

@@ -1,4 +1,4 @@
-const { PlayerData } =  require("@obesity-utils/main")
+const { PlayerData } =  require("obesity-utils")
 
 
 

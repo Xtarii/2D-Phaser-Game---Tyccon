@@ -1,5 +1,5 @@
 import UI, { PlacementType } from "../ui"
-import { sleep } from "@obesity-utils/main"
+import { sleep } from "obesity-utils"
 
 
 

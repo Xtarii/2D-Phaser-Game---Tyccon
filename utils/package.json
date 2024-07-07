@@ -1,5 +1,5 @@
 {
-  "name": "@obesity-utils/main",
+  "name": "obesity-utils",
   "version": "1.0.0",
   "description": "Main util Package",
   "main": "dist/index.js",

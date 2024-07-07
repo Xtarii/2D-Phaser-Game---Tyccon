@@ -1,4 +1,4 @@
-const { Entity } = require("@obesity/components")
+const { Entity } = require("obesity-components")
 
 
 

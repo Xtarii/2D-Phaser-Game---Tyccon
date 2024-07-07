@@ -1,18 +1,21 @@
 {
-  "name": "@obesity/components",
+  "name": "obesity-components",
   "version": "1.0.0",
-  "description": "Game Components",
-
-  "private": true,
+  "description": "Game Components Library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-
+  "private": true,
+  "workspaces": [
+    "packages/**/*"
+  ],
   "scripts": {
     "start": "tsc"
   },
   "author": "Evil, INC",
   "license": "ISC",
   "dependencies": {
-    "typescript": "^5.5.2"
+    "@obesity-components/component": "^1.0.0",
+    "@obesity-components/entity": "^1.0.0",
+    "@obesity-components/gui": "^1.0.0"
   }
 }

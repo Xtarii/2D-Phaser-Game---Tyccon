@@ -1,10 +1,10 @@
 const Phaser = require("phaser")
-const { sleep } = require("@obesity-utils/main")
+const { sleep } = require("obesity-utils")
 import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
 
 
-const { Button, UI, addInteractableObject } = require("@obesity/components")
+const { Button, UI, addInteractableObject } = require("obesity-components")
 
 
 

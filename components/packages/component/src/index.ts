@@ -1,3 +1,15 @@
+import Phaser from "phaser"
+
+
+/// THIS WILL BE UPDATED \\\
+export * from "./interaction/interactable"
+export * from "./interaction/interaction"
+
+export * from "./buildmode/buildmode"
+/// <------------------> \\\
+
+
+
 /**
  * Base Component Class
  *
