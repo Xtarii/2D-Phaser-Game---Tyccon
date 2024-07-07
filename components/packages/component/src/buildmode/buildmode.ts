@@ -10,29 +10,41 @@ import { Component } from ".."
  */
 export class BuildMode extends Component {
     /**
+     * Enters or Exits Build Mode
+     *
+     * Auto Checks after build mode status,
+     * if build mode is entered then this will
+     * exit build mode else enter.
+     */
+    buildMode = () => {
+        // Exits Build Mode
+        if(this.run) {
+            this.exit()
+            this.run = false
+            return
+        }
+
+        // Enters Build Mode
+        this.enter()
+        this.run = true
+    }
+
+    /**
      * Enter Build Mode
      *
-     * This will setup the build environment.
-     * Can only run if build mode is ```off```.
+     * Removes play mode Environment
+     * and sets up Build Mode
      */
-    enter = () => {
-        if(this.run) return // Exits if build mode is already active
-        this.run = true // Starts Build Mode
-
-
+    private enter = () => {
         console.log("Enters Build Mode")
     }
     /**
      * Exit Build Mode
      *
-     * This will exit and remove build environment.
-     * Can only run if build mode is ```on```.
+     * Removes Build Environment
+     * and sets up play mode.
      */
-    exit = () => {
-        if(!this.run) return // Exits if build mode is already inactive
-        this.run = false // Ends Build Mode
-
-
+    private exit = () => {
         console.log("Exits Build Mode")
     }
 
