@@ -1,4 +1,4 @@
-const { PlayerData, sleep } = require("@obesity/utils")
+const { PlayerData, sleep } = require("obesity-utils")
 const {
     Entity,
     Interact,
@@ -8,7 +8,7 @@ const {
     PlacementType,
 
     BuildMode
-} = require("@obesity/components")
+} = require("obesity-components")
 
 import { Game } from "../../../game.js"
 

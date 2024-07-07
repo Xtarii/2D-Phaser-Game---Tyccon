@@ -1,5 +1,5 @@
 import { Physics } from "phaser"
-import { Component } from ".."
+import { Component } from "@obesity-components/component"
 
 
 

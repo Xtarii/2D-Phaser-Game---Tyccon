@@ -1,19 +1,14 @@
 {
     "compilerOptions": {
         "outDir": "dist",
-        "rootDir": "packages",
+        "rootDir": "src",
 
         "declaration": true,
         "module": "CommonJS",
         "target": "ES6",
         "strict": true,
         "esModuleInterop": true,
-
-        "baseUrl": ".",
-        "paths": {
-            "@utils/*": ["packages/*"]
-        }
     },
 
-    "include": ["packages/**/*"]
+    "exclude": [ "packages/*", "dist" ]
 }

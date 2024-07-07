@@ -1,0 +1,15 @@
+{
+    "name": "@obesity-components/entity",
+    "version": "1.0.0",
+    "description": "UI Components",
+
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "private": true,
+
+    "scripts": {
+      "start": "tsc"
+    },
+    "author": "Evil, INC",
+    "license": "ISC"
+}

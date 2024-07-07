@@ -1,0 +1,16 @@
+{
+    "name": "@obesity-utils/configuration",
+    "version": "1.0.0",
+    "description": "Configuration Manager",
+
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "private": true,
+
+    "scripts": {
+      "build-dev": "tsc",
+      "start": "tsc"
+    },
+    "author": "Evil, INC",
+    "license": "ISC"
+}
