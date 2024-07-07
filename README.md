@@ -3,7 +3,7 @@ Simple Multiplayer 2D Game
 
 
 
-## Ide
+## Idé
 2D Hotel Manager,
 - 2D Top Down
 - Pixel Art
@@ -54,4 +54,22 @@ ws://<ip>:<port>
 
 # Example
 ws://192.168.0.1:8080
+```
+
+
+
+### Project Structure
+Project consists of a monorepo, that is "more than one package in the same project".
+This is not needed but good to learn because companies like Google, Facebook and more
+use monorepos.
+
+Therefore this project consists of:
+- Utils : A Package for Application Functions like ```sleep(<ms>)``` and Configuration Managing.
+- Components : Taken from Unity, I made a package for game components like ```UI``` or ```entities```
+
+To start all of these components I use [Turborepo](https://turbo.build).
+```bash
+npm start # Runs Turbo
+
+npm run build-dev # Runs Turbo pre-build for some packages.
 ```
