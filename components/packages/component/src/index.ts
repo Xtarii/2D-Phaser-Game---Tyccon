@@ -1,14 +1,6 @@
 import Phaser from "phaser"
 
 
-/// THIS WILL BE UPDATED \\\
-export * from "./interaction/interactable"
-export * from "./interaction/interaction"
-
-export * from "./buildmode/buildmode"
-/// <------------------> \\\
-
-
 
 /**
  * Base Component Class
@@ -78,3 +70,14 @@ export abstract class Component {
     set run(status: boolean) { this._run = status }
     get run(): boolean { return this._run }
 }
+
+
+
+
+
+/// THIS WILL BE UPDATED \\\
+export * from "./interaction/interactable"
+export * from "./interaction/interaction"
+
+export * from "./buildmode/buildmode"
+/// <------------------> \\\
