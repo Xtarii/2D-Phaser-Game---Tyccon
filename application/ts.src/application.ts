@@ -5,7 +5,7 @@
 import { BrowserWindow } from "electron"
 import { Emitter, EventEmitter, EventMap } from "./event/event"
 import Server from "./server/server"
-import { readApplicationConfig } from "@obesity/utils"
+import { readApplicationConfig } from "obesity-utils"
 
 
 
@@ -20,14 +20,14 @@ type DEV = {
 /**
  * Base Application
  *
- * Stores Window Instace and other important
+ * Stores Window Instance and other important
  * window related instances
  */
 export class Application {
     /**
      * Application Events
      *
-     * Handels event for Application
+     * Handles event for Application
      */
     public events: Emitter<{
         start: undefined

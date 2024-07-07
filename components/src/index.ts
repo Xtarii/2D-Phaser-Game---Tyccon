@@ -1,15 +1,3 @@
-/**
- * UI Components
- */
-export * from "./ui"
-
-/**
- * Entities
- */
-export * from "./entities"
-
-
-/**
- * General Components
- */
-export * from "./components"
+export * from "@obesity-components/gui"
+export * from "@obesity-components/component"
+export * from "@obesity-components/entity"

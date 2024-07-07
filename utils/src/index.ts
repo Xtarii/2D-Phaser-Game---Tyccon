@@ -1,20 +1,4 @@
-/**
- * Configs Util
- */
-export * from "./utils/configs"
-
-/**
- * Time Util
- */
-export * from "./utils/time"
-
-/**
- * Event Util
- */
-export * from "./utils/event/event"
-
-
-/**
- * Data Managers
- */
-export * from "./utils/dataManager"
+export * from "@obesity-utils/data"
+export * from "@obesity-utils/configuration"
+export * from "@obesity-utils/event"
+export * from "@obesity-utils/time"

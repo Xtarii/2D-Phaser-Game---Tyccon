@@ -1,3 +1,7 @@
+import Phaser from "phaser"
+
+
+
 /**
  * Base Component Class
  *
@@ -7,7 +11,7 @@ export abstract class Component {
     /**
      * Component Parent Reference
      */
-    protected parent: Phaser.GameObjects.GameObject
+    protected parent: Phaser.GameObjects.Sprite
 
     /**
      * Component Run Mode
@@ -24,7 +28,7 @@ export abstract class Component {
      *
      * @param parent Component Parent
      */
-    constructor(parent: Phaser.GameObjects.GameObject){
+    constructor(parent: Phaser.GameObjects.Sprite){
         this.parent = parent // Sets Component Parent
     }
 
@@ -66,3 +70,14 @@ export abstract class Component {
     set run(status: boolean) { this._run = status }
     get run(): boolean { return this._run }
 }
+
+
+
+
+
+/// THIS WILL BE UPDATED \\\
+export * from "./interaction/interactable"
+export * from "./interaction/interaction"
+
+export * from "./buildmode/buildmode"
+/// <------------------> \\\

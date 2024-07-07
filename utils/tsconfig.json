@@ -8,12 +8,7 @@
         "target": "ES6",
         "strict": true,
         "esModuleInterop": true,
-
-        "baseUrl": ".",
-        "paths": {
-            "@utils/*": ["src/*"]
-        }
     },
 
-    "include": ["src/**/*"]
+    "exclude": [ "packages/*", "dist" ]
 }

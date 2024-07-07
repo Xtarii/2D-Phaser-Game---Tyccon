@@ -1,7 +1,28 @@
-import { Physics } from "phaser"
-import { Component } from "../component"
-import { Intractable } from "./Intractable"
-import { Emitter, EventEmitter } from "@obesity/utils"
+import { Component } from ".."
+import { getInteractableObjects } from "./interactable"
+import { Emitter, EventEmitter } from "obesity-utils"
+
+
+
+/**
+ * Interaction Type
+ */
+type interaction = {
+    /**
+     * Target Getting Interacted with
+     */
+    target: Phaser.GameObjects.Sprite
+
+    /**
+     * Target Event Callback
+     */
+    callback: () => void
+
+    /**
+     * Target Distance
+     */
+    distance: number
+}
 
 
 
@@ -15,7 +36,7 @@ export class Interact extends Component {
      * Current Target that this parent
      * is interacting with
      */
-    target: Phaser.GameObjects.GameObject | null = null
+    target: interaction | null = null
 
     /**
      * Search range
@@ -32,7 +53,7 @@ export class Interact extends Component {
         /**
          * Interaction Start and Update Event
          */
-        "interaction": Phaser.GameObjects.GameObject | null
+        "interaction": interaction
         /**
          * Interaction End Event
          */
@@ -47,7 +68,7 @@ export class Interact extends Component {
      * @param parent Component Parent
      * @param args Interact Args
      */
-    constructor(parent: Phaser.GameObjects.GameObject, ...args: [number?]){
+    constructor(parent: Phaser.GameObjects.Sprite, ...args: [number?]){
         super(parent)
         this._range = args[0] ?? parent.body?.gameObject.width // Set Search Range
         this.event = new EventEmitter() // Interaction Event Initialize
@@ -60,7 +81,13 @@ export class Interact extends Component {
         const interaction = this.checkInteraction(this._range)
 
         // If Interaction
-        if(interaction) this.event.emit("interaction", this.target)
+        if(interaction && this.target) this.event.emit("interaction",
+            {
+                target: this.target.target,
+                callback: this.target.callback,
+                distance: this.target.distance
+            }
+        )
         else this.event.emit("no interaction", undefined)
     }
 
@@ -80,7 +107,16 @@ export class Interact extends Component {
      */
     checkInteraction = (range?: number): boolean => {
         const closest = this.getClosestObject(range)
-        this.target = closest.body // Sets Target
+
+        // Checks if Interaction is possible
+        if(closest)
+            this.target = {
+                target: closest.target,
+                callback: closest.callback,
+                distance: closest.distance
+            } // Sets Target
+        else this.target = null
+
         return this.target != null // Returns Interaction Status
     }
 
@@ -93,34 +129,30 @@ export class Interact extends Component {
      * @param range Search Range
      * @returns Closest Object
      */
-    getClosestObject = (range?: number): { body: Phaser.GameObjects.GameObject | null, distance: number | null } => {
+    getClosestObject = (range?: number): interaction | null => {
         // Get Scene Objects
-        const objects = this.parent.scene.children.list
-        const closest: { body: Phaser.GameObjects.GameObject | null, distance: number | null }[] = []
-
+        const objects = getInteractableObjects()
+        const closest: interaction[] = []
 
         // Checks all objects in scene after valid interaction
         for(var i in objects) {
-            // Checks if object is intractable
-            if(!(objects[i] as unknown as Intractable).interact) continue
-
+            const body = objects[i].object // Gets Interactable Body
 
             // Gets Distance from parent
-            const x1 = objects[i].body?.position.x, y1 = objects[i].body?.position.y // Object 1
-            const x2 = this.parent.body?.position.x, y2 = this.parent.body?.position.y // Object 2 ( This )
-            if(!x1 || !y1 || !x2 || !y2) continue // Returns if no Position was found
-
+            const x1 = body.x, y1 = body.y // Object 1
+            const x2 = this.parent.x, y2 = this.parent.y // Object 2 ( This )
             const distance = Math.sqrt(
                 Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)
             )
 
             // Adds Object to Closest Object List if withing range
-            if(distance < (range ?? distance + 1)) closest.push({ body: objects[i], distance })
+            if(distance < (range ?? distance + 1))
+                closest.push({ target: objects[i].object, callback: objects[i].callback, distance })
         }
 
         // Sorts and returns closest object
         closest.sort((a, b) => (a.distance ?? 0) - (b.distance ?? 0))
-        return closest[0] ?? { body: null, distance: null }
+        return closest[0] ?? null
     }
 
 
