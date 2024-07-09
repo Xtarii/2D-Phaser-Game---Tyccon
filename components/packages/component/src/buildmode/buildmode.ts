@@ -1,10 +1,7 @@
-import { Emitter, EventEmitter, EventMap } from "obesity-utils"
+import { Emitter, EventEmitter } from "obesity-utils"
 import { Component } from ".."
 
-interface eventInterface extends EventMap {
-    "start": []
-    "exit": []
-}
+
 
 /**
  * Build Mode Component
@@ -16,7 +13,10 @@ export class BuildMode extends Component {
     /**
      * Event Handler
      */
-    readonly event: Emitter<eventInterface> = new EventEmitter()
+    readonly event: Emitter<{
+        "enter": []
+        "exit": []
+    }> = new EventEmitter()
 
 
 

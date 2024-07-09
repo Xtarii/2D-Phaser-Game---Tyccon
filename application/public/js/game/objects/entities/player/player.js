@@ -70,6 +70,26 @@ export default class Player extends Entity {
             this.interactButton?.destroy()
             this.interactButton = null
         })
+
+
+
+
+
+        // Build Mode Setup
+        this.buildMode.event.on("enter", () => {
+            // Disables Components
+            this.interaction.run = false
+            this.interactButton.destroy()
+            this.interactButton = null
+
+            // Hides Menu
+        })
+        this.buildMode.event.on("exit", () => {
+            // Enables Components
+            this.interaction.run = true
+
+            // Shows Menu
+        })
     }
 
 
