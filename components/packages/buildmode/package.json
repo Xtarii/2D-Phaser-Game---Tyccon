@@ -1,14 +1,14 @@
 {
-    "name": "@obesity-components/entity",
+    "name": "@obesity-components/build-mode",
     "version": "1.0.0",
-    "description": "Game Entities",
+    "description": "Build Mode Component",
 
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "private": true,
 
     "scripts": {
-      "start": "tsc"
+        "start": "tsc"
     },
     "author": "Evil, INC",
     "license": "ISC"
