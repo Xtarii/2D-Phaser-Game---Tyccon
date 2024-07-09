@@ -45,4 +45,18 @@ export class Panel extends UI {
         this.container.setDepth(this.depth)
         this.setDepth(0) // Sets This Object as Panel Background
     }
+
+
+    /**
+     * Add UI Object to Panel
+     *
+     * @param object UI Object
+     */
+    add = (object: UI) => { this.container.add(object) }
+    /**
+     * Remove UI Object from Panel
+     *
+     * @param object UI Object
+     */
+    remove = (object: UI) => { this.container.remove(object) }
 }
