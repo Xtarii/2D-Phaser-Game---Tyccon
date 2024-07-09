@@ -79,7 +79,7 @@ export default class Player extends Entity {
         this.buildMode.event.on("enter", () => {
             // Disables Components
             this.interaction.run = false
-            this.interactButton.destroy()
+            this.interactButton?.destroy()
             this.interactButton = null
 
             // Hides Menu
@@ -118,16 +118,16 @@ export default class Player extends Entity {
 
         // Checks for interaction Event
         if(this.interaction.target) {
-            if(this.scene.input.keyboard.checkDown(this.keys.E, this.interaction.target.delay)){
+            if(this.scene.input.keyboard.checkDown(this.keys.E, this.interaction.target.delay || 250)){
                 /// BUTTON TEST
                 this.interactButton.setTint(TINT.NORMAL_TINT)
-                sleep(3000).then(() => this.interactButton?.clearTint())
+                sleep(500).then(() => this.interactButton?.clearTint())
 
                 // Call on Target Interact Function
-                sleep(100).then(async () => {
-                    this.interaction.target.callback()
-                    sleep(2900)
-                })
+                this.interaction.target.callback()
+                // sleep(100).then(async () => {
+                //     sleep(2900)
+                // })
             }
         }
     }

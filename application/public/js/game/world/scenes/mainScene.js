@@ -39,19 +39,6 @@ export default class MainScene extends Phaser.Scene {
         const button = new Button(this, 16 / 2, 16 / 2, "interact key")
         button.addButtonClickCallback(() => MainScene.player.buildMode.buildMode())
 
-        // Test Panel
-        const panel = new Panel(
-            this,
-
-            this.cameras.main.displayWidth - 75,
-            this.cameras.main.displayHeight / 2,
-
-            "player"
-        )
-        panel.setDisplaySize(150, this.cameras.main.displayHeight)
-
-
-
         const t = this.add.sprite(0, 2900, "player")
         t.setDepth(55)
 
