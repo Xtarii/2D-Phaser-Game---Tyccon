@@ -4,7 +4,7 @@ import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
 
 
-const { Button, UI, addInteractableObject } = require("obesity-components")
+const { Button, UI, addInteractableObject, Panel } = require("obesity-components")
 
 
 
@@ -38,6 +38,17 @@ export default class MainScene extends Phaser.Scene {
         // Test Button
         const button = new Button(this, 16 / 2, 16 / 2, "interact key")
         button.addButtonClickCallback(() => MainScene.player.buildMode.buildMode())
+
+        // Test Panel
+        const panel = new Panel(
+            this,
+
+            this.cameras.main.displayWidth - 75,
+            this.cameras.main.displayHeight / 2,
+
+            "player"
+        )
+        panel.setDisplaySize(150, this.cameras.main.displayHeight)
 
 
 
