@@ -1,6 +1,10 @@
+import { Emitter, EventEmitter, EventMap } from "obesity-utils"
 import { Component } from ".."
 
-
+interface eventInterface extends EventMap {
+    "start": []
+    "exit": []
+}
 
 /**
  * Build Mode Component
@@ -9,6 +13,13 @@ import { Component } from ".."
  * This Component Requires Player Input.
  */
 export class BuildMode extends Component {
+    /**
+     * Event Handler
+     */
+    readonly event: Emitter<eventInterface> = new EventEmitter()
+
+
+
     /**
      * Enters or Exits Build Mode
      *
@@ -36,6 +47,9 @@ export class BuildMode extends Component {
      * and sets up Build Mode
      */
     private enter = () => {
+        this.event.emit("enter") // Emits Enter Event
+
+        // Build Mode Setup
         console.log("Enters Build Mode")
     }
     /**
@@ -45,7 +59,10 @@ export class BuildMode extends Component {
      * and sets up play mode.
      */
     private exit = () => {
+        // Build Mode Exit
         console.log("Exits Build Mode")
+
+        this.event.emit("exit") // Emits Exit Event
     }
 
 

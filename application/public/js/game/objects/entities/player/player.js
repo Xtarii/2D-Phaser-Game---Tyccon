@@ -50,10 +50,10 @@ export default class Player extends Entity {
 
 
         // Interaction Handling
-        this.interaction.event.on("interaction", (event) => {
+        this.interaction.event.on("interaction", (target, callback, distance) => {
             // Gets Position between player and interact object
-            const targetX = event.target.x
-            const targetY = event.target.y
+            const targetX = target.x
+            const targetY = target.y
             const x = targetX - (targetX - this.x) / 32
             const y = targetY - (targetY - this.y) / 32
 

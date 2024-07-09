@@ -53,11 +53,11 @@ export class Interact extends Component {
         /**
          * Interaction Start and Update Event
          */
-        "interaction": interaction
+        "interaction": [Phaser.GameObjects.Sprite, () => void, number]
         /**
          * Interaction End Event
          */
-        "no interaction": undefined
+        "no interaction": []
     }>
 
 
@@ -82,13 +82,11 @@ export class Interact extends Component {
 
         // If Interaction
         if(interaction && this.target) this.event.emit("interaction",
-            {
-                target: this.target.target,
-                callback: this.target.callback,
-                distance: this.target.distance
-            }
+            this.target.target,
+            this.target.callback,
+            this.target.distance
         )
-        else this.event.emit("no interaction", undefined)
+        else this.event.emit("no interaction")
     }
 
 

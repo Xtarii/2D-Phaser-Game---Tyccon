@@ -1,7 +1,7 @@
 /**
  * Event Map
  */
-export type EventMap = Record<string, any>
+export type EventMap = Record<string, any[]>
 /**
  * Event Key
  */
@@ -9,7 +9,7 @@ type EventKey<T extends EventMap> = string & keyof T
 /**
  * Event Receiver
  */
-type EventReceiver<T> = (params: T) => void
+type EventReceiver<T extends any[]> = (...params: T) => void
 
 
 
@@ -36,7 +36,7 @@ export interface Emitter<T extends EventMap> {
      * @param event Event Name
      * @param params Event Parameters
      */
-    emit<K extends EventKey<T>>(event: K, params: T[K]): void
+    emit<K extends EventKey<T>>(event: K, ...params: T[K]): void
 }
 
 
@@ -49,7 +49,7 @@ export class EventEmitter<T extends EventMap> implements Emitter<T> {
      * Registered Event Listeners
      */
     private listeners: {
-        [K in keyof EventMap]?: Array<(p: EventMap[K]) => void>
+        [K in keyof EventMap]?: Array<(...p: EventMap[K]) => void>
     }
 
     /**
@@ -62,7 +62,7 @@ export class EventEmitter<T extends EventMap> implements Emitter<T> {
     on<K extends EventKey<T>>(event: K, callback: EventReceiver<T[K]>): void {
         this.listeners[event] = (this.listeners[event] || []).concat(callback)
     }
-    emit<K extends EventKey<T>>(event: K, params: T[K]): void {
-        (this.listeners[event] || []).forEach((callback) => callback(params))
+    emit<K extends EventKey<T>>(event: K, ...params: T[K]): void {
+        (this.listeners[event] || []).forEach((callback) => callback(...params))
     }
 }
