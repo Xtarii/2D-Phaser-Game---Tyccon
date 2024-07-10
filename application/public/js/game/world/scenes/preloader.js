@@ -11,6 +11,7 @@ export default class Preloader extends Phaser.Scene {
     preload(){
         // Interaction Button Load
         this.load.spritesheet("interact key", "assets/ui/buttons/interact.png", {frameWidth: 16, frameHeight: 16})
+        this.load.image("build menu - panel", "assets/ui/panels/UI Panel - Build Menu.png")
 
 
 

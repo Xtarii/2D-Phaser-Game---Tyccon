@@ -59,8 +59,8 @@ export default class Player extends Entity {
 
             // Updates Button Position
             if(this.interactButton) {
-                this.interactButton.x = x
-                this.interactButton.y = y
+                this.interactButton.sprite.x = x
+                this.interactButton.sprite.y = y
             }else {
                 // Creates Button Instance
                 this.interactButton = new Button(this.scene, x, y, "interact key", null, PlacementType.dynamic)
@@ -120,8 +120,8 @@ export default class Player extends Entity {
         if(this.interaction.target) {
             if(this.scene.input.keyboard.checkDown(this.keys.E, this.interaction.target.delay || 250)){
                 /// BUTTON TEST
-                this.interactButton.setTint(TINT.NORMAL_TINT)
-                sleep(500).then(() => this.interactButton?.clearTint())
+                this.interactButton.sprite.setTint(TINT.NORMAL_TINT)
+                sleep(500).then(() => this.interactButton?.sprite.clearTint())
 
                 // Call on Target Interact Function
                 this.interaction.target.callback()
