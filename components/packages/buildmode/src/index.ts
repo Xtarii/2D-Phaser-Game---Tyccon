@@ -94,8 +94,8 @@ export class BuildMode extends Component {
             this.showMenu = true // Sets Menu to Close
 
             // Creates Menu
-            this.menu = new Panel(scene, camera.displayWidth - 75, camera.displayHeight / 2, "player")
-            this.menu.setDisplaySize(150, camera.displayHeight)
+            this.menu = new Panel(scene, camera.displayWidth - 75, camera.displayHeight / 2, "build menu - panel")
+            this.menu.sprite.setDisplaySize(150, camera.displayHeight)
 
         // Open Menu
         }else {

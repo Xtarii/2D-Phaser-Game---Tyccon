@@ -1,4 +1,4 @@
-import UI, { PlacementType } from "../ui"
+import { PlacementType, UISprite } from ".."
 
 
 
@@ -14,7 +14,7 @@ import UI, { PlacementType } from "../ui"
  *    ↳ Text  (  UI Text Instance  )
  * ```
  */
-export class Panel extends UI {
+export class Panel extends UISprite {
     /**
      * Object Container
      */
@@ -39,11 +39,11 @@ export class Panel extends UI {
         super(scene, x, y, image, frame, placementType) // Creates Instance
 
         // Creates Container
-        this.container = scene.add.container(0, 0, this) // Creates Container at Object Position
+        this.container = scene.add.container(0, 0, this.sprite) // Creates Container at Object Position
         // if(this.placementType === PlacementType.static) this.container.setScrollFactor(0) // Sets to static
 
-        this.container.setDepth(this.depth)
-        this.setDepth(0) // Sets This Object as Panel Background
+        this.container.setDepth(this.sprite.depth)
+        this.sprite.setDepth(0) // Sets This Object as Panel Background
     }
 
 
@@ -52,11 +52,11 @@ export class Panel extends UI {
      *
      * @param object UI Object
      */
-    add = (object: UI) => { this.container.add(object) }
+    add = (object: UISprite) => { this.container.add(object.sprite) }
     /**
      * Remove UI Object from Panel
      *
      * @param object UI Object
      */
-    remove = (object: UI) => { this.container.remove(object) }
+    remove = (object: UISprite) => { this.container.remove(object.sprite) }
 }

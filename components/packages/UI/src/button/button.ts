@@ -1,4 +1,4 @@
-import UI, { PlacementType } from "../ui"
+import { PlacementType, UISprite } from ".."
 import { sleep } from "obesity-utils"
 
 
@@ -20,7 +20,7 @@ export enum TINT {
 /**
  * Simple Button
  */
-export default class Button extends UI {
+export default class Button extends UISprite {
     /**
      * Creates Button Instance
      *
@@ -28,7 +28,7 @@ export default class Button extends UI {
      */
     constructor(...args: [Phaser.Scene, number, number, string, number?, PlacementType?]) {
         super(args[0], args[1], args[2], args[3], args[4], args[5])
-        this.setInteractive() // Sets Object to Interactive
+        this.sprite.setInteractive() // Sets Object to Interactive
     }
 
 
@@ -43,11 +43,11 @@ export default class Button extends UI {
      * @param resetDelay Delay
      */
     addButtonClickCallback = (callback: () => void, tint?: TINT, resetDelay?: number) => {
-        this.on("pointerdown", () => {
-            this.setTint(tint ?? TINT.NORMAL_TINT) // Changes Tint
+        this.sprite.on("pointerdown", () => {
+            this.sprite.setTint(tint ?? TINT.NORMAL_TINT) // Changes Tint
             callback() // Calls callback
 
-            sleep(resetDelay ?? 250).then(() => this.clearTint()) // Removes Tint after delay
+            sleep(resetDelay ?? 250).then(() => this.sprite.clearTint()) // Removes Tint after delay
         })
     }
 }
