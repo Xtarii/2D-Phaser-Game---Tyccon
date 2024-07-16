@@ -59,11 +59,11 @@ export default class Player extends Entity {
 
             // Updates Button Position
             if(this.interactButton) {
-                this.interactButton.sprite.x = x
-                this.interactButton.sprite.y = y
+                this.interactButton.x = x
+                this.interactButton.y = y
             }else {
                 // Creates Button Instance
-                this.interactButton = new Button(this.scene, x, y, "interact key", null, PlacementType.dynamic)
+                this.interactButton = new Button("E", this.scene, x, y, "interact key", null, PlacementType.dynamic)
             }
         })
         this.interaction.event.on("no interaction", () => {
