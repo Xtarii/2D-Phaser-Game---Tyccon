@@ -36,7 +36,7 @@ export default class MainScene extends Phaser.Scene {
 
 
         // Test Button
-        const button = new Button(this, 16 / 2, 16 / 2, "interact key")
+        const button = new Button("E", this, 16 / 2, 16 / 2, "interact key")
         button.addButtonClickCallback(() => MainScene.player.buildMode.buildMode())
 
         const t = this.add.sprite(0, 2900, "player")
