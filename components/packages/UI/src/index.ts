@@ -216,8 +216,11 @@ export abstract class UI {
         // Updates Position to be static on screen
         }else if(placementType === PlacementType.static){
             const camera = this.scene.cameras.main
-            this._x = (camera.width / 2 - camera.displayWidth / 2) + this._x
-            this._y = (camera.height / 2 - camera.displayHeight / 2) + this._y
+            const relX = (this._x - camera.worldView.x)
+            const relY = (this._y - camera.worldView.y)
+
+            this._x = (camera.width / 2 - camera.displayWidth / 2) + relX
+            this._y = (camera.height / 2 - camera.displayHeight / 2) + relY
         }
     }
     get placementType(): PlacementType { return this._placementType }
@@ -225,10 +228,26 @@ export abstract class UI {
     /**
      * UI Object X Position
      */
+    set x(x: number) {
+        const camera = this.scene.cameras.main
+
+        // Calculates Position relative to camera ( static )
+        if(this._placementType === PlacementType.static)
+            this._x = (camera.width / 2 - camera.displayWidth / 2) + x
+        else this._x = x // Dynamic Position
+    }
     get x(): number { return this._x }
     /**
      * UI Object Y Position
      */
+    set y(y: number) {
+        const camera = this.scene.cameras.main
+
+        // Calculates Position relative to camera ( static )
+        if(this._placementType === PlacementType.static)
+            this._y = (camera.height / 2 - camera.displayHeight / 2) + y
+        else this._y = y // Dynamic Position
+    }
     get y(): number { return this._y }
 }
 
@@ -239,7 +258,11 @@ export abstract class UI {
  * as there body should extend upon this class.
  */
 export abstract class UISprite extends UI {
+    /**
+     * UI Sprite Object
+     */
     sprite: Phaser.GameObjects.Sprite
+
 
 
     /**
@@ -278,15 +301,19 @@ export abstract class UISprite extends UI {
         if(placementType === PlacementType.dynamic) this.sprite.setScrollFactor(1) // Makes it movable
 
         super.placementType = placementType // UI Set Placement Type
+
+        // Update Sprite Position
+        this.sprite.x = this._x
+        this.sprite.y = this._y
     }
 
     set x(x: number) {
-        this._x = x
-        this.sprite.x = x
+        super.x = x
+        this.sprite.x = this._x // Updates Sprite
     }
     set y(y: number) {
-        this._y = y
-        this.sprite.y = y
+        super.y = y
+        this.sprite.y = this._y // Updates Sprite
     }
 }
 
