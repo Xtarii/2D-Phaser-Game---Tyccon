@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "standard galactic";
+    src: url("../assets/fonts/the-standard-galactic-font.otf");
+}
+
+
+
+
+
+
+h1{
+    font-family: "standard galactic";
+}
