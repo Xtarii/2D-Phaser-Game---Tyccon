@@ -1,4 +1,5 @@
 import { PlacementType, TINT, UI } from ".."
+import { styles } from "./styles"
 
 
 
@@ -25,25 +26,12 @@ export type TextConfig = {
 
 
 /**
- * Text Style
- *
- * The Default text style for Text Objects
- */
-export const style: Phaser.Types.GameObjects.Text.TextStyle = {
-    fontSize: '10px',
-    fontFamily: 'standard galactic',
-    color: '#efefef',
-    backgroundColor: '#2d2f2e5e',
-
-    resolution: 2
-}
-
-
-
-/**
  * UI Text Object
  */
 export class Text extends UI {
+    /**
+     * Text Object
+     */
     protected object: Phaser.GameObjects.Text
 
 
@@ -68,7 +56,7 @@ export class Text extends UI {
                 y: 2
             },
             text: text,
-            style: config?.style ?? style
+            style: config?.style ?? styles.DEFAULT
         }
 
         this.object = scene.make.text(settings) // Creates Text Instance

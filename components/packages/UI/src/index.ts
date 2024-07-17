@@ -326,3 +326,4 @@ export { default as Button, TINT } from "./button/button"
 
 export * from "./panel/panel"
 export * from "./text/text"
+export * from "./text/styles"

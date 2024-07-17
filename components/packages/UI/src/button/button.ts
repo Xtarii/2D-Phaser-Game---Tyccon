@@ -1,7 +1,6 @@
 import { PlacementType, Text, TextConfig, UISprite } from ".."
 import { sleep } from "obesity-utils"
-
-
+import { styles } from "../text/styles"
 
 
 
@@ -42,12 +41,7 @@ export default class Button extends UISprite {
         this.text = new Text(this.scene, args[1] + 1, args[2], text, {
             placementType: args[6]?.placementType ?? this._placementType,
             padding: args[6]?.padding ?? { x: 1, y: 1 },
-            style: args[6]?.style ?? {
-                fontSize: '10px',
-                fontFamily: 'standard galactic',
-                color: '#efefef',
-                resolution: 2
-            }
+            style: args[6]?.style ?? styles.BUTTON_NORMAL
         })
     }
 
