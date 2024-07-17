@@ -2,6 +2,7 @@ const Phaser = require("phaser")
 const { sleep } = require("obesity-utils")
 import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
+import GameUI from "../../ui/UI.js"
 
 
 const { Button, UI, addInteractableObject, Panel } = require("obesity-components")
@@ -18,6 +19,16 @@ export default class MainScene extends Phaser.Scene {
      * @type {Player}
      */
     static player
+
+    /**
+     * Main Game UI Manager
+     *
+     * Manages UI Menus and Buttons.
+     * Holds Menu UI, Player UI and more
+     *
+     * @type {GameUI}
+     */
+    static gameUI
 
 
 
@@ -36,9 +47,6 @@ export default class MainScene extends Phaser.Scene {
 
 
         // Test Button
-        const button = new Button("E", this, 16 / 2, 16 / 2, "interact key")
-        button.addButtonClickCallback(() => MainScene.player.buildMode.buildMode())
-
         const t = this.add.sprite(0, 2900, "player")
         t.setDepth(55)
 
@@ -50,6 +58,7 @@ export default class MainScene extends Phaser.Scene {
 
 
         MainScene.player = new Player()
+        MainScene.gameUI = new GameUI(this) // Game UI
 
 
 

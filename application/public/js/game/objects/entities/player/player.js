@@ -11,6 +11,7 @@ const {
 } = require("obesity-components")
 
 import { Game } from "../../../game.js"
+import MainScene from "../../../world/scenes/mainScene.js"
 
 
 
@@ -83,12 +84,14 @@ export default class Player extends Entity {
             this.interactButton = null
 
             // Hides Menu
+            MainScene.gameUI.gameHUD.enterBuildMode()
         })
         this.buildMode.event.on("exit", () => {
             // Enables Components
             this.interaction.run = true
 
             // Shows Menu
+            MainScene.gameUI.gameHUD.exitBuildMode()
         })
     }
 
