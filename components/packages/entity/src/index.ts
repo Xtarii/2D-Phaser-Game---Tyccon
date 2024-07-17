@@ -1,5 +1,6 @@
 import { Physics } from "phaser"
 import { Component } from "@obesity-components/component"
+import { styles } from "@obesity-components/gui"
 
 
 
@@ -70,19 +71,13 @@ export abstract class Entity extends Physics.Arcade.Sprite {
 
 
         // WORK (IN/LE) PROCESS
-        const style = {
-            fontSize: '50px',
-            fontFamily: 'Arial',
-            color: '#cfcfcf',
-            backgroundColor: '#2d2f2e5e'
-        }
         const nameDisplayConfig = {
             padding: {
                 x: 50,
                 y: 5
             },
             text: name,
-            style: style
+            style: styles.ENTITY_NAMES
         }
         this.nameBar = scene.make.text(nameDisplayConfig)
         this.nameBar.setDepth(99)
