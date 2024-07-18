@@ -135,4 +135,11 @@ export class Text extends UI {
     get displayHeight(): number {
         return this.object.displayHeight
     }
+
+    /**
+     * UI Text Body
+     */
+    get body(): Phaser.GameObjects.Text {
+        return this.object
+    }
 }

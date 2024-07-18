@@ -1,4 +1,4 @@
-import { PlacementType, UISprite } from ".."
+import { PlacementType, Text, UISprite } from ".."
 
 
 
@@ -52,11 +52,19 @@ export class Panel extends UISprite {
      *
      * @param object UI Object
      */
-    add = (object: UISprite) => { this.container.add(object.sprite) }
+    add = (object: UISprite | Text) => {
+        if(object instanceof UISprite)
+            this.container.add(object.sprite) // Adds Sprite
+        else this.container.add(object.body) // Adds Text
+    }
     /**
      * Remove UI Object from Panel
      *
      * @param object UI Object
      */
-    remove = (object: UISprite) => { this.container.remove(object.sprite) }
+    remove = (object: UISprite | Text) => {
+        if(object instanceof UISprite)
+            this.container.remove(object.sprite) // Removes Sprite
+        else this.container.remove(object.body) // Removes Text
+    }
 }
