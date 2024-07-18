@@ -1,4 +1,4 @@
-import { PlacementType, Text, UISprite } from ".."
+import { Button, PlacementType, Text, UI, UISprite } from ".."
 
 
 
@@ -52,19 +52,32 @@ export class Panel extends UISprite {
      *
      * @param object UI Object
      */
-    add = (object: UISprite | Text) => {
-        if(object instanceof UISprite)
-            this.container.add(object.sprite) // Adds Sprite
-        else this.container.add(object.body) // Adds Text
+    add = (object: UI) => {
+        if(object instanceof Button) {
+            this.container.add(object.sprite)
+            this.container.add(object.text.body)
+
+        }else if(object instanceof UISprite) this.container.add(object.sprite) // Adds Sprite
+        else if(object instanceof Text) this.container.add(object.body) // Adds Text
     }
     /**
      * Remove UI Object from Panel
      *
      * @param object UI Object
      */
-    remove = (object: UISprite | Text) => {
-        if(object instanceof UISprite)
-            this.container.remove(object.sprite) // Removes Sprite
-        else this.container.remove(object.body) // Removes Text
+    remove = (object: UI) => {
+        if(object instanceof Button) {
+            this.container.remove(object.sprite)
+            this.container.remove(object.text.body)
+
+        }else if(object instanceof UISprite) this.container.remove(object.sprite) // Removes Sprite
+        else if(object instanceof Text) this.container.remove(object.body) // Removes Text
+    }
+
+
+
+    destroy() {
+        super.destroy() // Destroys Sprite
+        this.container.destroy(true) // Destroys Container
     }
 }
