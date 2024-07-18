@@ -5,7 +5,7 @@
 import { BrowserWindow } from "electron"
 import { Emitter, EventEmitter, EventMap } from "./event/event"
 import Server from "./server/server"
-import { readApplicationConfig } from "obesity-utils"
+import { FileError, readApplicationConfig } from "obesity-utils"
 
 
 
@@ -75,7 +75,7 @@ export class Application {
             this.window.loadURL(data.url || `http://localhost:${Application.server.PORT}/`) // Loads Home Page
 
         }catch(err) {
-            console.error(err) // DEBUG Error
+            console.error((err as FileError).message) // Converts to File Error
 
             this.window.removeMenu() // Debug Menu Removal
             this.window.loadURL(`http://localhost:${Application.server.PORT}/`) // Loads Home Page
