@@ -85,7 +85,7 @@ export class Text extends UI {
      *
      * @param tint Text Tint
      */
-    setTint = (tint: TINT) => { this.object.setTint(tint) }
+    setTint = (tint: TINT | number) => { this.object.setTint(tint) }
     /**
      * Clears Text Tint
      */
