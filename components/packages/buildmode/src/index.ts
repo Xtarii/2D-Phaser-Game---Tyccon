@@ -1,6 +1,8 @@
 import { Emitter, EventEmitter } from "obesity-utils"
 import { Component } from "@obesity-components/component"
-import { Panel } from "@obesity-components/gui"
+
+import { BuildMenu } from "./ui/menu"
+import { BuildBlock } from "./ui/block"
 
 
 
@@ -11,11 +13,6 @@ import { Panel } from "@obesity-components/gui"
  * This Component Requires Player Input.
  */
 export class BuildMode extends Component {
-    /**
-     * Show Build Menu
-     */
-    private showMenu: boolean = false
-
     /**
      * Event Handler
      */
@@ -55,8 +52,10 @@ export class BuildMode extends Component {
     private enter = () => {
         this.event.emit("enter") // Emits Enter Event
 
+        BuildBlock.show(this.parent.scene, BuildMenu.block.spriteID) // Show Block
+
         // Build Mode Setup
-        this.parent.scene.input.keyboard?.on("keydown-TAB", this.blockMenu)
+        this.parent.scene.input.keyboard?.on("keydown-TAB", this.menu)
     }
     /**
      * Exit Build Mode
@@ -66,7 +65,10 @@ export class BuildMode extends Component {
      */
     private exit = () => {
         // Build Mode Exit
-        this.parent.scene.input.keyboard?.off("keydown-TAB", this.blockMenu)
+        this.parent.scene.input.keyboard?.off("keydown-TAB", this.menu)
+
+        BuildMenu.close() // Closes Menu if Open
+        BuildBlock.hide() // Hides Build Block
 
         this.event.emit("exit") // Emits Exit Event
     }
@@ -74,7 +76,30 @@ export class BuildMode extends Component {
 
 
     update = () => {
-        // Build Mode Functionality
+        const scene = this.parent.scene // Scene
+        const mouse = scene.input.activePointer // Gets Mouse Object
+
+        // Block Position
+        //
+        // Grid System
+        // -----------
+        // (spriteSize / mouseX).round() * spriteSize
+        // (SpriteSize / mouseY).round() * spriteSize
+        // ============================================
+        // mouse position = x < 64, y < 64
+        // Then Grid Position = 1, 1
+        //
+        // Position is half of spriteSize * grid position
+        // SpriteSize is 64 pixels, that is the amount of pixels
+        // this game uses for the sprites and tiles.
+        const gridPosX = Math.round((mouse.worldX + 32) / 64)
+        const gridPosY = Math.round((mouse.worldY + 32) / 64)
+
+        // Grid (Position * SpriteSize) - Block.Size / 2 = Center of Grid Position
+        const x = (gridPosX * 64) - (BuildBlock.width() ?? 0) / 2
+        const y = (gridPosY * 64) - (BuildBlock.height() ?? 0) / 2
+
+        BuildBlock.setPosition(x, y) // Updates Block Position
     }
 
 
@@ -83,29 +108,26 @@ export class BuildMode extends Component {
     /**
      * Opens or Closes Block Menu
      */
-    blockMenu = () => {
+    menu = () => {
         const scene = this.parent.scene
-        const camera = scene.cameras.main
 
 
 
         // Close Menu
-        if(!this.showMenu){
-            this.showMenu = true // Sets Menu to Close
-
+        if(!BuildMenu.isShowing){
             // Creates Menu
-            this.menu = new Panel(scene, camera.displayWidth - 75, camera.displayHeight / 2, "build menu - panel")
-            this.menu.sprite.setDisplaySize(150, camera.displayHeight)
+            BuildMenu.show(scene) // Shows Menu
+
+            // Removes Current Build Block
+            BuildBlock.hide()
 
         // Open Menu
         }else {
-            this.showMenu = false // Sets Menu to Open
-
             // Removes Menu
-            this.menu?.destroy()
-            this.menu = null
+            BuildMenu.close()
+
+            // Set Current Build Block
+            BuildBlock.show(scene, BuildMenu.block.spriteID)
         }
     }
-
-    menu: Panel | null = null
 }
