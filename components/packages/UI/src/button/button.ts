@@ -23,7 +23,7 @@ export default class Button extends UISprite {
     /**
      * UI Button Text
      */
-    private text: Text
+    private _text: Text
 
 
 
@@ -42,7 +42,7 @@ export default class Button extends UISprite {
         this.sprite.setInteractive() // Sets Object to Interactive
 
         // Creates Button Text
-        this.text = new Text(this.scene, args[1] + 1, args[2], text, {
+        this._text = new Text(this.scene, args[1] + 1, args[2], text, {
             placementType: args[6]?.placementType ?? this._placementType,
             padding: args[6]?.padding ?? { x: 1, y: 1 },
             style: args[6]?.style ?? styles.BUTTON_NORMAL
@@ -58,7 +58,7 @@ export default class Button extends UISprite {
      *
      * @param text Button Text
      */
-    setText = (text: string) => { this.text.setText(text) }
+    setText = (text: string) => { this._text.setText(text) }
 
 
 
@@ -74,12 +74,12 @@ export default class Button extends UISprite {
     addButtonClickCallback = (callback: () => void, tint?: TINT, resetDelay?: number) => {
         this.sprite.on("pointerdown", () => {
             this.sprite.setTint(tint ?? TINT.NORMAL_TINT) // Changes Tint
-            this.text.setTint(tint ?? TINT.NORMAL_TINT)
+            this._text.setTint(tint ?? TINT.NORMAL_TINT)
             callback() // Calls callback
 
             sleep(resetDelay ?? 250).then(() => {
                 this.sprite.clearTint()
-                this.text.clearTint()
+                this._text.clearTint()
             }) // Removes Tint after delay
         })
     }
@@ -87,7 +87,7 @@ export default class Button extends UISprite {
 
 
     destroy() {
-        this.text.destroy() // Removes Text
+        this._text.destroy() // Removes Text
         super.destroy() // Removes this
     }
 
@@ -97,10 +97,17 @@ export default class Button extends UISprite {
 
     set x(x: number) {
         super.x = x
-        this.text.x = (this._x - (this.text.displayWidth / 2)) + 1
+        this._text.x = (this._x - (this._text.displayWidth / 2)) + 1
     }
     set y(y: number) {
         super.y = y
-        this.text.y = this._y - (this.text.displayHeight / 2)
+        this._text.y = this._y - (this._text.displayHeight / 2)
+    }
+
+    /**
+     * Button Text Element
+     */
+    get text(): Text {
+        return this._text
     }
 }
