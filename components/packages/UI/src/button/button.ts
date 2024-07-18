@@ -30,6 +30,8 @@ export default class Button extends UISprite {
     /**
      * Creates Button Instance
      *
+     * This Button still needs a background.
+     *
      * @param text Button Text
      * @param args Button Arguments
      */
