@@ -53,10 +53,6 @@ export class Application {
      * Creates Application Instance
      */
     constructor(){
-        // Reads Application Config
-        const data = readApplicationConfig<DEV>("_dev.config")
-
-
         // Window Instance
         this.window = new BrowserWindow({
             width: 1500,
@@ -68,13 +64,21 @@ export class Application {
                 contextIsolation: false
             },
         })
-        if(!data?.isDev) this.window.removeMenu()      // Debug Menu Removal
 
         this.events = new EventEmitter()              // Creates Event Handler
         Application.server = new Server(this.events)  // Creates Host Server Instance
 
+        try{
+            // Reads Application Config
+            const data = readApplicationConfig<DEV>("_dev.config")
+            if(data.isDev) this.window.removeMenu() // Debug Menu Removal
+            this.window.loadURL(data.url || `http://localhost:${Application.server.PORT}/`) // Loads Home Page
 
-        // Window Setup
-        this.window.loadURL(data?.url || `http://localhost:${Application.server.PORT}/`) // Loads Home Page
+        }catch(err) {
+            console.error(err) // DEBUG Error
+
+            this.window.removeMenu() // Debug Menu Removal
+            this.window.loadURL(`http://localhost:${Application.server.PORT}/`) // Loads Home Page
+        }
     }
 }
