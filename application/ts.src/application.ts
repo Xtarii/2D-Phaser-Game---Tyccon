@@ -71,7 +71,7 @@ export class Application {
         try{
             // Reads Application Config
             const data = readApplicationConfig<DEV>("_dev.config")
-            if(data.isDev) this.window.removeMenu() // Debug Menu Removal
+            if(!data.isDev) this.window.removeMenu() // Debug Menu Removal
             this.window.loadURL(data.url || `http://localhost:${Application.server.PORT}/`) // Loads Home Page
 
         }catch(err) {
