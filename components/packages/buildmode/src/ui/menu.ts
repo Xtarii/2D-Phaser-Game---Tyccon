@@ -1,4 +1,4 @@
-import { Button, Panel } from "@obesity-components/gui"
+import { Panel, TextButton } from "@obesity-components/gui"
 import { Scene } from "phaser"
 
 
@@ -64,9 +64,9 @@ export namespace BuildMenu {
 
     function createButtons(scene: Scene) {
         // Test Button 1
-        menu?.add(new Button("1", scene, 50, 50, "interact key"))
+        menu?.add(new TextButton("1", scene, 50, 50, "interact key"))
 
         // Test Button 2
-        menu?.add(new Button("2", scene, 50 + 32 + 3, 50, "interact key"))
+        menu?.add(new TextButton("2", scene, 50 + 32 + 3, 50, "interact key"))
     }
 }
