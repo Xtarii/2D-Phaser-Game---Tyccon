@@ -123,6 +123,17 @@ export abstract class UI {
     protected _placementType: PlacementType
 
     /**
+     * UI Body
+     *
+     * Only contains the UI Body Objects.
+     * If UI is body-less then this will be empty.
+     *
+     * Helps the Scene and others UI objects to
+     * add all the UI body parts.
+     */
+    protected _body: Phaser.GameObjects.GameObject[] = []
+
+    /**
      * UI Object Scene
      *
      * The scene that this UI Object is in
@@ -192,6 +203,7 @@ export abstract class UI {
      */
     destroy() {
         UI.removeUIComponentObject(this) // Removes From Scene
+        for(var x in this.body) this.body[x].destroy(true) // Destroys Body Elements
     }
 
 
@@ -249,6 +261,20 @@ export abstract class UI {
         else this._y = y // Dynamic Position
     }
     get y(): number { return this._y }
+
+    /**
+     * UI Body List
+     *
+     * A list of all the UI component
+     * underlying parts.
+     *
+     * This may be empty but never ```null```,
+     * the amount of objects depends on
+     * the UI object.
+     */
+    get body(): Phaser.GameObjects.GameObject[] {
+        return this._body
+    }
 }
 
 /**
@@ -278,17 +304,11 @@ export abstract class UISprite extends UI {
     constructor(scene: Phaser.Scene, x: number, y: number, image: string, frame?: number | string, placementType?: PlacementType) {
         super(scene, x, y, placementType)
         this.sprite = scene.add.sprite(this._x, this._y, image, frame) // Creates UI Sprite
+        this._body.push(this.sprite) // Adds sprite to Body
 
         // Sprite Config
         this.sprite.setDepth(101) // Scene Depth ( Will be changed )
         if(this._placementType === PlacementType.static) this.sprite.setScrollFactor(0) // Sets to not move in Camera view
-    }
-
-
-
-    destroy() {
-        super.destroy() // Calls UI Destroy
-        this.sprite.destroy(true) // Removes UI Sprite Instance
     }
 
 
@@ -322,7 +342,8 @@ export abstract class UISprite extends UI {
 
 
 // Library Exports
-export { default as Button, TINT } from "./button/button"
+export * from "./button/button"
+export * from "./button/textButton"
 
 export * from "./panel/panel"
 export * from "./text/text"

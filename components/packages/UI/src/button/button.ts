@@ -1,64 +1,71 @@
-import { PlacementType, Text, TextConfig, UISprite } from ".."
 import { sleep } from "obesity-utils"
-import { styles } from "../text/styles"
+import { PlacementType, TINT, UISprite } from ".."
 
 
 
 /**
- * Button Tint types
+ * ## Simple Image Button
+ *
+ * Note that ```Button``` uses a text
+ * as inner content and this UI Button
+ * uses an image.
+ *
+ *
+ * ### Text Button
+ * If you need a ```Button``` with text, then
+ * you should use the normal Button
+ * ```ts
+ * // Creates a UI Button with Text as content
+ * //
+ * // Perfect for "interact buttons"
+ * const button = new Button(<args>)
+ * ```
+ *
+ *
+ * ### Image Button
+ * But if you need a button with just an image ( No Text )
+ * ```ts
+ * // Creates a UI Image Button ( NO TEXT )
+ * //
+ * // Perfect for indications like "mode switch"
+ * const imageButton = new ImageButton(<args>)
+ * ```
+ *
+ * ---------------------------------------------------
+ * I recommend to use Text Button for simple stuff like
+ * - Buy
+ * - Interact
+ *
+ * And other buttons that just needs a short text or
+ * one letter.
+ *
+ * If you need to make a Button with more meaning
+ * you can use this button. This button is good for
+ * - Indicating that the game mode will switch
+ * - By clicking this you will get "something"
+ *
+ * And other buttons that have a long meaning that can
+ * not fit into one short 3 letter word or 1 letter.
+ *
+ * ---------------------------------------------------
+ *
+ * The Text Button took a lot of time to make while this
+ * was just to assemble so from a time stand point,
+ * please consider using Text ```Button```.
+ * And because ```Button``` has the
+ * ***[Standard Galactic Font - Evil, INC](https://fontstruct.com/fontstructions/download/2505471)***
+ * as ```Font Family``` so the text looks so good.
  */
-export enum TINT {
-    /**
-     * Button Normal Tint
-     */
-    NORMAL_TINT = 0xd0d0d0
-}
-
-
-
-/**
- * Simple Button
- */
-export default class Button extends UISprite {
-    /**
-     * UI Button Text
-     */
-    private _text: Text
-
-
-
+export class Button extends UISprite {
     /**
      * Creates Button Instance
      *
-     * This button has text as content.
-     * But it still needs an Image as
-     * a background UI.
-     *
-     * @param text Button Text
      * @param args Button Arguments
      */
-    constructor(text: string, ...args: [Phaser.Scene, number, number, string, number?, PlacementType?, textConfig?: TextConfig]) {
+    constructor(...args: [Phaser.Scene, number, number, string, number?, PlacementType?]) {
         super(args[0], args[1], args[2], args[3], args[4], args[5])
         this.sprite.setInteractive() // Sets Object to Interactive
-
-        // Creates Button Text
-        this._text = new Text(this.scene, args[1] + 1, args[2], text, {
-            placementType: args[6]?.placementType ?? this._placementType,
-            padding: args[6]?.padding ?? { x: 1, y: 1 },
-            style: args[6]?.style ?? styles.BUTTON_NORMAL
-        })
     }
-
-
-
-    /**
-     * Set Button Text
-     *
-     * Sets this buttons Text
-     *
-     * @param text Button Text
-     */
-    setText = (text: string) => { this._text.setText(text) }
 
 
 
@@ -74,40 +81,9 @@ export default class Button extends UISprite {
     addButtonClickCallback = (callback: () => void, tint?: TINT, resetDelay?: number) => {
         this.sprite.on("pointerdown", () => {
             this.sprite.setTint(tint ?? TINT.NORMAL_TINT) // Changes Tint
-            this._text.setTint(tint ?? TINT.NORMAL_TINT)
             callback() // Calls callback
 
-            sleep(resetDelay ?? 250).then(() => {
-                this.sprite.clearTint()
-                this._text.clearTint()
-            }) // Removes Tint after delay
+            sleep(resetDelay ?? 250).then(() => this.sprite.clearTint()) // Removes Tint after delay
         })
-    }
-
-
-
-    destroy() {
-        this._text.destroy() // Removes Text
-        super.destroy() // Removes this
-    }
-
-
-
-
-
-    set x(x: number) {
-        super.x = x
-        this._text.x = (this._x - (this._text.displayWidth / 2)) + 1
-    }
-    set y(y: number) {
-        super.y = y
-        this._text.y = this._y - (this._text.displayHeight / 2)
-    }
-
-    /**
-     * Button Text Element
-     */
-    get text(): Text {
-        return this._text
     }
 }

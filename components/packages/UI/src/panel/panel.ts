@@ -40,8 +40,6 @@ export class Panel extends UISprite {
 
         // Creates Container
         this.container = scene.add.container(0, 0, this.sprite) // Creates Container at Object Position
-        // if(this.placementType === PlacementType.static) this.container.setScrollFactor(0) // Sets to static
-
         this.container.setDepth(this.sprite.depth)
         this.sprite.setDepth(0) // Sets This Object as Panel Background
     }
@@ -53,12 +51,7 @@ export class Panel extends UISprite {
      * @param object UI Object
      */
     add = (object: UI) => {
-        if(object instanceof Button) {
-            this.container.add(object.sprite)
-            this.container.add(object.text.body)
-
-        }else if(object instanceof UISprite) this.container.add(object.sprite) // Adds Sprite
-        else if(object instanceof Text) this.container.add(object.body) // Adds Text
+        for(var i in object.body) this.container.add(object.body[i]) // Adds UI
     }
     /**
      * Remove UI Object from Panel
@@ -66,12 +59,7 @@ export class Panel extends UISprite {
      * @param object UI Object
      */
     remove = (object: UI) => {
-        if(object instanceof Button) {
-            this.container.remove(object.sprite)
-            this.container.remove(object.text.body)
-
-        }else if(object instanceof UISprite) this.container.remove(object.sprite) // Removes Sprite
-        else if(object instanceof Text) this.container.remove(object.body) // Removes Text
+        for(var i in object.body) this.container.remove(object.body[i]) // Removes UI
     }
 
 

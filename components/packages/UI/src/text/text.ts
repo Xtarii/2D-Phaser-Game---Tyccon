@@ -60,6 +60,7 @@ export class Text extends UI {
         }
 
         this.object = scene.make.text(settings) // Creates Text Instance
+        this._body.push(this.object) // Adds text object to body
 
         this.object.setDepth(101) // Scene Depth ( Will be changed )
         if(this._placementType === PlacementType.static) this.object.setScrollFactor(0) // Sets to not move in Camera view
@@ -90,13 +91,6 @@ export class Text extends UI {
      * Clears Text Tint
      */
     clearTint = () => { this.object.clearTint() }
-
-
-
-    destroy() {
-        super.destroy() // Calls UI Destroy
-        this.object.destroy(true) // Removes UI Sprite Instance
-    }
 
 
 
@@ -134,12 +128,5 @@ export class Text extends UI {
      */
     get displayHeight(): number {
         return this.object.displayHeight
-    }
-
-    /**
-     * UI Text Body
-     */
-    get body(): Phaser.GameObjects.Text {
-        return this.object
     }
 }
