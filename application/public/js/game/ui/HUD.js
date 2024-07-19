@@ -1,6 +1,6 @@
 import MainScene from "../world/scenes/mainScene.js"
 
-const { Button } = require("obesity-components")
+const { TextButton } = require("obesity-components")
 
 
 
@@ -11,7 +11,7 @@ export default class HUD {
     /**
      * Build Mode Button
      *
-     * @type {Button}
+     * @type {TextButton}
      */
     buildModeButton
 
@@ -23,7 +23,7 @@ export default class HUD {
      * @param {Phaser.Scene} scene Game Scene
      */
     constructor(scene) {
-        this.buildModeButton = new Button("E", scene, 16 / 2, 16 / 2, "interact key") // Build Mode Button
+        this.buildModeButton = new TextButton("E", scene, 16 / 2, 16 / 2, "interact key") // Build Mode Button
         this.buildModeButton.addButtonClickCallback(() => MainScene.player.buildMode.buildMode())
     }
 

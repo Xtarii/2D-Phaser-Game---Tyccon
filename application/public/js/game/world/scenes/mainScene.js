@@ -5,7 +5,7 @@ import { Game } from "../../game.js"
 import GameUI from "../../ui/UI.js"
 
 
-const { Button, UI, addInteractableObject, Panel } = require("obesity-components")
+const { UI, addInteractableObject } = require("obesity-components")
 
 
 

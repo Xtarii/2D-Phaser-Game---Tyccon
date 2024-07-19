@@ -3,7 +3,7 @@ const {
     Entity,
     Interact,
 
-    Button,
+    TextButton,
     TINT,
     PlacementType,
 
@@ -64,7 +64,7 @@ export default class Player extends Entity {
                 this.interactButton.y = y
             }else {
                 // Creates Button Instance
-                this.interactButton = new Button("E", this.scene, x, y, "interact key", null, PlacementType.dynamic)
+                this.interactButton = new TextButton("E", this.scene, x, y, "interact key", null, PlacementType.dynamic)
             }
         })
         this.interaction.event.on("no interaction", () => {
