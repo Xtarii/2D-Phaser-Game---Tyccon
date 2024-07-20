@@ -1,8 +1,8 @@
-import { Emitter, EventEmitter } from "obesity-utils"
+import { Emitter, EventEmitter, sleep } from "obesity-utils"
 import { Component } from "@obesity-components/component"
 
 import { BuildMenu } from "./ui/menu"
-import { BuildBlock } from "./ui/block"
+import { BlockError, BuildBlock } from "./ui/block"
 
 
 
@@ -52,10 +52,14 @@ export class BuildMode extends Component {
     private enter = () => {
         this.event.emit("enter") // Emits Enter Event
 
-        BuildBlock.show(this.parent.scene, BuildMenu.block.spriteID) // Show Block
+        // Late Build Mode Setup ( So the user can't build by mistake )
+        sleep(500).then(() => {
+            BuildBlock.show(this.parent.scene, BuildMenu.block.spriteID) // Show Block
 
-        // Build Mode Setup
-        this.parent.scene.input.keyboard?.on("keydown-TAB", this.menu)
+            // Build Mode Setup
+            this.parent.scene.input.keyboard?.on("keydown-TAB", this.menu)
+            this.parent.scene.input.on("pointerdown", this.placeBlock)
+        })
     }
     /**
      * Exit Build Mode
@@ -66,6 +70,7 @@ export class BuildMode extends Component {
     private exit = () => {
         // Build Mode Exit
         this.parent.scene.input.keyboard?.off("keydown-TAB", this.menu)
+        this.parent.scene.input.off("pointerdown", this.placeBlock)
 
         BuildMenu.close() // Closes Menu if Open
         BuildBlock.hide() // Hides Build Block
@@ -79,29 +84,36 @@ export class BuildMode extends Component {
         const scene = this.parent.scene // Scene
         const mouse = scene.input.activePointer // Gets Mouse Object
 
-        // Block Position
-        //
-        // Grid System
-        // -----------
-        // (spriteSize / mouseX).round() * spriteSize
-        // (SpriteSize / mouseY).round() * spriteSize
-        // ============================================
-        // mouse position = x < 64, y < 64
-        // Then Grid Position = 1, 1
-        //
-        // Position is half of spriteSize * grid position
-        // SpriteSize is 64 pixels, that is the amount of pixels
-        // this game uses for the sprites and tiles.
-        const gridPosX = Math.round((mouse.worldX + 32) / 64)
-        const gridPosY = Math.round((mouse.worldY + 32) / 64)
+        try{
+            if(!BuildBlock.isShowing()) return // Exits if there is no block
 
-        // Grid (Position * SpriteSize) - Block.Size / 2 = Center of Grid Position
-        const x = (gridPosX * 64) - (BuildBlock.width() ?? 0) / 2
-        const y = (gridPosY * 64) - (BuildBlock.height() ?? 0) / 2
+            // Block Position
+            //
+            // Grid System
+            // -----------
+            // (spriteSize / mouseX).round() * spriteSize
+            // (SpriteSize / mouseY).round() * spriteSize
+            // ============================================
+            // mouse position = x < 64, y < 64
+            // Then Grid Position = 1, 1
+            //
+            // Position is half of spriteSize * grid position
+            // SpriteSize is 64 pixels, that is the amount of pixels
+            // this game uses for the sprites and tiles.
+            const gridPosX = Math.round((mouse.worldX + 32) / 64)
+            const gridPosY = Math.round((mouse.worldY + 32) / 64)
 
-        BuildBlock.setPosition(x, y) // Updates Block Position
+            // Grid (Position * SpriteSize) - Block.Size / 2 = Center of Grid Position
+            const x = (gridPosX * 64) - (BuildBlock.width() ?? 0) / 2
+            const y = (gridPosY * 64) - (BuildBlock.height() ?? 0) / 2
+
+            BuildBlock.setPosition(x, y) // Updates Block Position
+
+        // Error Handling
+        }catch(err) {
+            console.log((err as BlockError).message) // DEBUG Error Message
+        }
     }
-
 
 
 
@@ -128,6 +140,27 @@ export class BuildMode extends Component {
 
             // Set Current Build Block
             BuildBlock.show(scene, BuildMenu.block.spriteID)
+        }
+    }
+
+    /**
+     * Method for placing blocks
+     *
+     * @param pointer Mouse Pointer
+     */
+    placeBlock = (pointer: Phaser.Input.Pointer) => {
+        // Handles Mouse Click Event
+        if(pointer.leftButtonDown() && BuildBlock.canPlace) {
+            // Place Block ( Left Mouse Button )
+            try{
+                BuildBlock.place(this.parent.scene) // Place Block
+            }catch(err) {
+                console.log((err as BlockError).message) // DEBUG Error Message
+            }
+
+        }else if(pointer.rightButtonDown()) {
+            // Stop Placing the Block ( Right Mouse Button )
+            BuildBlock.hide()
         }
     }
 }
