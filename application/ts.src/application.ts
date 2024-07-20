@@ -30,14 +30,14 @@ export class Application {
      *
      * Handles event for Application
      */
-    public events: Emitter<{
+    public readonly events: Emitter<{
         start: undefined
         end: undefined
     }>
     /**
      * Application Window Instance
      */
-    public window: BrowserWindow
+    public readonly window: BrowserWindow
     /**
      * Application Server
      *
