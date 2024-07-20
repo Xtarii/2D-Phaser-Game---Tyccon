@@ -22,6 +22,11 @@ export const APPDATA = path.join(
     "obesity-hotel"
 )
 
+/**
+ * Application Base Path
+ */
+export const BASE = path.join(__dirname, "../../../../")
+
 
 
 
