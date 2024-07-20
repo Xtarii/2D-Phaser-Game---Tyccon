@@ -29,4 +29,19 @@ export class Image extends UISprite {
      * @param tint TINT
      */
     setTint = (tint: TINT | number) => { this.sprite.setTint(tint) }
+    /**
+     * Clears Image Tint
+     */
+    clearTint = () => { this.sprite.clearTint() }
+
+    /**
+     * Set Image Alpha
+     *
+     * @param alpha Alpha
+     */
+    setAlpha = (alpha: number) => { this.sprite.setAlpha(alpha) }
+    /**
+     * Clears Image Alpha
+     */
+    clearAlpha = () => { this.sprite.clearAlpha() }
 }
