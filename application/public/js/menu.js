@@ -1,4 +1,5 @@
-const { PlayerData } =  require("obesity-utils")
+const path = require("path")
+const { PlayerData, BASE } =  require("obesity-utils")
 
 
 
@@ -21,5 +22,5 @@ document.getElementById("connect").addEventListener("click", () => {
 
     // Game Start
     localStorage.setItem("host", document.getElementById("server").value)
-    location.href = "/game"
+    location.href = path.join(BASE, "/application/pages/game.html")
 })
