@@ -6,10 +6,8 @@
   "workspaces": [
     "components_old",
     "application",
-
     "utils",
     "utils/packages/**/*",
-
     "components",
     "components/packages/**/*"
   ],
@@ -34,10 +32,8 @@
     "@colyseus/schema": "^2.0.32",
     "colyseus": "^0.15.17",
     "colyseus.js": "^0.15.20",
-    "express": "^4.19.2",
     "obesity-components": "^1.0.0",
     "phaser": "^3.80.1",
-    "phaser3spectorjs": "^0.0.8",
-    "pug": "^3.0.2"
+    "phaser3spectorjs": "^0.0.8"
   }
 }

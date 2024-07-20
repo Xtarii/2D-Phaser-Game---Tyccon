@@ -14,7 +14,6 @@
     "typescript": "^5.5.2"
   },
   "dependencies": {
-    "@obesity/components": "^1.0.0",
-    "express": "^4.19.2"
+    "@obesity/components": "^1.0.0"
   }
 }
