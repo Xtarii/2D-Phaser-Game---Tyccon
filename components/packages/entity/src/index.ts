@@ -1,6 +1,6 @@
 import { Physics } from "phaser"
 import { Component } from "@obesity-components/component"
-import { styles } from "@obesity-components/gui"
+import { PlacementType, styles, Text } from "@obesity-components/gui"
 
 
 
@@ -62,26 +62,17 @@ export abstract class Entity extends Physics.Arcade.Sprite {
         this.body?.setSize((size.width - width), (size.height - height))
         this.body?.setOffset(width / 2, height)
 
-
         this.name = name ?? "" // Sets Name
         this.setDepth(depth ?? 0) // Sets Render Depth
 
 
 
-
-
-        // WORK (IN/LE) PROCESS
-        const nameDisplayConfig = {
-            padding: {
-                x: 50,
-                y: 5
-            },
-            text: name,
-            style: styles.ENTITY_NAMES
-        }
-        this.nameBar = scene.make.text(nameDisplayConfig)
-        this.nameBar.setDepth(99)
-        this.nameBar.setScale(0.13, 0.13)
+        // Entity Name Bar
+        this.nameBar = new Text(scene, x, y, name,
+            {padding: {x: 50, y: 5}, style: styles.ENTITY_NAMES, placementType: PlacementType.dynamic})
+        const text = this.nameBar.body[0] as Phaser.GameObjects.Text
+        text.setDepth(99)
+        text.setScale(0.13, 0.13)
 
         this.nameBar.x = this.x - (this.nameBar.displayWidth / 2) // X Position
         this.nameBar.y = this.y - (this.height - this.height / 4) // Y Position
