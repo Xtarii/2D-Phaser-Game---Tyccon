@@ -44,4 +44,14 @@ export class Image extends UISprite {
      * Clears Image Alpha
      */
     clearAlpha = () => { this.sprite.clearAlpha() }
+
+
+
+
+
+    set x(x: number) { super.x = x }
+    get x(): number { return this._x }
+
+    set y(y: number) { super.y = y }
+    get y(): number { return this._y }
 }
