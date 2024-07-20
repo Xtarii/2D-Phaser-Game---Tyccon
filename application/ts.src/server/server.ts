@@ -29,7 +29,7 @@ export default class Server<T extends EventMap> {
     /**
      * Game Server Socket Instance
      *
-     * Handels Game Backend data like player connections and
+     * Handles Game Backend data like player connections and
      * world build updates.
      */
     private udpServer: ColyseusServer
@@ -37,7 +37,7 @@ export default class Server<T extends EventMap> {
 
 
     /**
-     * Creates Server Instace
+     * Creates Server Instance
      *
      * @param events Event System
      */

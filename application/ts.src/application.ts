@@ -6,6 +6,7 @@ import { BrowserWindow } from "electron"
 import { Emitter, EventEmitter, EventMap } from "./event/event"
 import Server from "./server/server"
 import { FileError, readApplicationConfig } from "obesity-utils"
+import path from "path"
 
 
 
@@ -72,13 +73,15 @@ export class Application {
             // Reads Application Config
             const data = readApplicationConfig<DEV>("_dev.config")
             if(!data.isDev) this.window.removeMenu() // Debug Menu Removal
-            this.window.loadURL(data.url || `http://localhost:${Application.server.PORT}/`) // Loads Home Page
+
+            if(data.url) this.window.loadURL(data.url) // Loads Home Page
+            else this.window.loadFile(path.join(__dirname, "../pages/index.html")) // Loads Home Page
 
         }catch(err) {
             console.error((err as FileError).message) // Converts to File Error
 
             this.window.removeMenu() // Debug Menu Removal
-            this.window.loadURL(`http://localhost:${Application.server.PORT}/`) // Loads Home Page
+            this.window.loadFile(path.join(__dirname, "../pages/index.html")) // Loads Home Page
         }
     }
 }

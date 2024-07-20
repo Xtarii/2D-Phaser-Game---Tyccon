@@ -28,7 +28,7 @@ class State extends Schema {
 /**
  * Game Server Socket
  *
- * Handels Game Backend data like player connections and
+ * Handles Game Backend data like player connections and
  * world build updates.
  */
 export default class ServerSocket extends Room<State> {
@@ -72,11 +72,6 @@ export default class ServerSocket extends Room<State> {
         // Removes Player
         this.state.players.delete(client.sessionId)
     }
-
-    // onMessage(client: any, message: any){
-    //     // Message
-    //     console.log(client + " :: " + message)
-    // }
 
     onDispose(): void | Promise<any> {
         // Cleanup
