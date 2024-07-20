@@ -79,11 +79,14 @@ export class Button extends UISprite {
      * @param resetDelay Delay
      */
     addButtonClickCallback = (callback: () => void, tint?: TINT, resetDelay?: number) => {
-        this.sprite.on("pointerdown", () => {
-            this.sprite.setTint(tint ?? TINT.NORMAL_TINT) // Changes Tint
-            callback() // Calls callback
+        this.sprite.on("pointerdown", (pointer: Phaser.Input.Pointer) => {
+            // Button Response on Left Mouse Button Click
+            if(pointer.leftButtonDown()) {
+                this.sprite.setTint(tint ?? TINT.NORMAL_TINT) // Changes Tint
+                callback() // Calls callback
 
-            sleep(resetDelay ?? 250).then(() => this.sprite.clearTint()) // Removes Tint after delay
+                sleep(resetDelay ?? 250).then(() => this.sprite.clearTint()) // Removes Tint after delay
+            }
         })
     }
 }
