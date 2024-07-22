@@ -287,7 +287,7 @@ export abstract class UISprite extends UI {
     /**
      * UI Sprite Object
      */
-    sprite: Phaser.Physics.Arcade.Sprite
+    sprite: Phaser.GameObjects.Sprite
 
 
 
@@ -303,7 +303,7 @@ export abstract class UISprite extends UI {
      */
     constructor(scene: Phaser.Scene, x: number, y: number, image: string, frame?: number | string, placementType?: PlacementType) {
         super(scene, x, y, placementType)
-        this.sprite = scene.physics.add.sprite(this._x, this._y, image, frame) // Creates UI Sprite
+        this.sprite = scene.add.sprite(this._x, this._y, image, frame) // Creates UI Sprite
         this._body.push(this.sprite) // Adds sprite to Body
 
         // Sprite Config
