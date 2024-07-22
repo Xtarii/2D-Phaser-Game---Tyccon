@@ -5,7 +5,7 @@ import { Game } from "../../game.js"
 import GameUI from "../../ui/UI.js"
 
 
-const { UI, addInteractableObject } = require("obesity-components")
+const { UI, addInteractableObject, T } = require("obesity-components")
 
 
 
@@ -46,11 +46,11 @@ export default class MainScene extends Phaser.Scene {
         this.cameras.main.setZoom(1.7) // Camera Zoom
 
 
-        // Test Button
+        // Test Button ( PC )
         const t = this.add.sprite(0, 2900, "player")
         t.setDepth(55)
 
-        addInteractableObject(t, () => {console.log("OK")})
+        addInteractableObject(t, () => {console.log(T)})
 
 
 
