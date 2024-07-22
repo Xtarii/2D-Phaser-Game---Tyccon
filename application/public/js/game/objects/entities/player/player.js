@@ -5,13 +5,10 @@ const {
 
     TextButton,
     TINT,
-    PlacementType,
-
-    BuildMode
+    PlacementType
 } = require("obesity-components")
 
 import { Game } from "../../../game.js"
-import MainScene from "../../../world/scenes/mainScene.js"
 
 
 
@@ -46,8 +43,6 @@ export default class Player extends Entity {
         // Component Setup
         this.interaction = this.addComponent(Interact, this.width)
 
-        this.buildMode = this.addComponent(BuildMode) // Player Build Mode
-        this.buildMode.run = false // Turns off build mode
 
 
         // Interaction Handling
@@ -70,28 +65,6 @@ export default class Player extends Entity {
         this.interaction.event.on("no interaction", () => {
             this.interactButton?.destroy()
             this.interactButton = null
-        })
-
-
-
-
-
-        // Build Mode Setup
-        this.buildMode.event.on("enter", () => {
-            // Disables Components
-            this.interaction.run = false
-            this.interactButton?.destroy()
-            this.interactButton = null
-
-            // Hides Menu
-            MainScene.gameUI.gameHUD.enterBuildMode()
-        })
-        this.buildMode.event.on("exit", () => {
-            // Enables Components
-            this.interaction.run = true
-
-            // Shows Menu
-            MainScene.gameUI.gameHUD.exitBuildMode()
         })
     }
 
