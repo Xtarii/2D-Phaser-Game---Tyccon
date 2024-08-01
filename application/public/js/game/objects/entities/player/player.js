@@ -33,6 +33,7 @@ export default class Player extends Entity {
             100 // Player depth
         )
 
+        this.canMove = true // Player Can Move
         // Key Listeners
         this.keys = this.scene.input.keyboard.addKeys("W,S,A,D,E")
 
@@ -75,11 +76,13 @@ export default class Player extends Entity {
         this.setVelocityX(this.body.velocity.x * this.dampSpeed)
         this.setVelocityY(this.body.velocity.y * this.dampSpeed)
 
-        if(this.keys.W.isDown) this.setVelocityY(-this.speed)
-        if(this.keys.S.isDown) this.setVelocityY(this.speed)
+        if(this.canMove){ // Player Input ( Movement )
+            if(this.keys.W.isDown) this.setVelocityY(-this.speed)
+            if(this.keys.S.isDown) this.setVelocityY(this.speed)
 
-        if(this.keys.A.isDown) this.setVelocityX(-this.speed)
-        if(this.keys.D.isDown) this.setVelocityX(this.speed)
+            if(this.keys.A.isDown) this.setVelocityX(-this.speed)
+            if(this.keys.D.isDown) this.setVelocityX(this.speed)
+        }
 
         // Updates player position
         Game.server.room.send("update player", { x: this.x, y: this.y})

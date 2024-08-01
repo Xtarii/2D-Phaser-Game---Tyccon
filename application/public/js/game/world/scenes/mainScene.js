@@ -5,7 +5,7 @@ import { Game } from "../../game.js"
 import GameUI from "../../ui/UI.js"
 
 
-const { UI, addInteractableObject, T } = require("obesity-components")
+const { UI, addInteractableObject, Manager } = require("obesity-components")
 
 
 
@@ -47,10 +47,27 @@ export default class MainScene extends Phaser.Scene {
 
 
         // Test Button ( PC )
-        const t = this.add.sprite(0, 2900, "player")
-        t.setDepth(55)
+        const testComputer_HotelManager = this.add.sprite(0, 2900, "player")
+        testComputer_HotelManager.setDepth(55)
 
-        addInteractableObject(t, () => {console.log(T)})
+        testComputer_HotelManager.manager = new Manager(this) // Build Manager
+
+        // Manager Event
+        testComputer_HotelManager.manager.events.on("open", () => {
+            MainScene.player.interactButton.destroy()
+            MainScene.player.interactButton = null // Removes Interact Button
+            MainScene.player.components[0].target = null // Removes Target
+
+            MainScene.player.components[0].run = false // Interact Component
+            MainScene.player.canMove = false // Player Can't Move
+        })
+        testComputer_HotelManager.manager.events.on("close", () => {
+            MainScene.player.components[0].run = true // Interact Component
+            MainScene.player.canMove = true // Player Can Move
+        })
+
+        /// Test Manager Interact Event
+        addInteractableObject(testComputer_HotelManager, () => testComputer_HotelManager.manager.manager())
 
 
 
