@@ -68,4 +68,13 @@ export class Panel extends UISprite {
         super.destroy() // Destroys Sprite
         this.container.destroy(true) // Destroys Container
     }
+
+
+
+
+
+    set x(x: number) { super.x = x }
+    get x(): number { return super.x }
+    set y(y: number) { super.y = y }
+    get y(): number { return super.y }
 }

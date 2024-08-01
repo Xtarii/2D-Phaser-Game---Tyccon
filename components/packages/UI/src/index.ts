@@ -331,10 +331,12 @@ export abstract class UISprite extends UI {
         super.x = x
         this.sprite.x = this._x // Updates Sprite
     }
+    get x(): number { return super.x }
     set y(y: number) {
         super.y = y
         this.sprite.y = this._y // Updates Sprite
     }
+    get y(): number { return super.y }
 }
 
 
