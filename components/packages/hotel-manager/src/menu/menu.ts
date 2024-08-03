@@ -24,7 +24,7 @@ const tabsList: Tab.Tab[] = [
  * edge of the screen to be
  * positioned at.
  */
-const margin: number = 75
+export const margin: number = 75
 
 
 
