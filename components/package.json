@@ -17,6 +17,7 @@
     "@obesity-components/component": "^1.0.0",
     "@obesity-components/entity": "^1.0.0",
     "@obesity-components/gui": "^1.0.0",
-    "@obesity-components/hotel-manager": "^1.0.0"
+    "@obesity-components/hotel-manager": "^1.0.0",
+    "@obesity-components/room-manager": "^1.0.0"
   }
 }
