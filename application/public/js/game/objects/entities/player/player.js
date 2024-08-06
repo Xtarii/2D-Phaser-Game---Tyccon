@@ -24,7 +24,7 @@ export default class Player extends Entity {
             Game.scene.getScene("main"),
 
             // Prespawn Position
-            0 + Math.random() * ((64 * 2) - -(64 * 2)) + -(64 * 2),
+            2900 + Math.random() * ((64 * 2) - -(64 * 2)) + -(64 * 2),
             2900 + Math.random() * ((64 * 2) - -(64 * 2)) + -(64 * 2),
 
             // Player Avatar
@@ -36,6 +36,9 @@ export default class Player extends Entity {
         this.canMove = true // Player Can Move
         // Key Listeners
         this.keys = this.scene.input.keyboard.addKeys("W,S,A,D,E")
+
+
+        this.speed = 500
 
 
 

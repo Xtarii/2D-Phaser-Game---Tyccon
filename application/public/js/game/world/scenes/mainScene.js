@@ -47,7 +47,7 @@ export default class MainScene extends Phaser.Scene {
 
 
         // Test Button ( PC )
-        const testComputer_HotelManager = this.add.sprite(0, 2900, "player")
+        const testComputer_HotelManager = this.add.sprite(2900, 2900, "player")
         testComputer_HotelManager.setDepth(55)
 
         testComputer_HotelManager.manager = new Manager(this) // Build Manager
@@ -77,13 +77,6 @@ export default class MainScene extends Phaser.Scene {
         MainScene.player = new Player()
         MainScene.gameUI = new GameUI(this) // Game UI
 
-
-
-        // this.floor = this.physics.add.staticImage(Game.spriteSize / 2, Game.spriteSize / 2, "floor")
-        // this.physics.add.collider(this.player, this.floor)
-        // const map = this.make.tilemap("map")
-        // map.addTilesetImage("floor-map", "floor")
-
         const map = this.make.tilemap({key: "hotel tilemap"})
         const tiles = map.addTilesetImage("Hotel tiles", "hotel tileset")
         const ground = map.createLayer("ground", tiles)
@@ -96,27 +89,10 @@ export default class MainScene extends Phaser.Scene {
 
         const dec = map.createLayer("decoration", tiles)
 
-
-
-        ground.x = -ground.width / 2
-        ground.y = -ground.height / 2
-        wall.x = -wall.width / 2
-        wall.y = -wall.height / 2
-
-        dec.x = -dec.width / 2
-        dec.y = -dec.height / 2
-
-
         this.cameras.main.startFollow(MainScene.player, true, 0.07, 0.07) // Camera Follow Player with small Delay
 
-        // Camera Bound ( Can't move outside this point ) set to map size
-        this.cameras.main.setBounds(
-            -ground.width / 2 - 15,
-            -ground.height / 2 - 15,
-
-            ground.width + 30,
-            ground.height + 30
-        )
+        // Camera Bound ( Can't move outside this point ) set to map size + margin
+        this.cameras.main.setBounds(-15, -15, ground.width + 30, ground.height + 30)
     }
 
     update(){
