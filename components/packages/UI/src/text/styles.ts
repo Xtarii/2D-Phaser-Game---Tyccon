@@ -56,7 +56,7 @@ export const styles = {
      *
      * No text background is created.
      * This has a smaller font size
-     * compared to {@link BUTTON_NORMAL}
+     * compared to ```BUTTON_NORMAL```
      */
     BUTTON_MEDIUM_SIZE,
 }
