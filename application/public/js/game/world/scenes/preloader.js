@@ -15,6 +15,10 @@ export default class Preloader extends Phaser.Scene {
         // this.load.spritesheet("interact key", "assets/ui/buttons/interact.png", {frameWidth: 16, frameHeight: 16})
         this.load.image("interact key", BASE + "/application/public/assets/ui/buttons/interact.png")
 
+        // Tabs
+        this.load.image("Tab Button", BASE + "/application/public/assets/ui/menu/tabs/tab.png") // TAB Main
+        this.load.image("Tab buttons: Build", BASE + "/application/public/assets/ui/buttons/BuildTab.png")
+
         this.load.image("hotel-manager background", BASE + "/application/public/assets/ui/panels/UI Panel - Build Menu.png")
 
 
