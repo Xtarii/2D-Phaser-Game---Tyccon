@@ -13,7 +13,7 @@ import Home from "./tabs/home"
  * tab list as instances.
  */
 const tabsList: Tab.Tab[] = [
-    { tab: Home, icon: "interact key" },
+    { tab: Home, icon: "Tab Buttons: Home" },
     { tab: Build, icon: "Tab buttons: Build" }
 ]
 
