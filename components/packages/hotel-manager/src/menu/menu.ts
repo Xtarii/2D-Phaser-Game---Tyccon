@@ -1,4 +1,4 @@
-import { Button, Panel, TextButton, TINT } from "@obesity-components/gui"
+import { Button, Image, Panel, TextButton, TINT } from "@obesity-components/gui"
 import { Scene } from "phaser"
 import { Tab } from "./tab"
 import Build from "./tabs/build"
@@ -13,8 +13,8 @@ import Home from "./tabs/home"
  * tab list as instances.
  */
 const tabsList: Tab.Tab[] = [
-    { name: "Home", tab: Home },
-    { name: "Build", tab: Build }
+    { tab: Home, icon: "interact key" },
+    { tab: Build, icon: "Tab buttons: Build" }
 ]
 
 /**
@@ -25,6 +25,40 @@ const tabsList: Tab.Tab[] = [
  * positioned at.
  */
 export const margin: number = 75
+
+/**
+ * UI Size Collection
+ */
+export const UISizes = {
+    /**
+     * Tab Button Size
+     *
+     * From {@link Tab.tabSize}
+     */
+    tabButton: Tab.tabSize,
+    /**
+     * Tab Button Icon Size
+     *
+     * From {@link Tab.tabIconSize}
+     */
+    tabIcon: Tab.tabIconSize,
+
+
+    /**
+     * Room Button Size
+     */
+    roomButton: {
+        x: 100,
+        y: 25
+    },
+    /**
+     * Room Icon Size
+     */
+    roomIcon: {
+        x: 16,
+        y: 16
+    }
+}
 
 
 
@@ -49,7 +83,7 @@ export namespace ManagerUI {
      * button: Button
      * ```
      */
-    export const tabs: { tab: Tab.TabObject, button: Button }[] = []
+    export const tabs: { tab: Tab.TabObject, button: { button: Button, image: Image } }[] = []
     /**
      * Current Tab ID
      *
@@ -96,11 +130,22 @@ export namespace ManagerUI {
      */
     function createTab(tab: Tab.Tab, scene: Scene) {
         if(!UIBackground) throw new Error("No UI Background") // Error
-
         const tabInstance = new tab.tab(UIBackground, tabs.length) // Tab Object
+        const button = createTabButton(scene, tab.icon, tabInstance) // Creates Button
 
-        // Adds Tab and Button to Tab List
-        tabs.push({ tab: tabInstance, button: createTabButton(scene, tab.name, tabInstance) })
+        // Custom Button Click Event
+        button.button.sprite.on("pointerdown", (pointer: Phaser.Input.Pointer) => {
+            // Button Response on Left Mouse Button Click
+            if(pointer.leftButtonDown()) {
+                button.button.sprite.setTint(TINT.NORMAL_TINT) // Changes Tint
+                button.image.setTint(TINT.NORMAL_TINT) // Button Icon
+
+                openTab(tabInstance) // Opens Tab Instance
+            }
+        })
+        UIBackground.add(button.button) // Adds Button
+        UIBackground.add(button.image) // Adds Icon
+        tabs.push({ tab: tabInstance, button: button }) // Adds Tab and Button to Tab List
     }
 
     /**
@@ -110,35 +155,36 @@ export namespace ManagerUI {
      * selected as the Manager UI.
      *
      * @param scene Scene
-     * @param name Tab Name
+     * @param icon Tab Icon
      * @param parent Tab Instance
      * @returns Button
      */
-    function createTabButton(scene: Scene, name: string, parent: Tab.TabObject) {
+    function createTabButton(scene: Scene, icon: string, parent: Tab.TabObject) : { button: Button, image: Image } {
         if(!UIBackground) throw new Error("No UI Background") // Error
-        const button = new TextButton(name, scene, 0, 0, "interact key")
-        button.sprite.setDisplaySize(Tab.tabSize.x, Tab.tabSize.y) // Sets Button Size
+        const button = new Button(scene, 0, 0, "Tab Button")
+        button.sprite.setDisplaySize(UISizes.tabButton.x, UISizes.tabButton.y) // Sets Button Size
 
-        const text = button.text // Needs to set button text values separate ( Don't know why yet )
-        const x = (margin - Tab.tabSize.x / 4) + 5 + (Tab.tabSize.x * parent.id)
-        const y = (margin - Tab.tabSize.y + 5)
-
+        const x = (margin - UISizes.tabButton.x / 4) + 5 + (UISizes.tabButton.x * parent.id)
+        const y = (margin - UISizes.tabButton.y + 5)
         button.x = x
         button.y = y
+        const image = createTabButtonIcon(scene, x, y, icon) // Creates Icon
+        return { button, image } // Returns Button
+    }
 
-        text.x = (x - text.displayWidth / 2) + 1 // This is only temporary because I want pictures
-        text.y = y - text.displayHeight / 2
-
-        // Custom Button Click Event
-        button.sprite.on("pointerdown", (pointer: Phaser.Input.Pointer) => {
-            // Button Response on Left Mouse Button Click
-            if(pointer.leftButtonDown()) {
-                button.sprite.setTint(TINT.NORMAL_TINT) // Changes Tint
-                openTab(parent) // Opens Tab Instance
-            }
-        })
-        UIBackground.add(button) // Adds Button
-        return button // Returns Button
+    /**
+     * Creates Icon Image for Tab Button
+     *
+     * @param scene Scene
+     * @param x X Position
+     * @param y Y Position
+     * @param icon Tab Icon
+     * @returns Icon Image
+     */
+    function createTabButtonIcon(scene: Scene, x: number, y: number, icon: string) : Image {
+        const image = new Image(scene, x, y, icon)
+        image.sprite.setDisplaySize(UISizes.tabIcon.x, UISizes.tabIcon.y) // Image Size
+        return image
     }
 
 
@@ -160,7 +206,7 @@ export namespace ManagerUI {
         for(const tab of tabs) {
             if(tabInstance !== tab.tab) closeTab(tab) // Closes The Tab
             else {
-                tab.button.sprite.setTint(TINT.NORMAL_TINT) // Sets Tint
+                tab.button.button.sprite.setTint(TINT.NORMAL_TINT) // Sets Tint
                 if(currentTabID !== tab.tab.id) tab.tab.open() // Opens Tab
             }
         }
@@ -175,9 +221,10 @@ export namespace ManagerUI {
      *
      * @param tab Tab
      */
-    function closeTab(tab: { tab: Tab.TabObject, button: Button }) {
+    function closeTab(tab: { tab: Tab.TabObject, button: { button: Button, image: Image } }) {
         tab.tab.close() // Closes Tab
-        tab.button.sprite.clearTint() // Clears Button Tint
+        tab.button.button.sprite.clearTint() // Clears Button Tint
+        tab.button.image.clearTint() // Clears Button Icon Tint
     }
 
 
