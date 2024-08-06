@@ -18,6 +18,12 @@ const ENTITY_NAMES: Phaser.Types.GameObjects.Text.TextStyle = {
     backgroundColor: '#2d2f2e5e',
     resolution: 2
 }
+const BUTTON_MEDIUM_SIZE: Phaser.Types.GameObjects.Text.TextStyle = {
+    fontSize: '7px',
+    fontFamily: 'standard galactic',
+    color: '#efefef',
+    resolution: 2
+}
 
 
 
@@ -43,5 +49,14 @@ export const styles = {
      * Uses the Arial Font Family and
      * a bigger text size.
      */
-    ENTITY_NAMES
+    ENTITY_NAMES,
+
+    /**
+     * Medium Text Style for Buttons
+     *
+     * No text background is created.
+     * This has a smaller font size
+     * compared to {@link BUTTON_NORMAL}
+     */
+    BUTTON_MEDIUM_SIZE,
 }
