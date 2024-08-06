@@ -1,4 +1,4 @@
-import { Button, Image, TextButton, TINT } from "@obesity-components/gui"
+import { Button, Image, styles, TextButton, TINT } from "@obesity-components/gui"
 import { Tab } from "../tab"
 import { Rooms } from "@obesity-components/room-manager"
 import { margin, UISizes } from "../menu"
@@ -87,14 +87,7 @@ export default class Build extends Tab.TabObject {
         const button = new TextButton( // Button Instance
             this.roomName({ id: room.id, cost: room.cost, level: room.level }),
             this.parent.scene, x, y, "interact key", undefined, undefined,
-            {
-                style: {
-                    fontSize: '7px',
-                    fontFamily: 'standard galactic',
-                    color: '#efefef',
-                    resolution: 2
-                }
-            }
+            { style: styles.BUTTON_MEDIUM_SIZE }
         )
         button.sprite.setDisplaySize(UISizes.roomButton.x, UISizes.roomButton.y) // Button Size
         button.text.x = (x - UISizes.roomButton.x / 2) + UISizes.roomIcon.x + 10 // Text Position
