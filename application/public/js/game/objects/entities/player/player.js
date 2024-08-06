@@ -38,9 +38,6 @@ export default class Player extends Entity {
         this.keys = this.scene.input.keyboard.addKeys("W,S,A,D,E")
 
 
-        this.speed = 500
-
-
 
 
 
