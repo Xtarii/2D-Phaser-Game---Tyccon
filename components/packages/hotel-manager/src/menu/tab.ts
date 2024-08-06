@@ -11,16 +11,16 @@ export namespace Tab {
      */
     export type Tab = {
         /**
-         * Tab Name
-         */
-        name: string
-
-        /**
          * Tab Class
          *
          * The Tabs Controller
          */
         tab: new (parent: Panel, id: number) => TabObject
+
+        /**
+         * Tab Icon
+         */
+        icon: string
     }
 
     /**
@@ -33,6 +33,16 @@ export namespace Tab {
      * ```
      */
     export const tabSize: {x: number, y: number} = {x: 50, y: 25}
+    /**
+     * Tab Icon Size
+     *
+     * The Size of the Tab Icon
+     * ```
+     * x: number
+     * y: number
+     * ```
+     */
+    export const tabIconSize: {x: number, y: number} = { x: 16, y: 16 }
 
 
 
