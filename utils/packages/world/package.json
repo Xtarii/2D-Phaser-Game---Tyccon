@@ -1,0 +1,15 @@
+{
+    "name": "@obesity-utils/world",
+    "version": "1.0.0",
+    "description": "World Data Manager",
+
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "private": true,
+
+    "scripts": {
+      "start": "tsc"
+    },
+    "author": "Evil, INC",
+    "license": "ISC"
+}

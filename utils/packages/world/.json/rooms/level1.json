@@ -1,0 +1,18 @@
+{
+    "A1": {
+        "type": "normal",
+        "status": "built",
+        "level": 1,
+        "cost": 100
+    },
+
+    "A2": {
+        "type": "normal",
+        "status": "in-build"
+    },
+
+    "A3": {
+        "type": "normal",
+        "cost": 100
+    }
+}
