@@ -1,8 +1,7 @@
 import { Button, Image, styles, TextButton, TINT } from "@obesity-components/gui"
 import { Tab } from "../tab"
-import { Rooms } from "@obesity-components/room-manager"
 import { margin, UISizes } from "../menu"
-import { sleep } from "obesity-utils"
+import { getRoomsData, Room, sleep } from "obesity-utils"
 
 
 
@@ -19,23 +18,20 @@ export default class Build extends Tab.TabObject {
 
     open() : void {
         // Gets Room Build Data
-        const roomData = Rooms.getRoomsBuildData()
+        const rooms = getRoomsData(1)
 
         // Show Build Options
-        for(let i = 0; i < roomData.length; i++) {
-            const room = roomData[i] // Gets Room
+        let index = 0 // Margin Index
+        for(let i in rooms) {
+            const id = i // Room ID
+            const room = rooms[id] // Room Data
 
-            const button = this.createRoomButton(room, i) // Creates Button
+            const button = this.createRoomButton(id, room, index) // Creates Button
             this.parent.add(button.base)       // Adds to Parent
             this.parent.add(button.icon)       // Adds Icon to Parent
             this.roomButtons.push({ base: button.base, icon: button.icon }) // Adds to List
-
-            button.base.addButtonClickCallback(() => {
-                button.icon.setTint(TINT.NORMAL_TINT) // Button Icon Tint
-                console.log(room)
-
-                sleep(250).then(() => button.icon.clearTint()) // Clears Tint
-            })
+            this.buildButtonClickEvent(button, room) // Button Click Event
+            index++ // Adds to Margin
         }
     }
 
@@ -74,18 +70,19 @@ export default class Build extends Tab.TabObject {
     /**
      * Creates Room Build Button
      *
+     * @param id Rooms ID
      * @param room Room Data
      * @param index Index
      * @returns Button
      */
-    private createRoomButton(room: Rooms.RoomBuildData, index: number) : { base: Button, icon: Image } {
+    private createRoomButton(id: string, room: Room, index: number) : { base: Button, icon: Image } {
         // Room Data
         const x = margin + (index * UISizes.roomButton.x) + 5 // Base + Offset + Margin
         const y = 100
 
         // Base Button
         const button = new TextButton( // Button Instance
-            this.roomName({ id: room.id, cost: room.cost, level: room.level }),
+            this.roomName({ id, cost: room.cost, level: room.level }),
             this.parent.scene, x, y, "interact key", undefined, undefined,
             { style: styles.BUTTON_MEDIUM_SIZE }
         )
@@ -110,5 +107,27 @@ export default class Build extends Tab.TabObject {
         const image = new Image(this.parent.scene, x, y, icon)
         image.sprite.setDisplaySize(UISizes.roomIcon.x, UISizes.roomIcon.y) // Image Size
         return image // Returns Image
+    }
+
+
+
+    /**
+     * Creates a Build Click Event
+     *
+     * Creates a click event for the
+     * button - handling room build
+     * options.
+     *
+     * @param button Button Object
+     * @param room Room
+     */
+    private buildButtonClickEvent(button: { base: Button, icon: Image }, room: Room) {
+        button.base.addButtonClickCallback(() => {
+            button.icon.setTint(TINT.NORMAL_TINT) // Icon TINT
+
+            console.log(room)
+
+            sleep(250).then(() => button.icon.clearTint()) // Clears Tint
+        })
     }
 }
