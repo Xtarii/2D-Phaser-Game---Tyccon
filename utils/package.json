@@ -17,6 +17,7 @@
     "@obesity-utils/configuration": "^1.0.0",
     "@obesity-utils/data": "^1.0.0",
     "@obesity-utils/event": "^1.0.0",
-    "@obesity-utils/time": "^1.0.0"
+    "@obesity-utils/time": "^1.0.0",
+    "@obesity-utils/world": "^1.0.0"
   }
 }

@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@colyseus/schema": "^2.0.32",
-    "colyseus": "^0.15.17",
+    "colyseus": "^0.15.13",
     "colyseus.js": "^0.15.20",
     "obesity-components": "^1.0.0",
     "phaser": "^3.80.1",
