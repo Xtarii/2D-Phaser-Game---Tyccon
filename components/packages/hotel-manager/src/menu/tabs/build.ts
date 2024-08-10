@@ -128,7 +128,7 @@ export default class Build extends Tab.TabObject {
 
             // Build or Upgrades Room
             try {Rooms.buildRoom(this.parent.scene, data)}
-            catch(err) {Rooms.upgradeRoom(data.name, data.room.level ?? 1)}
+            catch(err) {Rooms.upgradeRoom(data.name, ((data.room.level ?? 1) + 1))}
 
             sleep(250).then(() => button.icon.clearTint()) // Clears Tint
         })
