@@ -49,7 +49,7 @@ export class Room extends GameObjects.Sprite {
         /// That is the center of the grid.
         super(scene, position.x * 64 - 32, position.y * 64 - 32, "interact key")
         scene.add.existing(this)
-        this.setDepth(20) // Hides Door from Map
+        this.setDepth(-5) // Hides Door from Map
 
         // Room Data
         this.grid = position
