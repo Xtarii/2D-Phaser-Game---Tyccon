@@ -2,6 +2,7 @@ import { Button, Image, styles, TextButton, TINT } from "@obesity-components/gui
 import { Tab } from "../tab"
 import { margin, UISizes } from "../menu"
 import { getRoomsData, Room, sleep } from "obesity-utils"
+import { Rooms } from "@obesity-components/room-manager"
 
 
 
@@ -30,7 +31,7 @@ export default class Build extends Tab.TabObject {
             this.parent.add(button.base)       // Adds to Parent
             this.parent.add(button.icon)       // Adds Icon to Parent
             this.roomButtons.push({ base: button.base, icon: button.icon }) // Adds to List
-            this.buildButtonClickEvent(button, room) // Button Click Event
+            this.buildButtonClickEvent(button, {name: id, room }) // Button Click Event
             index++ // Adds to Margin
         }
     }
@@ -119,13 +120,15 @@ export default class Build extends Tab.TabObject {
      * options.
      *
      * @param button Button Object
-     * @param room Room
+     * @param data Room
      */
-    private buildButtonClickEvent(button: { base: Button, icon: Image }, room: Room) {
+    private buildButtonClickEvent(button: { base: Button, icon: Image }, data: { name: string, room: Room }) {
         button.base.addButtonClickCallback(() => {
             button.icon.setTint(TINT.NORMAL_TINT) // Icon TINT
 
-            console.log(room)
+            // Build or Upgrades Room
+            try {Rooms.buildRoom(this.parent.scene, data)}
+            catch(err) {Rooms.upgradeRoom(data.name, data.room.level ?? 1)}
 
             sleep(250).then(() => button.icon.clearTint()) // Clears Tint
         })
