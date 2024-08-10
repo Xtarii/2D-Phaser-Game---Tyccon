@@ -22,7 +22,7 @@ const FILES = path.join(APPDATA, "local_data/world")
 /**
  * Grid Position
  */
-type gridPosition = {
+export type gridPosition = {
     x: number,
     y: number
 }
@@ -31,7 +31,7 @@ type gridPosition = {
  *
  * Holds Data about the Hotel.
  */
-type hotel = {
+export type hotel = {
     /**
      * Hotel Levels
      *
