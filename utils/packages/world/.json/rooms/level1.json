@@ -3,16 +3,31 @@
         "type": "normal",
         "status": "built",
         "level": 1,
-        "cost": 100
+        "cost": 100,
+
+        "door": {
+            "x": 3,
+            "y": 3
+        }
     },
 
     "A2": {
         "type": "normal",
-        "status": "in-build"
+        "status": "in-build",
+
+        "door": {
+            "x": 5,
+            "y": 3
+        }
     },
 
     "A3": {
         "type": "normal",
-        "cost": 100
+        "cost": 100,
+
+        "door": {
+            "x": 7,
+            "y": 3
+        }
     }
 }

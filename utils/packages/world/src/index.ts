@@ -109,7 +109,7 @@ export type Room = {
      * The Position of the Door
      * to enter the Room.
      */
-    door?: gridPosition
+    door: gridPosition
 }
 
 
