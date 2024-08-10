@@ -42,13 +42,9 @@ export namespace Rooms {
         // Throws Error if the room already exists
         for(const room of rooms) if(room.name === data.name) throw new Error("Room already built")
 
-        // Handles Room Data
-        const level = data.room.level ?? 1
-
-
         // Creates a new Room Instance and adds it to room list
-        const room = new Room(scene, data.room.door, level, data.room.type, data.name)
-        addInteractableObject(room, () => events.emit("enter", room))
+        const room = new Room(scene, data.name, data.room)
+        addInteractableObject(room, () => events.emit("enter", room)) // Makes the Room Interactable
         rooms.push(room) // Stores Room
         events.emit("build", room)
     }
