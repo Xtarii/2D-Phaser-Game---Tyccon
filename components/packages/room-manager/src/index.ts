@@ -1,6 +1,7 @@
 import { Scene } from "phaser"
 import { Room } from "./room"
-import { Room as room } from "obesity-utils"
+import { EventEmitter, Room as room } from "obesity-utils"
+import { addInteractableObject } from "@obesity-components/component"
 
 
 
@@ -8,6 +9,14 @@ import { Room as room } from "obesity-utils"
  * Rooms Namespace
  */
 export namespace Rooms {
+    /**
+     * Rooms Event Handler
+     */
+    export const events: EventEmitter<{
+        enter: [Room]
+        build: [Room]
+    }> = new EventEmitter()
+
     /**
      * Local Room List
      *
@@ -39,7 +48,9 @@ export namespace Rooms {
 
         // Creates a new Room Instance and adds it to room list
         const room = new Room(scene, data.room.door, level, data.room.type, data.name)
-        rooms.push(room)
+        addInteractableObject(room, () => events.emit("enter", room))
+        rooms.push(room) // Stores Room
+        events.emit("build", room)
     }
 
     /**
