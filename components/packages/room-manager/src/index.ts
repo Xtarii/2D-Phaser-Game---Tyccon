@@ -20,6 +20,15 @@ export namespace Rooms {
 
 
 
+    /**
+     * Build Room
+     *
+     * Creates a door ( room entrance )
+     * and a room object with room data.
+     *
+     * @param scene Scene
+     * @param data Room Data
+     */
     export function buildRoom(scene: Scene, data: { name: string, room: room }) {
         // Throws Error if the room already exists
         for(const room of rooms) if(room.name === data.name) throw new Error("Room already built")
