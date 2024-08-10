@@ -1,4 +1,4 @@
-import { APPDATA, BASE } from "@obesity-utils/configuration"
+import { APPDATA, BASE, FileError } from "@obesity-utils/configuration"
 import fs from "fs"
 import path from "path"
 
@@ -26,6 +26,10 @@ export type gridPosition = {
     x: number,
     y: number
 }
+/**
+ * Room Type
+ */
+export type roomType = "normal" | "medium" | "small" | "big" | "luxury"
 /**
  * Hotel Data
  *
@@ -73,7 +77,7 @@ export type Room = {
      * The Rooms layout and size type.
      * Determents the rooms ```tilemap```.
      */
-    type: "normal" | "medium" | "small" | "big" | "luxury"
+    type: roomType
 
     /**
      * Room Status
@@ -140,6 +144,21 @@ export function getRoomsData(level: number | string) : { [key: string]: Room } {
     // Reads Room Data as Room List
     const data = JSON.parse(fs.readFileSync(file, "utf8"))
     return data
+}
+
+/**
+ * Stores Hotel Room Data
+ *
+ * @param level Hotel Floor Level
+ * @param data Room Data
+ */
+export function storeRoomData(level: number | string, data: { id: string, room: Room }) {
+    const file = path.join(FILES, `rooms/level${level.toString()}.json`)
+    if(!fs.existsSync(file)) throw new FileError("File not Found") // Throws Error ( Does not need to handle it )
+
+    const oldData: { [key: string]: Room } = JSON.parse(fs.readFileSync(file, "utf8"))
+    oldData[data.id] = data.room
+    fs.writeFileSync(file, JSON.stringify(oldData, null, 2), "utf8")
 }
 
 
