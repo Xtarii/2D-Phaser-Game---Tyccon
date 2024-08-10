@@ -5,7 +5,7 @@ import { Game } from "../../game.js"
 import GameUI from "../../ui/UI.js"
 
 
-const { UI, addInteractableObject, Manager } = require("obesity-components")
+const { UI, addInteractableObject, Manager, Rooms } = require("obesity-components")
 
 
 
@@ -68,6 +68,13 @@ export default class MainScene extends Phaser.Scene {
 
         /// Test Manager Interact Event
         addInteractableObject(testComputer_HotelManager, () => testComputer_HotelManager.manager.manager())
+
+
+        /// Room Change Test
+        Rooms.events.on("enter", (room) => {
+            console.log("Enters...")
+            console.log(room)
+        })
 
 
 
