@@ -70,8 +70,6 @@ export class Room extends GameObjects.Sprite {
      * Saves Room Data
      */
     protected saveData() {
-        console.log("Saving Room...")
-
         storeRoomData(1, {id: this.name, room: this.roomData }) // Stores Data
     }
 
