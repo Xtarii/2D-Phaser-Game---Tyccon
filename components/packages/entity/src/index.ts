@@ -1,6 +1,7 @@
 import { Physics } from "phaser"
 import { Component } from "@obesity-components/component"
 import { PlacementType, styles, Text } from "@obesity-components/gui"
+import { WorldManager } from "@obesity-components/world"
 
 
 
@@ -76,6 +77,10 @@ export abstract class Entity extends Physics.Arcade.Sprite {
 
         this.nameBar.x = this.x - (this.nameBar.displayWidth / 2) // X Position
         this.nameBar.y = this.y - (this.height - this.height / 4) // Y Position
+
+
+        // Adds to removable, but not the nameBar and nothing to the collidable
+        WorldManager.addRemovable(this)
     }
 
 
@@ -125,6 +130,27 @@ export abstract class Entity extends Physics.Arcade.Sprite {
         }
         this._components = newList // Updates Old List
     }
+
+
+
+    /**
+     * Destroys this GameObject
+     *
+     * This will also cleanup the ```name-bar```
+     * and remove this from the ```WorldManager```.
+     */
+    destroy(): void {
+        this.nameBar.destroy()
+        super.destroy(true)
+
+        // Tries to remove this object from the scene references
+        WorldManager.removeCollidable(this)
+        WorldManager.removeRemovable(this)
+    }
+
+
+
+
 
     /**
      * Entity Components
