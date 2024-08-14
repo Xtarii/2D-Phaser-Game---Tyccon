@@ -1,5 +1,6 @@
 import { GameObjects, Physics, Scene, Tilemaps } from "phaser"
 import { SceneObject } from "../scene/scene"
+import { removeInteractableObject } from "@obesity-components/component"
 
 
 
@@ -214,7 +215,12 @@ export namespace WorldManager {
     export function removeLoadedScene() {
         if(!map) throw new Error("No map has been created")
 
-        // Removes Colliders
+        cleanupCollidable() // Removes Colliders
+        cleanupRemovable()  // Removes Removable
+
+        map.base.destroy() // Destroys Map ( includes layers and tiles )
+    }
+    function cleanupCollidable() {
         const newCollidable = []
         for(const obj of collidable) {
             obj.collider?.destroy()
@@ -223,12 +229,15 @@ export namespace WorldManager {
             if(!isInRemovable(obj.body)) newCollidable.push(obj)
         }
         collidable = newCollidable // Updates Collidable so old objects will remain
+    }
+    function cleanupRemovable() {
+        for(const obj of removable) {
+            obj.destroy(true)
 
-        // Removes Removable
-        for(const obj of removable) obj.destroy()
+            // Removes obj interaction if it exists
+            if(obj instanceof GameObjects.Sprite) removeInteractableObject(obj)
+        }
         removable = []
-
-        map.base.destroy() // Destroys Map ( includes layers and tiles )
     }
 
 
