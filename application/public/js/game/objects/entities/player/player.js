@@ -33,7 +33,8 @@ export default class Player extends Entity {
             `${PlayerData.readPlayerData().name}   -   [ You ]`, // Sets Player Name
             100 // Player depth
         )
-        WorldManager.addCollidable(this) // Adds this as collidable
+        WorldManager.addCollidable(this)    // Adds this as collidable
+        WorldManager.removeRemovable(this)  // Makes Player stay when loading a new Scene
         this.canMove = true // Player Can Move
         this.keys = this.scene.input.keyboard.addKeys("W,S,A,D,E") // Key Listeners
 
