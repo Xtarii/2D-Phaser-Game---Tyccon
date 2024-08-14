@@ -4,7 +4,7 @@ import { Game } from "../../game.js"
 import GameUI from "../../ui/UI.js"
 
 
-const { UI, addInteractableObject, Manager, Rooms, World } = require("obesity-components")
+const { UI, addInteractableObject, Manager, Rooms, World, scenes, SceneObject } = require("obesity-components")
 
 
 
@@ -83,22 +83,21 @@ export default class MainScene extends World {
         MainScene.player = new Player()
         MainScene.gameUI = new GameUI(this) // Game UI
 
-        const map = this.make.tilemap({key: "hotel tilemap"})
-        const tiles = map.addTilesetImage("Hotel tiles", "hotel tileset")
-        const ground = map.createLayer("ground", tiles)
 
 
-        const wall = map.createLayer("wall", tiles)
-        this.physics.add.collider(MainScene.player, wall) // Collision
-        wall.setCollisionBetween(0, 100)
+        const scene = new SceneObject("hotel tilemap", {tileName: "Hotel tiles", key: "hotel tileset"})
+        scene.addLayer({name: "ground"}, "Hotel tiles")
+        scene.addLayer({name: "wall", collision: true}, "Hotel tiles") // Can do "scene.Tilesets[0].tileName"
+
+        scenes.add("hotel 1", scene)
+        this.loadScene("hotel 1")
 
 
-        const dec = map.createLayer("decoration", tiles)
 
         this.cameras.main.startFollow(MainScene.player, true, 0.07, 0.07) // Camera Follow Player with small Delay
 
         // Camera Bound ( Can't move outside this point ) set to map size + margin
-        this.cameras.main.setBounds(-15, -15, ground.width + 30, ground.height + 30)
+        // this.cameras.main.setBounds(-15, -15, ground.width + 30, ground.height + 30)
     }
 
     update(){
@@ -135,3 +134,9 @@ export async function checkGameInstances() {
         await sleep(1000) // Timeout 1 second
     }
 }
+
+
+
+
+
+global.tp = (x, y) => MainScene.player.setPosition(x, y)
