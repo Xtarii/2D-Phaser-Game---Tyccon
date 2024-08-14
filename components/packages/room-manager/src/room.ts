@@ -1,6 +1,7 @@
 import { storeRoomData } from "obesity-utils"
 import { GameObjects, Scene } from "phaser"
 import { Room as room } from "obesity-utils"
+import { WorldManager } from "@obesity-components/world"
 
 
 
@@ -48,6 +49,7 @@ export class Room extends GameObjects.Sprite {
         if(!this.roomData.status) this.roomData.status = "built"
 
         this.saveData() // Saves Room Data
+        WorldManager.addRemovable(this) // Subscribes to be removed when the time comes
     }
 
 
