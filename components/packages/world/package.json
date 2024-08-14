@@ -1,7 +1,7 @@
 {
     "name": "@obesity-components/world",
     "version": "1.0.0",
-    "description": "Hotel room manager Component, controls rooms and room states",
+    "description": "World manager Component, controls the scene",
 
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
