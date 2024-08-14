@@ -61,6 +61,16 @@ export class World extends Scene {
      * @param object Object
      */
     addCollidableObject = (object: GameObjects.GameObject) => { WorldManager.addCollidable(object) }
+
+    /**
+     * Adds Removable object
+     *
+     * Sets this object to be removed
+     * when the scene unloads.
+     *
+     * @param object Object
+     */
+    addRemovable = (object: GameObjects.GameObject) => { WorldManager.addRemovable(object) }
 }
 
 
