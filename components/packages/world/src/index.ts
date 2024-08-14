@@ -43,13 +43,10 @@ export class World extends Scene {
 
 
     loadScene(scene: SceneObject | string) {
-        WorldManager.removeLoadedScene()
-
-        // Loads Scene from SceneObject or "key"
         if(scene instanceof SceneObject) {
-            WorldManager.loadSceneObject(this, scene)
+            WorldManager.autoLoad(this, scene)
         }else {
-            WorldManager.loadSceneObject(this, scenes.get(scene))
+            WorldManager.autoLoad(this, scenes.get(scene))
         }
     }
 
