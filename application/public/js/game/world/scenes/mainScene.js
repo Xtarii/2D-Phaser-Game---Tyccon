@@ -95,8 +95,6 @@ export default class MainScene extends World {
 
             /// We need that scene
             /// but then we can just do "this.loadScene(`room_${room.name}`)"
-            this.loadScene("hotel 1")
-            console.log("OK Loaded")
         })
 
 
