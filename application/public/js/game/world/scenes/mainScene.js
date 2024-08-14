@@ -77,6 +77,7 @@ export default class MainScene extends World {
 
         /// Test Manager Interact Event
         addInteractableObject(testComputer_HotelManager, () => testComputer_HotelManager.manager.manager())
+        this.addRemovable(testComputer_HotelManager)
 
 
         /// Room Change Test
@@ -94,6 +95,8 @@ export default class MainScene extends World {
 
             /// We need that scene
             /// but then we can just do "this.loadScene(`room_${room.name}`)"
+            this.loadScene("hotel 1")
+            console.log("OK Loaded")
         })
 
 
