@@ -1,18 +1,17 @@
-const Phaser = require("phaser")
 const { sleep } = require("obesity-utils")
 import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
 import GameUI from "../../ui/UI.js"
 
 
-const { UI, addInteractableObject, Manager, Rooms } = require("obesity-components")
+const { UI, addInteractableObject, Manager, Rooms, World } = require("obesity-components")
 
 
 
 /**
  * Main Scene
  */
-export default class MainScene extends Phaser.Scene {
+export default class MainScene extends World {
     /**
      * Local Player Object
      *
