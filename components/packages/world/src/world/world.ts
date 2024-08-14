@@ -38,6 +38,12 @@ export namespace WorldManager {
 
 
 
+    /**
+     * Loads Scene Object to Scene
+     *
+     * @param scene Scene
+     * @param sceneObject Scene Object
+     */
     export function loadSceneObject(scene: Scene, sceneObject: SceneObject) {
         // Creates Map
         map = { base: scene.make.tilemap({key: sceneObject.map}), tiles: [], layers: [] }
