@@ -73,6 +73,17 @@ export default class MainScene extends World {
         Rooms.events.on("enter", (room) => {
             console.log("Enters...")
             console.log(room)
+
+            /// Room Name
+            /// The Room Scene Name should be "room_id"
+            ///
+            /// Example: loading room A1 ( first room ) = "room_A1"
+            ///
+            /// DEBUG
+            console.log("Loads Room: room_" + room.name)
+
+            /// We need that scene
+            /// but then we can just do "this.loadScene(`room_${room.name}`)"
         })
 
 
