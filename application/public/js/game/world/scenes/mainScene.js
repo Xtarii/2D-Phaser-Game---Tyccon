@@ -95,9 +95,6 @@ export default class MainScene extends World {
 
 
         this.cameras.main.startFollow(MainScene.player, true, 0.07, 0.07) // Camera Follow Player with small Delay
-
-        // Camera Bound ( Can't move outside this point ) set to map size + margin
-        // this.cameras.main.setBounds(-15, -15, ground.width + 30, ground.height + 30)
     }
 
     update(){

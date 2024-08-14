@@ -1,4 +1,4 @@
-import { GameObjects, Scene, Tilemaps } from "phaser"
+import { GameObjects, Physics, Scene, Tilemaps } from "phaser"
 import { SceneObject } from "../scene/scene"
 
 
@@ -30,7 +30,7 @@ export namespace WorldManager {
     /**
      * Collidable GameObjects in the Game
      */
-    let collidable: GameObjects.GameObject[] = []
+    let collidable: {body: GameObjects.GameObject, collider?: Physics.Arcade.Collider}[] = []
     /**
      * Map Object
      */
@@ -54,6 +54,9 @@ export namespace WorldManager {
             for(const layer of map.layers) if(layer.collision) setCollidableLayer(scene, layer.layer)
             map.tiles.push(tiles)
         }
+
+        // Updates Camera Bounds after world loading to get world properties
+        scene.cameras.main.setBounds(-15, -15, map.base.widthInPixels + 30, map.base.heightInPixels + 30)
     }
 
     /**
@@ -103,7 +106,7 @@ export namespace WorldManager {
      * @param layer Layer
      */
     function setCollidableLayer(scene: Scene, layer: Tilemaps.TilemapLayer) {
-        for(const obj of collidable) scene.physics.add.collider(obj, layer)
+        for(const obj of collidable) obj.collider = scene.physics.add.collider(obj.body, layer)
         layer.setCollisionBetween(0, 100) // This is needed for some reason to add collision ( both lines )
     }
 
@@ -118,10 +121,29 @@ export namespace WorldManager {
      * @param object Object
      */
     export function addCollidable(object: GameObjects.GameObject) {
-        collidable.push(object)
+        collidable.push({body: object})
 
         // Adds Collision to Existing Layers
         if(map) for(const layer of map.layers)
             if(layer.collision) setCollidableLayer(layer.layer.scene, layer.layer)
+    }
+
+
+
+    /**
+     * Removes Scene
+     *
+     * Removes Scene and all objects marked
+     * as removable.
+     * ```ts
+     * WorldManager.addRemovable(obj) // Adds obj
+     * ```
+     *
+     * Removes all Colliders with the scene
+     */
+    export function removeLoadedScene() {
+        if(!map) throw new Error("No was has been created")
+        for(const obj of collidable) obj.collider?.destroy()
+        map.base.destroy()
     }
 }
