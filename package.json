@@ -12,11 +12,8 @@
     "components/packages/**/*"
   ],
   "scripts": {
-    "dev": "next dev && electron .",
     "build-dev": "turbo run build-dev",
-    "build": "next build",
-    "start": "turbo run start --parallel",
-    "lint": "next lint"
+    "start": "turbo run start --parallel"
   },
   "author": "Evil, INC",
   "license": "ISC",
