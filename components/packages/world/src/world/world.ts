@@ -188,6 +188,16 @@ export namespace WorldManager {
         removable = newList
     }
 
+    /**
+     * Checks if Object is in removable
+     * @param object Object
+     * @returns Status
+     */
+    function isInRemovable(object: GameObjects.GameObject) : boolean {
+        for(const obj of removable) if(obj === object) return true
+        return false
+    }
+
 
 
     /**
@@ -202,16 +212,39 @@ export namespace WorldManager {
      * Removes all Colliders with the scene
      */
     export function removeLoadedScene() {
-        if(!map) throw new Error("No was has been created")
+        if(!map) throw new Error("No map has been created")
 
         // Removes Colliders
-        for(const obj of collidable) obj.collider?.destroy()
-        collidable = []
+        const newCollidable = []
+        for(const obj of collidable) {
+            obj.collider?.destroy()
+
+            // Adds obj to new Collidable if it is not removed later
+            if(!isInRemovable(obj.body)) newCollidable.push(obj)
+        }
+        collidable = newCollidable // Updates Collidable so old objects will remain
 
         // Removes Removable
         for(const obj of removable) obj.destroy()
         removable = []
 
         map.base.destroy() // Destroys Map ( includes layers and tiles )
+    }
+
+
+
+    /**
+     * Auto Cleanup and Load of Scene
+     *
+     * If there is a loaded scene it
+     * gets cleaned up so that the
+     * new scene can load without problems.
+     *
+     * @param scene Scene
+     * @param sceneObject Scene Object
+     */
+    export function autoLoad(scene: Scene, sceneObject: SceneObject) {
+        if(map) removeLoadedScene()
+        loadSceneObject(scene, sceneObject)
     }
 }
