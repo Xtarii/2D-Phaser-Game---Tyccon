@@ -4,7 +4,17 @@ import { Game } from "../../game.js"
 import GameUI from "../../ui/UI.js"
 
 
-const { UI, addInteractableObject, Manager, Rooms, World, scenes, SceneObject } = require("obesity-components")
+const {
+    UI,
+
+    addInteractableObject,
+
+    Manager,
+    Rooms,
+    World,
+    scenes,
+    SceneObject
+} = require("obesity-components")
 
 
 
