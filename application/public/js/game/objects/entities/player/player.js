@@ -5,7 +5,8 @@ const {
 
     TextButton,
     TINT,
-    PlacementType
+    PlacementType,
+    WorldManager
 } = require("obesity-components")
 
 import { Game } from "../../../game.js"
@@ -32,10 +33,9 @@ export default class Player extends Entity {
             `${PlayerData.readPlayerData().name}   -   [ You ]`, // Sets Player Name
             100 // Player depth
         )
-
+        WorldManager.addCollidable(this) // Adds this as collidable
         this.canMove = true // Player Can Move
-        // Key Listeners
-        this.keys = this.scene.input.keyboard.addKeys("W,S,A,D,E")
+        this.keys = this.scene.input.keyboard.addKeys("W,S,A,D,E") // Key Listeners
 
 
 
