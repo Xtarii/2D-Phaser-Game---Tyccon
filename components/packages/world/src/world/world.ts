@@ -32,6 +32,13 @@ export namespace WorldManager {
      */
     let collidable: {body: GameObjects.GameObject, collider?: Physics.Arcade.Collider}[] = []
     /**
+     * Removable GameObjects
+     *
+     * These GameObjects will get removed
+     * when there is a new scene loading.
+     */
+    let removable: GameObjects.GameObject[] = []
+    /**
      * Map Object
      */
     let map: map | undefined
@@ -127,6 +134,59 @@ export namespace WorldManager {
         if(map) for(const layer of map.layers)
             if(layer.collision) setCollidableLayer(layer.layer.scene, layer.layer)
     }
+    /**
+     * Removes Collidable Object from Scene Collidable List
+     *
+     * This will destroy the collider object that
+     * the scene uses for collision with the scene,
+     * but all other colliders will remain untouched.
+     *
+     * @param object Object
+     */
+    export function removeCollidable(object: GameObjects.GameObject) {
+        const newList = []
+        for(const obj of collidable) {
+            if(obj.body === object) {
+                obj.collider?.destroy()
+                continue
+            }
+            newList.push(obj)
+        }
+        collidable = newList
+    }
+
+    /**
+     * Adds Removable object
+     *
+     * This will set ```object```
+     * as removable and will therefore
+     * remove it when the scene is unloaded.
+     *
+     * If there is no scene loaded when this is called
+     * the object is added to the next scene and
+     * will therefore not be force removed.
+     *
+     * @param object Object
+     */
+    export function addRemovable(object: GameObjects.GameObject) { removable.push(object) }
+    /**
+     * Removes Object from Removable list
+     *
+     * This will not destroy the object
+     * ```ts
+     * obj.destroy()
+     * ```
+     * It will instead mark it as ```keep on unload```
+     * witch tells the world to keep the object
+     * even if the scene is not loaded.
+     *
+     * @param object Object
+     */
+    export function removeRemovable(object: GameObjects.GameObject) {
+        const newList = []
+        for(const obj of removable) if(obj !== object) newList.push(obj)
+        removable = newList
+    }
 
 
 
@@ -143,7 +203,15 @@ export namespace WorldManager {
      */
     export function removeLoadedScene() {
         if(!map) throw new Error("No was has been created")
+
+        // Removes Colliders
         for(const obj of collidable) obj.collider?.destroy()
-        map.base.destroy()
+        collidable = []
+
+        // Removes Removable
+        for(const obj of removable) obj.destroy()
+        removable = []
+
+        map.base.destroy() // Destroys Map ( includes layers and tiles )
     }
 }
