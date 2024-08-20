@@ -55,6 +55,7 @@ export class SceneObject {
     constructor(map: string, tiles?: tile) {
         this.map = map
         if(tiles) this.add(tiles)
+        this.onCreate() // Calls Custom Scene Setup
     }
 
 
@@ -134,10 +135,8 @@ export class SceneObject {
      *
      * Called once when the Scene is
      * created.
-     *
-     * @param scene Scene
      */
-    public onCreate = (scene: World) => {}
+    public onCreate = () => {}
     /**
      * On Scene Load
      *
