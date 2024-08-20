@@ -16,7 +16,7 @@ import { Rooms } from "@obesity-components/room-manager"
  * unloading of instances in
  * the World ( Scene ).
  */
-export class World extends Scene {
+export abstract class World extends Scene {
     /**
      * Loads Scene Object
      *

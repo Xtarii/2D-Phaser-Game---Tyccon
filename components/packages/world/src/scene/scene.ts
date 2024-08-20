@@ -23,7 +23,7 @@ type tile = {
 /**
  * Scene Object
  */
-export class SceneObject {
+export abstract class SceneObject {
     /**
      * Tilemap Base
      */
@@ -136,7 +136,7 @@ export class SceneObject {
      * Called once when the Scene is
      * created.
      */
-    public onCreate = () => {}
+    public abstract onCreate(): void
     /**
      * On Scene Load
      *
@@ -145,7 +145,7 @@ export class SceneObject {
      *
      * @param scene Scene
      */
-    public onLoad = (scene: World) => {}
+    public abstract onLoad(scene: World): void
 
 
 
