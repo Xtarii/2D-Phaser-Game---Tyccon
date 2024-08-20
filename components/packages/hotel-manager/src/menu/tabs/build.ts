@@ -19,7 +19,7 @@ export default class Build extends Tab.TabObject {
 
     open() : void {
         // Gets Room Build Data
-        const rooms = getRoomsData(1)
+        const rooms = getRoomsData(1) // FIX TO CURRENT LEVEL
 
         // Show Build Options
         let index = 0 // Margin Index
@@ -130,7 +130,13 @@ export default class Build extends Tab.TabObject {
             try {Rooms.buildRoom(this.parent.scene, data)}
             catch(err) {Rooms.upgradeRoom(data.name, ((data.room.level ?? 1) + 1))}
 
-            sleep(250).then(() => button.icon.clearTint()) // Clears Tint
+            sleep(250).then(() => {
+                // Updates Button Text
+                const text = (button.base as TextButton)
+                const newRoomData = getRoomsData(1)[data.name] // Fix to Current Level
+                text.setText(this.roomName({id: data.name, cost: newRoomData.cost, level: newRoomData.level}))
+                button.icon.clearTint() // Icon tint clear
+            })
         })
     }
 }
