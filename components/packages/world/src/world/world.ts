@@ -49,6 +49,9 @@ export namespace WorldManager {
     /**
      * Loads Scene Object to Scene
      *
+     * This will not trigger a onLoad
+     * call on the scene.
+     *
      * @param scene Scene
      * @param sceneObject Scene Object
      */
@@ -249,11 +252,14 @@ export namespace WorldManager {
      * gets cleaned up so that the
      * new scene can load without problems.
      *
+     * This will call the scene onLoad.
+     *
      * @param scene Scene
      * @param sceneObject Scene Object
      */
     export function autoLoad(scene: Scene, sceneObject: SceneObject) {
         if(map) removeLoadedScene()
         loadSceneObject(scene, sceneObject)
+        sceneObject.onLoad(scene) // Scene OnLoad ( Enables Scene Setup )
     }
 }
