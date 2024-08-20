@@ -2,6 +2,8 @@ import { GameObjects, Scene } from "phaser"
 import { SceneObject } from "./scene/scene"
 import { WorldManager } from "./world/world"
 import { scenes } from "./scene/sceneManager"
+import { getRoomsData } from "obesity-utils"
+import { Rooms } from "@obesity-components/room-manager"
 
 
 
@@ -33,16 +35,16 @@ export class World extends Scene {
      *
      * @param scene Scene Object
      */
-    loadScene(scene: SceneObject) : void
+    public loadScene(scene: SceneObject) : void
     /**
      * Loads Scene from Scene List
      *
      * @param key Scene Key
      */
-    loadScene(key: string) : void
+    public loadScene(key: string) : void
 
 
-    loadScene(scene: SceneObject | string) {
+    public loadScene(scene: SceneObject | string) {
         if(scene instanceof SceneObject) {
             WorldManager.autoLoad(this, scene)
         }else {
@@ -60,7 +62,7 @@ export class World extends Scene {
      *
      * @param object Object
      */
-    addCollidableObject = (object: GameObjects.GameObject) => { WorldManager.addCollidable(object) }
+    public addCollidableObject = (object: GameObjects.GameObject) => { WorldManager.addCollidable(object) }
 
     /**
      * Adds Removable object
@@ -70,7 +72,24 @@ export class World extends Scene {
      *
      * @param object Object
      */
-    addRemovable = (object: GameObjects.GameObject) => { WorldManager.addRemovable(object) }
+    public addRemovable = (object: GameObjects.GameObject) => { WorldManager.addRemovable(object) }
+
+
+
+    /**
+     * Setup for Hotel Doors
+     *
+     * Creates doors for built rooms.
+     *
+     * @param level Hotel Level
+     */
+    public setupDoors = (level: number | string) => {
+        const rooms = getRoomsData(level)
+        for(let i in rooms) if(rooms[i].status === "built") {
+            const room = rooms[i]
+            Rooms.buildRoom(this, { name: i, room: room })
+        }
+    }
 }
 
 
