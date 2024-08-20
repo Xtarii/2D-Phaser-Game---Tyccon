@@ -136,7 +136,7 @@ export abstract class SceneObject {
      * Called once when the Scene is
      * created.
      */
-    public abstract onCreate(): void
+    public onCreate = () => {}
     /**
      * On Scene Load
      *
@@ -145,7 +145,7 @@ export abstract class SceneObject {
      *
      * @param scene Scene
      */
-    public abstract onLoad(scene: World): void
+    public onLoad = (scene: World) => {}
 
 
 
