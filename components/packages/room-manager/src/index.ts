@@ -2,6 +2,7 @@ import { Scene } from "phaser"
 import { Room } from "./room"
 import { EventEmitter, Room as room } from "obesity-utils"
 import { addInteractableObject } from "@obesity-components/component"
+import { WorldManager } from "@obesity-components/world"
 
 
 
@@ -67,5 +68,25 @@ export namespace Rooms {
             return
         }
         throw new Error("Room Not Found") // Error if the Room was not found
+    }
+
+
+
+    /**
+     * Creates a Door Object
+     *
+     * Creates a door object that will call
+     * the ```callback``` when interacted with.
+     *
+     * @param scene Scene
+     * @param x X Grid Position
+     * @param y Y Grid Position
+     * @param callback Callback
+     */
+    export function createDoor(scene: Scene, x: number, y: number, callback: () => void) {
+        const door = scene.add.sprite(x * 64 - 32, y * 64 - 32, "interact key")
+        door.setDepth(-5)
+        WorldManager.addRemovable(door) // Adds Room to be removed on new Scene load
+        addInteractableObject(door, () => callback())
     }
 }
