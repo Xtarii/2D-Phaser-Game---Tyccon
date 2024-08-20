@@ -113,6 +113,7 @@ export default class MainScene extends World {
 
         scenes.add("hotel 1", scene)
         this.loadScene("hotel 1")
+        this.setupDoors(1) // FIX THIS TO CURRENT LEVEL
 
 
 
