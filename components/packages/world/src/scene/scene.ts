@@ -1,4 +1,4 @@
-import { Scene } from "phaser"
+import { World } from ".."
 
 
 
@@ -130,12 +130,23 @@ export class SceneObject {
 
 
     /**
+     * Create Function
+     *
+     * Called once when the Scene is
+     * created.
+     *
+     * @param scene Scene
+     */
+    public onCreate = (scene: World) => {}
+    /**
      * On Scene Load
      *
      * Called once when the scene is loaded
      * into the world.
+     *
+     * @param scene Scene
      */
-    public onLoad = (scene: Scene) => {}
+    public onLoad = (scene: World) => {}
 
 
 
