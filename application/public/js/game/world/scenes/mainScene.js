@@ -2,6 +2,7 @@ const { sleep } = require("obesity-utils")
 import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
 import GameUI from "../../ui/UI.js"
+import { level1 } from "../../scenes/hotel/hotel.js"
 
 
 const {
@@ -12,8 +13,7 @@ const {
     Manager,
     Rooms,
     World,
-    scenes,
-    SceneObject
+    scenes
 } = require("obesity-components")
 
 
@@ -107,13 +107,13 @@ export default class MainScene extends World {
 
 
 
-        const scene = new SceneObject("hotel tilemap", {tileName: "Hotel tiles", key: "hotel tileset"})
-        scene.addLayer({name: "ground"}, "Hotel tiles")
-        scene.addLayer({name: "wall", collision: true}, "Hotel tiles") // Can do "scene.Tilesets[0].tileName"
-
+        /// Creates a test scene - Level 1
+        ///
+        /// Takes the tilemap name: "hotel tilemap" - from preload
+        /// Takes a tileset: "Hotel tiles" - custom id, "hotel tileset" - from preload
+        const scene = new level1("hotel tilemap", {tileName: "Hotel tiles", key: "hotel tileset"})
         scenes.add("hotel 1", scene)
         this.loadScene("hotel 1")
-        this.setupDoors(1) // FIX THIS TO CURRENT LEVEL
 
 
 
