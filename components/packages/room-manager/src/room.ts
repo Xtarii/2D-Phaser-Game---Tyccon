@@ -27,6 +27,17 @@ export class Room extends GameObjects.Sprite {
 
 
 
+    /**
+     * Creates a new Room Object
+     *
+     * Creates a room object in
+     * ```scene``` with specified
+     * properties.
+     *
+     * @param scene Parent Scene
+     * @param id Room ID
+     * @param data Room Data
+     */
     constructor(scene: Scene, id: string, data: room) {
         /// Uses Grid Position as Door Position
         ///
