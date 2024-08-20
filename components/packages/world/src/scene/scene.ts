@@ -1,3 +1,7 @@
+import { Scene } from "phaser"
+
+
+
 /**
  * Tileset Type
  */
@@ -122,6 +126,16 @@ export class SceneObject {
         for(const str of this.layers[tileset]) if(str !== layer) newList.push(str)
         this.layers[tileset] = newList
     }
+
+
+
+    /**
+     * On Scene Load
+     *
+     * Called once when the scene is loaded
+     * into the world.
+     */
+    public onLoad = (scene: Scene) => {}
 
 
 
