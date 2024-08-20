@@ -1,6 +1,7 @@
 import { GameObjects, Physics, Scene, Tilemaps } from "phaser"
 import { SceneObject } from "../scene/scene"
 import { removeInteractableObject } from "@obesity-components/component"
+import { World } from ".."
 
 
 
@@ -257,7 +258,7 @@ export namespace WorldManager {
      * @param scene Scene
      * @param sceneObject Scene Object
      */
-    export function autoLoad(scene: Scene, sceneObject: SceneObject) {
+    export function autoLoad(scene: World, sceneObject: SceneObject) {
         if(map) removeLoadedScene()
         loadSceneObject(scene, sceneObject)
         sceneObject.onLoad(scene) // Scene OnLoad ( Enables Scene Setup )
