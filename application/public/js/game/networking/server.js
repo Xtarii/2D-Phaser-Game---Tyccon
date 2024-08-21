@@ -61,6 +61,7 @@ export default class Server {
                     // Position
                     player.x,
                     player.y,
+                    player.l,
 
                     // Extra Data
                     player.spriteID,
@@ -76,6 +77,7 @@ export default class Server {
                 player.onChange(() => {
                     networkPlayer.x = player.x
                     networkPlayer.y = player.y
+                    networkPlayer.level = player.l
 
                     networkPlayer.update() // Updates Name Position
                 })
