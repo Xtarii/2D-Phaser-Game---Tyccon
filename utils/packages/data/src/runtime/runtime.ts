@@ -41,6 +41,10 @@ export namespace Runtime {
          * Player Location
          */
         let _location: Location = { x: 0, y: 0, l: 0 }
+        /**
+         * Player Money
+         */
+        let _money: number = 0
 
 
 
@@ -81,5 +85,18 @@ export namespace Runtime {
          * @returns Role
          */
         export function getRole() : Role { return _role }
+
+        /**
+         * Sets Player Money
+         *
+         * @param x Money
+         */
+        export function setMoney(x: number) { _money = x }
+        /**
+         * Gets Player Money
+         *
+         * @returns Money
+         */
+        export function getMoney() : number { return _money }
     }
 }
