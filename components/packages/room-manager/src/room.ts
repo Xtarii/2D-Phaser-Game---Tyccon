@@ -57,7 +57,7 @@ export class Room extends GameObjects.Sprite {
         this.name = id
 
         if(!this.roomData.level) this.roomData.level = 1
-        if(!this.roomData.status) this.roomData.status = "built"
+        if(!this.roomData.status || "in-build") this.roomData.status = "built" // This makes "in-build" unavailable
 
         this.saveData() // Saves Room Data
         WorldManager.addRemovable(this) // Subscribes to be removed when the time comes
