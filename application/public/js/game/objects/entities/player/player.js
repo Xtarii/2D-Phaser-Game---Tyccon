@@ -1,4 +1,4 @@
-const { PlayerData, sleep } = require("obesity-utils")
+const { PlayerData, sleep, Runtime } = require("obesity-utils")
 const {
     Entity,
     Interact,
@@ -86,7 +86,8 @@ export default class Player extends Entity {
         }
 
         // Updates player position
-        Game.server.room.send("update player", { x: this.x, y: this.y})
+        Runtime.Player.setLocation(this.x, this.y, 1)
+        Game.server.room.send("update player", Runtime.Player.getLocation())
 
 
 
