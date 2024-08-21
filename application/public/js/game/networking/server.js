@@ -1,5 +1,5 @@
 const { Client, Room } = require("colyseus.js")
-const { PlayerData } = require("obesity-utils")
+const { PlayerData, Runtime } = require("obesity-utils")
 
 import MainScene, { checkGameInstances } from "../world/scenes/mainScene.js"
 import { Game } from "../game.js"
@@ -44,6 +44,7 @@ export default class Server {
 
 
             this.socket = new Client("ws://localhost:1024") // Connects to Local Socket Server
+            Runtime.Player.setRole("host") // Sets Role to Host ( Default to Client )
 
 
         }else this.socket = new Client(host) // Connects to Socket Server
