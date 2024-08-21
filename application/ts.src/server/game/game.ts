@@ -7,11 +7,27 @@ import { MapSchema, Schema, type } from "@colyseus/schema"
  * Player Object
  */
 class Player extends Schema {
+    /**
+     * Player Name
+     */
     @type("string") name: string = "name"
+    /**
+     * Player Sprite ID
+     */
     @type("string") spriteID: string = "sprite"
 
+    /**
+     * Player X Position
+     */
     @type("number") x: number = 0
+    /**
+     * Player Y Position
+     */
     @type("number") y: number = 0
+    /**
+     * Player Level or map
+     */
+    @type("string") l: string = "0"
 }
 
 /**
@@ -38,13 +54,14 @@ export default class ServerSocket extends Room<State> {
         console.log("Game Server Setup...")
 
         // Player Update
-        this.onMessage("update player", (client: Client, data: { x: number, y: number}) => {
+        this.onMessage("update player", (client: Client, data: { x: number, y: number, l: number | string }) => {
             const player: Player | undefined = this.state.players.get(client.sessionId)
             if(player === undefined) return // Returns if No Player
 
             // Updates Player Position
             player.x = data.x
             player.y = data.y
+            player.l = data.l.toString()
         })
     }
 
@@ -62,6 +79,7 @@ export default class ServerSocket extends Room<State> {
         // Random Position
         player.x = options.x
         player.y = options.y
+        player.l = options.l
 
         this.state.players.set(client.sessionId, player) // Adds Player to Server Player List
     }
