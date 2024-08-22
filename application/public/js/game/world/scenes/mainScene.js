@@ -1,4 +1,4 @@
-const { sleep } = require("obesity-utils")
+const { sleep, Runtime } = require("obesity-utils")
 import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
 import GameUI from "../../ui/UI.js"
@@ -124,6 +124,12 @@ export default class MainScene extends World {
         if(Game.server === undefined || Game.server.room === undefined) return // Returns if no Server Connection
 
         MainScene.player.update()
+
+
+
+        // TEST HUD UPDATE
+        MainScene.gameUI.gameHUD.money.setText(Runtime.Player.getMoney() + " B")
+        MainScene.gameUI.gameHUD.money.x = 450 - MainScene.gameUI.gameHUD.money.displayWidth
 
 
 

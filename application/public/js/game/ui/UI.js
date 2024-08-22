@@ -1,4 +1,4 @@
-import HUD from "./hud.js";
+import HUD from "./hud.js"
 
 
 
