@@ -44,7 +44,7 @@ export namespace Runtime {
         /**
          * Player Money
          */
-        let _money: number = 0
+        let _money: number = 1000
 
 
 
@@ -94,6 +94,9 @@ export namespace Runtime {
         export function setMoney(x: number) { _money = x }
         /**
          * Gets Player Money
+         *
+         * Player Starter Money is
+         * set to 1000.
          *
          * @returns Money
          */
