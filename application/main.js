@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require("electron")
 const { Application } = require("./dist/application")
+const { PlayerData } = require("obesity-utils")
 
 
 
@@ -32,6 +33,10 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         console.log("Stopping...") // DEBUG
+
+        // Save Player Data
+        PlayerData.storePlayerData(PlayerData.readPlayerData())
+
         app.quit() // Exits app
     }
 })
