@@ -167,6 +167,11 @@ export async function checkGameInstances() {
 
 
 async function moneyGetter() {
+    const data = PlayerData.readPlayerData()
+    if(data.data.money) Runtime.Player.setMoney(data.data.money) // Sets to saved Money
+
+
+
     // Runs a Money adder loop that gives 100 B per minute
     while(true) {
         await sleep(60 * 1000)
