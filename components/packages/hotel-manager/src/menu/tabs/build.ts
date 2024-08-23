@@ -1,7 +1,7 @@
 import { Button, Image, styles, TextButton, TINT } from "@obesity-components/gui"
 import { Tab } from "../tab"
 import { margin, UISizes } from "../menu"
-import { getRoomsData, Room, sleep } from "obesity-utils"
+import { getRoomsData, Room, Runtime, sleep } from "obesity-utils"
 import { Rooms } from "@obesity-components/room-manager"
 
 
@@ -126,9 +126,17 @@ export default class Build extends Tab.TabObject {
         button.base.addButtonClickCallback(() => {
             button.icon.setTint(TINT.NORMAL_TINT) // Icon TINT
 
-            // Build or Upgrades Room
-            try {Rooms.buildRoom(this.parent.scene, data)}
-            catch(err) {Rooms.upgradeRoom(data.name, ((data.room.level ?? 1) + 1))}
+            // Checks if Room Cost Exists and if Player has enough money ( Belly Coins )
+            if(data.room.cost && Runtime.Player.getMoney() >= data.room.cost) {
+                Runtime.Player.setMoney(Runtime.Player.getMoney() - data.room.cost)
+
+                // Build or Upgrade Room
+                try{
+                    Rooms.buildRoom(this.parent.scene, data)
+                }catch(err) {
+                    Rooms.upgradeRoom(data.name, (data.room.level ?? 1) + 1)
+                }
+            }
 
             sleep(250).then(() => {
                 // Updates Button Text
