@@ -33,10 +33,6 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         console.log("Stopping...") // DEBUG
-
-        // Save Player Data
-        PlayerData.storePlayerData(PlayerData.readPlayerData())
-
         app.quit() // Exits app
     }
 })
