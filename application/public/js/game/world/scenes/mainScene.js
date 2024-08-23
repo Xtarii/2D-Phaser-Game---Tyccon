@@ -167,6 +167,7 @@ export async function checkGameInstances() {
 
 
 async function moneyGetter() {
+    // Runs a Money adder loop that gives 100 B per minute
     while(true) {
         await sleep(60 * 1000)
         Runtime.Player.setMoney(Runtime.Player.getMoney() + 100)
