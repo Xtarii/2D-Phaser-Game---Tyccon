@@ -1,4 +1,4 @@
-const { sleep, Runtime } = require("obesity-utils")
+const { sleep, Runtime, PlayerData } = require("obesity-utils")
 import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
 import GameUI from "../../ui/UI.js"
@@ -105,6 +105,8 @@ export default class MainScene extends World {
         MainScene.player = new Player()
         MainScene.gameUI = new GameUI(this) // Game UI
 
+        moneyGetter()
+
 
 
         /// Creates a test scene - Level 1
@@ -158,6 +160,17 @@ export async function checkGameInstances() {
         // Exit Function
         if(loaded) break
         await sleep(1000) // Timeout 1 second
+    }
+}
+
+
+
+
+async function moneyGetter() {
+    while(true) {
+        await sleep(60 * 1000)
+        Runtime.Player.setMoney(Runtime.Player.getMoney() + 100)
+        PlayerData.storePlayerData(PlayerData.readPlayerData()) // Saves Player Progress
     }
 }
 
