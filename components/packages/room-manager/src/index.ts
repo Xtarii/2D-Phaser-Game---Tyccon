@@ -14,8 +14,9 @@ export namespace Rooms {
      * Rooms Event Handler
      */
     export const events: EventEmitter<{
-        enter: [Room]
-        build: [Room]
+        enter  : [Room]
+        build  : [Room]
+        upgrade: [Room]
     }> = new EventEmitter()
 
     /**
@@ -65,6 +66,7 @@ export namespace Rooms {
     export function upgradeRoom(id: string, level: number) {
         for(const room of rooms) if(room.name === id) {
             room.upgrade(level)
+            events.emit("upgrade", room)
             return
         }
         throw new Error("Room Not Found") // Error if the Room was not found
