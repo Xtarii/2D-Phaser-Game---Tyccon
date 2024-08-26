@@ -28,11 +28,6 @@ class Player extends Schema {
      * Player Level or map
      */
     @type("string") l: string = "0"
-
-    /**
-     * Player Role
-     */
-    @type("string") role: "host" | "client" = "client"
 }
 
 /**
@@ -80,7 +75,6 @@ export default class ServerSocket extends Room<State> {
         // Player Name and Sprite
         player.name = options.name
         player.spriteID = options.spriteID
-        player.role = options.role
 
         // Random Position
         player.x = options.x

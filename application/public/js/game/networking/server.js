@@ -115,9 +115,7 @@ export default class Server {
             // Position
             x: MainScene.player.x,
             y: MainScene.player.y,
-            l: MainScene.player.level,
-
-            role: Runtime.Player.getRole()
+            l: MainScene.player.level
         }
 
         // Joins Room
