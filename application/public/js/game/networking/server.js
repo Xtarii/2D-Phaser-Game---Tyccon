@@ -1,5 +1,6 @@
 const { Client, Room } = require("colyseus.js")
 const { PlayerData, Runtime } = require("obesity-utils")
+const { Rooms } = require("obesity-components")
 
 import MainScene, { checkGameInstances } from "../world/scenes/mainScene.js"
 import { Game } from "../game.js"
@@ -90,6 +91,11 @@ export default class Server {
                 this.players[sessionId].destroy(true)
                 delete this.players[sessionId]
             })
+
+
+
+            // Client Room Data
+            this.room.onMessage("level data", (data) => MainScene.main.setupDoors(data))
         })
     }
 
@@ -121,5 +127,9 @@ export default class Server {
         // Joins Room
         this.room = await this.socket.joinOrCreate("main", data)
         console.log("Connected to UDP Server")
+
+
+        // Gets Room Data
+        this.room.send("get level data", Runtime.Player.getLocation().l)
     }
 }

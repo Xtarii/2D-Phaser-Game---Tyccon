@@ -39,6 +39,13 @@ export default class MainScene extends World {
      */
     static gameUI
 
+    /**
+     * Main Scene Main Instance
+     *
+     * @type {MainScene}
+     */
+    static main
+
 
 
 
@@ -48,6 +55,7 @@ export default class MainScene extends World {
      */
     constructor(){
         super({ key: "main" }) // Sets Scene Name
+        MainScene.main = this
     }
 
 
@@ -169,7 +177,6 @@ export async function checkGameInstances() {
 async function moneyGetter() {
     const data = PlayerData.readPlayerData()
     if(data.data.money) Runtime.Player.setMoney(data.data.money) // Sets to saved Money
-
 
 
     // Runs a Money adder loop that gives 100 B per minute

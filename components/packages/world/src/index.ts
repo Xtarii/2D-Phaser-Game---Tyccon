@@ -2,7 +2,7 @@ import { GameObjects, Scene } from "phaser"
 import { SceneObject } from "./scene/scene"
 import { WorldManager } from "./world/world"
 import { scenes } from "./scene/sceneManager"
-import { getRoomsData } from "obesity-utils"
+import { getRoomsData, Room } from "obesity-utils"
 import { Rooms } from "@obesity-components/room-manager"
 
 
@@ -83,12 +83,27 @@ export abstract class World extends Scene {
      *
      * @param level Hotel Level
      */
-    public setupDoors = (level: number | string) => {
-        const rooms = getRoomsData(level)
-        for(let i in rooms) if(rooms[i].status === "built") {
-            const room = rooms[i]
-            Rooms.buildRoom(this, { name: i, room: room })
-        }
+    public setupDoors(level: number | string): void
+    /**
+     * Setup for Hotel Doors
+     *
+     * Creates doors for built rooms.
+     * Takes Hotel object data as param.
+     *
+     * @param level Hotel Level Data
+     */
+    public setupDoors(level: {[key: string]: Room}): void
+
+
+    public setupDoors(level: number | string | {[key: string]: Room}) {
+        let rooms
+
+        // Gets Room Data
+        if(typeof level === "string" || typeof level === "number") rooms = getRoomsData(level)
+        else rooms = level
+
+        // Door Setup
+        for(let i in rooms) if(rooms[i].status === "built") Rooms.buildRoom(this, { name: i, room: rooms[i] })
     }
 }
 

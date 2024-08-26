@@ -1,5 +1,6 @@
 import { Room, Client, ClientArray } from "colyseus"
 import { MapSchema, Schema, type } from "@colyseus/schema"
+import { getRoomsData } from "obesity-utils"
 
 
 
@@ -63,7 +64,17 @@ export default class ServerSocket extends Room<State> {
             player.y = data.y
             player.l = data.l.toString()
         })
+
+        // Room Data
+        this.onMessage("get level data", (client: Client, level: number | string) => {
+            const data = getRoomsData(level)
+            client.send("level data", data)
+        })
     }
+
+
+
+
 
     onJoin(client: Client<this['clients'] extends ClientArray<infer U, any> ? U : never, this['clients'] extends ClientArray<infer _, infer U> ? U : never>, options?: any, auth?: (this['clients'] extends ClientArray<infer _, infer U> ? U : never) | undefined): void | Promise<any> {
         console.log(`[ Server ] : ${client.sessionId} joined`) // DEBUG
@@ -79,7 +90,7 @@ export default class ServerSocket extends Room<State> {
         // Random Position
         player.x = options.x
         player.y = options.y
-        player.l = options.l
+        player.l = options.l.toString()
 
         this.state.players.set(client.sessionId, player) // Adds Player to Server Player List
     }

@@ -1,5 +1,5 @@
 const path = require("path")
-const { PlayerData, BASE } =  require("obesity-utils")
+const { PlayerData, BASE, Runtime } =  require("obesity-utils")
 
 
 
@@ -17,6 +17,7 @@ document.getElementById("connect").addEventListener("click", () => {
     const name = document.getElementById("name").value
     const spriteID = document.getElementById("spriteID").value
 
+    if(playerData.data.money) Runtime.Player.setMoney(playerData.data.money) // Skips a reset of money
     PlayerData.storePlayerData({ name, spriteID }) // Stores Player Data
 
 
