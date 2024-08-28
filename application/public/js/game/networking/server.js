@@ -126,9 +126,5 @@ export default class Server {
         // Joins Room
         this.room = await this.socket.joinOrCreate("main", data)
         console.log("Connected to UDP Server")
-
-
-        // Gets Room Data
-        this.room.send("get level data", Runtime.Player.getLocation().l)
     }
 }

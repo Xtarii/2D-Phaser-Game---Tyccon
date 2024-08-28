@@ -1,3 +1,5 @@
+import { Game } from "../../game"
+
 const { SceneObject, World } = require("obesity-components")
 
 
@@ -23,7 +25,7 @@ export class level1 extends SceneObject {
         /** @type {World} */
         const scene = s
 
-
-        scene.setupDoors(1) // This Level
+        // Gets Room Data
+        Game.server.room.send("get level data", 1)
     }
 }
