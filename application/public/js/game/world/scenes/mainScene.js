@@ -105,6 +105,10 @@ export default class MainScene extends World {
             /// but then we can just do "this.loadScene(`room_${room.name}`)"
         })
 
+        // Room Event Handling
+        Rooms.events.on("build", (room) => {if(Game.server.room) Game.server.room.send("build room", room)})
+        Rooms.events.on("upgrade", (room) => {if(Game.server.room) Game.server.room.send("upgrade room", room)})
+
 
 
 

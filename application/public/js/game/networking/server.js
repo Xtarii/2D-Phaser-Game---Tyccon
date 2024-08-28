@@ -4,6 +4,7 @@ const { PlayerData, Runtime } = require("obesity-utils")
 import MainScene, { checkGameInstances } from "../world/scenes/mainScene.js"
 import { Game } from "../game.js"
 import NetworkPlayer from "./networkObjects/networkPlayer.js"
+import { Rooms } from "obesity-components"
 
 
 
@@ -94,7 +95,11 @@ export default class Server {
 
 
             // Client Room Data
-            this.room.onMessage("level data", (data) => MainScene.main.setupDoors(data))
+            this.room.onMessage("get level data", (data) => MainScene.main.setupDoors(data))
+            this.room.onMessage("build room", (data) =>
+                Rooms.buildRoom(MainScene.main, { name: data.name, room: data }))
+            this.room.onMessage("upgrade room", (data) =>
+                Rooms.upgradeRoom(data.name, data.level))
         })
     }
 

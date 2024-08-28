@@ -1,4 +1,4 @@
-import { Game } from "../../game"
+import { Game } from "../../game.js"
 
 const { SceneObject, World } = require("obesity-components")
 
@@ -26,6 +26,7 @@ export class level1 extends SceneObject {
         const scene = s
 
         // Gets Room Data
-        Game.server.room.send("get level data", 1)
+        if(Game.server.room) Game.server.room.send("get level data", 1)
+        else scene.setupDoors(1)
     }
 }

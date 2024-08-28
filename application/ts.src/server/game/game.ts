@@ -1,6 +1,7 @@
 import { Room, Client, ClientArray } from "colyseus"
 import { MapSchema, Schema, type } from "@colyseus/schema"
 import { getRoomsData } from "obesity-utils"
+import { Room as R } from "obesity-utils"
 
 
 
@@ -66,10 +67,12 @@ export default class ServerSocket extends Room<State> {
         })
 
         // Room Data
-        this.onMessage("get level data", (client: Client, level: number | string) => {
-            const data = getRoomsData(level)
-            client.send("level data", data)
-        })
+        this.onMessage("get level data", (client: Client, level: number | string) =>
+            client.send("get level data", getRoomsData(level)))
+        this.onMessage("build room", (client: Client, room: R) =>
+            this.broadcast("build room", room, { except: client }))
+        this.onMessage("upgrade room", (client: Client, room: R) =>
+            this.broadcast("upgrade room", room, { except: client }))
     }
 
 
