@@ -16,8 +16,9 @@ document.getElementById("connect").addEventListener("click", () => {
     // Player Info
     const name = document.getElementById("name").value
     const spriteID = document.getElementById("spriteID").value
+    console.log(playerData)
 
-    if(playerData.data.money) Runtime.Player.setMoney(playerData.data.money) // Skips a reset of money
+    if(playerData.data && playerData.data.money !== undefined) Runtime.Player.setMoney(playerData.data.money) // Skips a reset of money
     PlayerData.storePlayerData({ name, spriteID }) // Stores Player Data
 
 
