@@ -62,6 +62,10 @@ export default class Build extends Tab.TabObject {
      */
     private roomName(data: { id: string, cost?: number, level?: number }) : string {
         let name = data.id // Base Name
+
+        // Max Level
+        if(data.level && data.level > 3) return name += " max"
+
         if(data.level) name += " lvl." + data.level
         if(data.cost) name += " " + data.cost + "B" // Belly Coins
         if(!data.level && !data.cost) name += " Building"
@@ -127,7 +131,7 @@ export default class Build extends Tab.TabObject {
             button.icon.setTint(TINT.NORMAL_TINT) // Icon TINT
 
             // Checks if Room Cost Exists and if Player has enough money ( Belly Coins )
-            if(data.room.cost && Runtime.Player.getMoney() >= data.room.cost) {
+            if(data.room.cost && Runtime.Player.getMoney() >= data.room.cost && data.room.level && data.room.level <= 3) {
                 Runtime.Player.setMoney(Runtime.Player.getMoney() - data.room.cost)
 
                 // Build or Upgrade Room
@@ -136,15 +140,15 @@ export default class Build extends Tab.TabObject {
                 }catch(err) {
                     Rooms.upgradeRoom(data.name, (data.room.level ?? 1) + 1)
                 }
-            }
 
-            sleep(250).then(() => {
+
                 // Updates Button Text
                 const text = (button.base as TextButton)
                 const newRoomData = getRoomsData(1)[data.name] // Fix to Current Level
                 text.setText(this.roomName({id: data.name, cost: newRoomData.cost, level: newRoomData.level}))
-                button.icon.clearTint() // Icon tint clear
-            })
+            }
+
+            sleep(250).then(() => button.icon.clearTint()) // Icon Tint Clear When Button stops interaction
         })
     }
 }
