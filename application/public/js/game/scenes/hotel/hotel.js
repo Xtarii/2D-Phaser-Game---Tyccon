@@ -7,8 +7,10 @@ const { SceneObject, World } = require("obesity-components")
 export class level1 extends SceneObject {
     onCreate() {
         // Scene Layers
-        this.addLayer({name: "ground"}, "Hotel tiles")
-        this.addLayer({name: "wall", collision: true}, "Hotel tiles")
+        this.addLayer({name: "grounds"}, "Hotel tiles")
+        this.addLayer({name: "walls", collision: true}, "Hotel tiles")
+        this.addLayer({name: "doors", collision: true}, "Hotel tiles")
+        this.addLayer({name: "dekorations", collision: true}, "Hotel tiles")
 
         /// The Constructor Params are
         /// ( "hotel tilemap", {tileName: "Hotel tiles", key: "hotel tileset"} )

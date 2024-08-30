@@ -47,8 +47,8 @@ export default class Preloader extends Phaser.Scene {
 
 
         // New Map
-        this.load.image("hotel tileset", BASE + "/application/public/assets/tiles/hotel/Hotel tiles.png")
-        this.load.tilemapTiledJSON("hotel tilemap", BASE + "/application/public/assets/tiles/hotel/hotel tilemap.json")
+        this.load.image("hotel tileset", BASE + "/assets/Tilset-lobby.png")
+        this.load.tilemapTiledJSON("hotel tilemap", BASE + "/assets/Lobby test.json")
     }
 
 
