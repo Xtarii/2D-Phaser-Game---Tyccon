@@ -64,7 +64,7 @@ export default class Build extends Tab.TabObject {
         let name = data.id // Base Name
 
         // Max Level
-        if(data.level && data.level > 3) return name += " max"
+        if(data.level && data.level >= 3) return name += " max"
 
         if(data.level) name += " lvl." + data.level
         if(data.cost) name += " " + data.cost + "B" // Belly Coins
@@ -131,7 +131,7 @@ export default class Build extends Tab.TabObject {
             button.icon.setTint(TINT.NORMAL_TINT) // Icon TINT
 
             // Checks if Room Cost Exists and if Player has enough money ( Belly Coins )
-            if(data.room.cost && Runtime.Player.getMoney() >= data.room.cost && data.room.level && data.room.level <= 3) {
+            if(data.room.cost && Runtime.Player.getMoney() >= data.room.cost && data.room.level && data.room.level < 3) {
                 Runtime.Player.setMoney(Runtime.Player.getMoney() - data.room.cost)
 
                 // Build or Upgrade Room
