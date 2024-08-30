@@ -1,10 +1,10 @@
 const { Client, Room } = require("colyseus.js")
 const { PlayerData, Runtime } = require("obesity-utils")
+const { Rooms } = require("obesity-components")
 
 import MainScene, { checkGameInstances } from "../world/scenes/mainScene.js"
 import { Game } from "../game.js"
 import NetworkPlayer from "./networkObjects/networkPlayer.js"
-import { Rooms } from "obesity-components"
 
 
 
