@@ -1,6 +1,7 @@
 import path from "path"
 import fs from "fs"
 import { APPDATA } from "@obesity-utils/configuration"
+import { Runtime } from "./runtime/runtime"
 
 
 
@@ -30,6 +31,16 @@ export namespace PlayerData {
          * Player Sprite ID
          */
         spriteID: string
+
+        /**
+         * Stored Player Data
+         */
+        data?: {
+            /**
+             * Player Money
+             */
+            money?: number
+        }
     }
 
 
@@ -84,7 +95,11 @@ export namespace PlayerData {
         // Player Data
         const playerData: Player = {
             name: data.name === "" ? ("Dummy" + Math.ceil(Math.random() * (1000 - 1 ) + 1)) : data.name,
-            spriteID: data.spriteID === "" ? "player" : data.spriteID
+            spriteID: data.spriteID === "" ? "player" : data.spriteID,
+
+            data: {
+                money: Runtime.Player.getMoney()
+            }
         }
 
         // Looks for PATH
@@ -96,3 +111,10 @@ export namespace PlayerData {
         })
     }
 }
+
+
+
+
+
+/// Library Export
+export * from "./runtime/runtime"

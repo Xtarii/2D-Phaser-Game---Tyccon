@@ -1,7 +1,7 @@
 import { Button, Image, styles, TextButton, TINT } from "@obesity-components/gui"
 import { Tab } from "../tab"
 import { margin, UISizes } from "../menu"
-import { getRoomsData, Room, sleep } from "obesity-utils"
+import { getRoomsData, Room, Runtime, sleep } from "obesity-utils"
 import { Rooms } from "@obesity-components/room-manager"
 
 
@@ -19,7 +19,7 @@ export default class Build extends Tab.TabObject {
 
     open() : void {
         // Gets Room Build Data
-        const rooms = getRoomsData(1)
+        const rooms = getRoomsData(1) // FIX TO CURRENT LEVEL
 
         // Show Build Options
         let index = 0 // Margin Index
@@ -62,6 +62,10 @@ export default class Build extends Tab.TabObject {
      */
     private roomName(data: { id: string, cost?: number, level?: number }) : string {
         let name = data.id // Base Name
+
+        // Max Level
+        if(data.level && data.level >= 3) return name += " max"
+
         if(data.level) name += " lvl." + data.level
         if(data.cost) name += " " + data.cost + "B" // Belly Coins
         if(!data.level && !data.cost) name += " Building"
@@ -126,11 +130,25 @@ export default class Build extends Tab.TabObject {
         button.base.addButtonClickCallback(() => {
             button.icon.setTint(TINT.NORMAL_TINT) // Icon TINT
 
-            // Build or Upgrades Room
-            try {Rooms.buildRoom(this.parent.scene, data)}
-            catch(err) {Rooms.upgradeRoom(data.name, ((data.room.level ?? 1) + 1))}
+            // Checks if Room Cost Exists and if Player has enough money ( Belly Coins )
+            if(data.room.cost && Runtime.Player.getMoney() >= data.room.cost && data.room.level && data.room.level < 3) {
+                Runtime.Player.setMoney(Runtime.Player.getMoney() - data.room.cost)
 
-            sleep(250).then(() => button.icon.clearTint()) // Clears Tint
+                // Build or Upgrade Room
+                try{
+                    Rooms.buildRoom(this.parent.scene, data)
+                }catch(err) {
+                    Rooms.upgradeRoom(data.name, (data.room.level ?? 1) + 1)
+                }
+
+
+                // Updates Button Text
+                const text = (button.base as TextButton)
+                const newRoomData = getRoomsData(1)[data.name] // Fix to Current Level
+                text.setText(this.roomName({id: data.name, cost: newRoomData.cost, level: newRoomData.level}))
+            }
+
+            sleep(250).then(() => button.icon.clearTint()) // Icon Tint Clear When Button stops interaction
         })
     }
 }

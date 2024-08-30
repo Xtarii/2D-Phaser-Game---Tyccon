@@ -1,5 +1,6 @@
 const { Client, Room } = require("colyseus.js")
-const { PlayerData } = require("obesity-utils")
+const { PlayerData, Runtime } = require("obesity-utils")
+const { Rooms } = require("obesity-components")
 
 import MainScene, { checkGameInstances } from "../world/scenes/mainScene.js"
 import { Game } from "../game.js"
@@ -44,6 +45,7 @@ export default class Server {
 
 
             this.socket = new Client("ws://localhost:1024") // Connects to Local Socket Server
+            Runtime.Player.setRole("host") // Sets Role to Host ( Default to Client )
 
 
         }else this.socket = new Client(host) // Connects to Socket Server
@@ -61,6 +63,7 @@ export default class Server {
                     // Position
                     player.x,
                     player.y,
+                    player.l,
 
                     // Extra Data
                     player.spriteID,
@@ -76,6 +79,7 @@ export default class Server {
                 player.onChange(() => {
                     networkPlayer.x = player.x
                     networkPlayer.y = player.y
+                    networkPlayer.level = player.l
 
                     networkPlayer.update() // Updates Name Position
                 })
@@ -87,6 +91,15 @@ export default class Server {
                 this.players[sessionId].destroy(true)
                 delete this.players[sessionId]
             })
+
+
+
+            // Client Room Data
+            this.room.onMessage("get level data", (data) => MainScene.main.setupDoors(data))
+            this.room.onMessage("build room", (data) =>
+                Rooms.buildRoom(MainScene.main, { name: data.name, room: data }))
+            this.room.onMessage("upgrade room", (data) =>
+                Rooms.upgradeRoom(data.name, data.level))
         })
     }
 
@@ -111,7 +124,8 @@ export default class Server {
 
             // Position
             x: MainScene.player.x,
-            y: MainScene.player.y
+            y: MainScene.player.y,
+            l: MainScene.player.level
         }
 
         // Joins Room

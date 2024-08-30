@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require("electron")
 const { Application } = require("./dist/application")
+const { PlayerData } = require("obesity-utils")
 
 
 

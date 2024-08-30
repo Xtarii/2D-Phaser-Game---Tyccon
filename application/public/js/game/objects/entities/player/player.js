@@ -1,4 +1,4 @@
-const { PlayerData, sleep } = require("obesity-utils")
+const { PlayerData, sleep, Runtime } = require("obesity-utils")
 const {
     Entity,
     Interact,
@@ -27,12 +27,15 @@ export default class Player extends Entity {
             // Prespawn Position
             2900 + Math.random() * ((64 * 2) - -(64 * 2)) + -(64 * 2),
             2900 + Math.random() * ((64 * 2) - -(64 * 2)) + -(64 * 2),
+            1, // First Level ( Lobby )
 
             // Player Avatar
             PlayerData.readPlayerData().spriteID, null,
             `${PlayerData.readPlayerData().name}   -   [ You ]`, // Sets Player Name
             100 // Player depth
         )
+        Runtime.Player.setLocation(this.x, this.y, this.level) // Sets Location
+
         WorldManager.addCollidable(this)    // Adds this as collidable
         WorldManager.removeRemovable(this)  // Makes Player stay when loading a new Scene
         this.canMove = true // Player Can Move
@@ -86,7 +89,8 @@ export default class Player extends Entity {
         }
 
         // Updates player position
-        Game.server.room.send("update player", { x: this.x, y: this.y})
+        Runtime.Player.setLocation(this.x, this.y, this.level)
+        Game.server.room.send("update player", Runtime.Player.getLocation())
 
 
 

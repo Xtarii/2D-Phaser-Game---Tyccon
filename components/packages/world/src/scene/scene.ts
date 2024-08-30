@@ -1,3 +1,7 @@
+import { World } from ".."
+
+
+
 /**
  * Tileset Type
  */
@@ -19,7 +23,7 @@ type tile = {
 /**
  * Scene Object
  */
-export class SceneObject {
+export abstract class SceneObject {
     /**
      * Tilemap Base
      */
@@ -51,6 +55,7 @@ export class SceneObject {
     constructor(map: string, tiles?: tile) {
         this.map = map
         if(tiles) this.add(tiles)
+        this.onCreate() // Calls Custom Scene Setup
     }
 
 
@@ -122,6 +127,25 @@ export class SceneObject {
         for(const str of this.layers[tileset]) if(str !== layer) newList.push(str)
         this.layers[tileset] = newList
     }
+
+
+
+    /**
+     * Create Function
+     *
+     * Called once when the Scene is
+     * created.
+     */
+    public abstract onCreate(): void
+    /**
+     * On Scene Load
+     *
+     * Called once when the scene is loaded
+     * into the world.
+     *
+     * @param scene Scene
+     */
+    public abstract onLoad(scene: World): void
 
 
 

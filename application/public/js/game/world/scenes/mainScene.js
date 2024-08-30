@@ -1,7 +1,8 @@
-const { sleep } = require("obesity-utils")
+const { sleep, Runtime, PlayerData } = require("obesity-utils")
 import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
 import GameUI from "../../ui/UI.js"
+import { level1 } from "../../scenes/hotel/hotel.js"
 
 
 const {
@@ -12,8 +13,7 @@ const {
     Manager,
     Rooms,
     World,
-    scenes,
-    SceneObject
+    scenes
 } = require("obesity-components")
 
 
@@ -39,6 +39,13 @@ export default class MainScene extends World {
      */
     static gameUI
 
+    /**
+     * Main Scene Main Instance
+     *
+     * @type {MainScene}
+     */
+    static main
+
 
 
 
@@ -48,6 +55,7 @@ export default class MainScene extends World {
      */
     constructor(){
         super({ key: "main" }) // Sets Scene Name
+        MainScene.main = this
     }
 
 
@@ -97,6 +105,10 @@ export default class MainScene extends World {
             /// but then we can just do "this.loadScene(`room_${room.name}`)"
         })
 
+        // Room Event Handling
+        Rooms.events.on("build", (room) => {if(Game.server.room) Game.server.room.send("build room", room)})
+        Rooms.events.on("upgrade", (room) => {if(Game.server.room) Game.server.room.send("upgrade room", room)})
+
 
 
 
@@ -105,12 +117,15 @@ export default class MainScene extends World {
         MainScene.player = new Player()
         MainScene.gameUI = new GameUI(this) // Game UI
 
+        moneyGetter()
 
 
-        const scene = new SceneObject("hotel tilemap", {tileName: "Hotel tiles", key: "hotel tileset"})
-        scene.addLayer({name: "ground"}, "Hotel tiles")
-        scene.addLayer({name: "wall", collision: true}, "Hotel tiles") // Can do "scene.Tilesets[0].tileName"
 
+        /// Creates a test scene - Level 1
+        ///
+        /// Takes the tilemap name: "hotel tilemap" - from preload
+        /// Takes a tileset: "Hotel tiles" - custom id, "hotel tileset" - from preload
+        const scene = new level1("hotel tilemap", {tileName: "Hotel tiles", key: "hotel tileset"})
         scenes.add("hotel 1", scene)
         this.loadScene("hotel 1")
 
@@ -123,6 +138,12 @@ export default class MainScene extends World {
         if(Game.server === undefined || Game.server.room === undefined) return // Returns if no Server Connection
 
         MainScene.player.update()
+
+
+
+        // TEST HUD UPDATE
+        MainScene.gameUI.gameHUD.money.setText(Runtime.Player.getMoney() + " B")
+        MainScene.gameUI.gameHUD.money.x = 450 - MainScene.gameUI.gameHUD.money.displayWidth
 
 
 
@@ -151,6 +172,22 @@ export async function checkGameInstances() {
         // Exit Function
         if(loaded) break
         await sleep(1000) // Timeout 1 second
+    }
+}
+
+
+
+
+async function moneyGetter() {
+    const data = PlayerData.readPlayerData()
+    if(data.data.money) Runtime.Player.setMoney(data.data.money) // Sets to saved Money
+
+
+    // Runs a Money adder loop that gives 100 B per minute
+    while(true) {
+        await sleep(60 * 1000)
+        Runtime.Player.setMoney(Runtime.Player.getMoney() + 100)
+        PlayerData.storePlayerData(PlayerData.readPlayerData()) // Saves Player Progress
     }
 }
 

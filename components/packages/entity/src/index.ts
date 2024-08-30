@@ -23,7 +23,7 @@ export abstract class Entity extends Physics.Arcade.Sprite {
     /**
      * Entity Name Bar
      */
-    nameBar
+    nameBar: Text
 
     /**
      * Component List
@@ -31,6 +31,14 @@ export abstract class Entity extends Physics.Arcade.Sprite {
      * Holds all entity Components
      */
     private _components: Component[] = []
+
+    /**
+     * Entity Level or Map
+     *
+     * The Map or Level this
+     * entity is currently on.
+     */
+    public level: number | string
 
 
 
@@ -43,13 +51,15 @@ export abstract class Entity extends Physics.Arcade.Sprite {
      * @param scene Game Scene
      * @param x X position
      * @param y Y position
+     * @param l Level or Map
      * @param spriteID Sprite ID
      * @param frame Sprite Frame
      * @param name Entity Name
      * @param depth Render Depth
      */
-    constructor(scene: Phaser.Scene, x: number, y: number, spriteID: string, frame?: number, name?: string, depth?: number){
+    constructor(scene: Phaser.Scene, x: number, y: number, l: number | string, spriteID: string, frame?: number, name?: string, depth?: number){
         super(scene, x, y, spriteID, frame) // Creates Entity
+        this.level = l
 
         // Adds to Scene
         scene.add.existing(this)

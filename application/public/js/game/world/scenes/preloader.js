@@ -42,7 +42,7 @@ export default class Preloader extends Phaser.Scene {
         this.load.tilemapTiledJSON("tilemap", BASE + "/application/public/assets/extras-add-later/tile-test/tilemap.json")
 
 
-        this.load.image("tilset2", BASE + "/application/public/assets/extras-add-later/64 upscale.png")
+        this.load.spritesheet("tilset2", BASE + "/application/public/assets/extras-add-later/64 upscale.png", {frameWidth: 64, frameHeight: 64})
         this.load.tilemapTiledJSON("tilemaptest", BASE + "/application/public/assets/extras-add-later/tile-test/tilemaptest.json")
 
 
