@@ -93,6 +93,9 @@ export default class MainScene extends World {
             console.log("Enters...")
             console.log(room)
 
+            // Signal to The Server that we are changing Room
+            if(Game.server.room) Game.server.room.send("change level", room.name)
+
             /// Room Name
             /// The Room Scene Name should be "room_id"
             ///
