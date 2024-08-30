@@ -73,6 +73,12 @@ export default class ServerSocket extends Room<State> {
             this.broadcast("build room", room, { except: client }))
         this.onMessage("upgrade room", (client: Client, room: R) =>
             this.broadcast("upgrade room", room, { except: client }))
+
+        this.onMessage("change level", (client: Client, level: string) => {
+            const player: Player | undefined = this.state.players.get(client.sessionId)
+            if(!player) return
+            player.l = level
+        })
     }
 
 
