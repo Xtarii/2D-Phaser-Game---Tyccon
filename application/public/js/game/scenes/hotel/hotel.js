@@ -9,7 +9,7 @@ export class level1 extends SceneObject {
         // Scene Layers
         this.addLayer({name: "grounds"}, "Hotel tiles")
         this.addLayer({name: "walls", collision: true}, "Hotel tiles")
-        this.addLayer({name: "doors", collision: true}, "Hotel tiles")
+        this.addLayer({name: "doors"}, "Hotel tiles")
         this.addLayer({name: "dekorations", collision: true}, "Hotel tiles")
 
         /// The Constructor Params are
