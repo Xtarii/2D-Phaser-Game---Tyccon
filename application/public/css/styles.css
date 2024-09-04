@@ -1,13 +1,69 @@
-@font-face {
+/* Main Style CSS */
+@import url(./fonts.css);
+
+
+
+
+
+/* Main */
+:root {
+    --text-color: var(--black);
+
+    --black: #50514F;
+    --white: #FAFDEC;
+
+    --yellow: #FFE066;
+    --red: #F25F5C;
+}
+
+body {
+    background-color: var(--white);
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+
     font-family: "standard galactic";
-    src: url("../assets/fonts/standard-galactic/the-standard-galactic-font.otf");
+    color: var(--text-color);
 }
 
 
 
 
 
-/* Test */
-h1{
-    font-family: "standard galactic";
+/* Nav Bar */
+nav {
+    background-color: var(--yellow);
+    width: 100%;
+
+    display: flex;
+}
+nav > .main {
+    width: 10%;
+    height: 100%;
+
+    margin: 0;
+    padding-left: 2%;
+}
+nav > .main > a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 25px;
+}
+
+
+
+/* Container */
+.container {
+    background-color: var(--black);
+
+    width: 70%;
+    height: 500px;
+    margin: auto;
+
+    border: 1px solid var(--red);
+    border-radius: 25px;
+}
+p {
+    font-family: none;
 }
