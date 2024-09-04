@@ -1,7 +1,7 @@
 import { Game } from "../../game.js"
 import MainScene from "../../world/scenes/mainScene.js"
 
-const { SceneObject, World } = require("obesity-components")
+const { SceneObject, World, Rooms } = require("obesity-components")
 
 
 
@@ -24,6 +24,9 @@ export default class Lobby extends SceneObject {
 
 
         // Office Door
+        Rooms.createDoor(scene, 15.5, 14, () => {
+            console.log("Enters Office")
+        })
     }
 
 
