@@ -25,8 +25,8 @@ export default class Player extends Entity {
             Game.scene.getScene("main"),
 
             // Prespawn Position
-            640 + Math.random() * ((64 * 2) - -(64 * 2)) + -(64 * 2),
-            1080 + Math.random() * ((64 * 2) - -(64 * 2)) + -(64 * 2),
+            0,
+            0,
             1, // First Level ( Lobby )
 
             // Player Avatar

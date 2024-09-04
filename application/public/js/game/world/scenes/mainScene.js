@@ -2,7 +2,7 @@ const { sleep, Runtime, PlayerData } = require("obesity-utils")
 import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
 import GameUI from "../../ui/UI.js"
-import { level1 } from "../../scenes/hotel/hotel.js"
+import Lobby from "../../scenes/hotel/lobby.js"
 
 
 const {
@@ -128,9 +128,9 @@ export default class MainScene extends World {
         ///
         /// Takes the tilemap name: "hotel tilemap" - from preload
         /// Takes a tileset: "Hotel tiles" - custom id, "hotel tileset" - from preload
-        const scene = new level1("hotel tilemap", {tileName: "Hotel tiles", key: "hotel tileset"})
-        scenes.add("hotel 1", scene)
-        this.loadScene("hotel 1")
+        const lobby_1 = new Lobby("lobby part 1")
+        scenes.add(lobby_1)
+        this.loadScene(lobby_1)
 
 
 
