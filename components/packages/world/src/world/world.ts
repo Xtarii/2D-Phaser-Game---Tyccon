@@ -63,7 +63,9 @@ export namespace WorldManager {
         for(const data of sceneObject.Tilesets) {
             const tiles = createTiles(data.tileName, data.key)
             createLayers(tiles, sceneObject.Layers[data.tileName])
-            for(const layer of map.layers) if(layer.collision) setCollidableLayer(scene, layer.layer)
+            for(const layer of map.layers)
+                // if(layer.collision) setCollidableLayer(scene, layer.layer)
+                setCollidableLayer(scene, layer.layer)
             map.tiles.push(tiles)
         }
 
