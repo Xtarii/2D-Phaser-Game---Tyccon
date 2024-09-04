@@ -57,8 +57,8 @@ class BaseGame extends Phaser.Game {
 // Game Config
 const config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    width: "100%",
+    height: "100%",
     scene: [Preloader, MainScene],
 
     physics: {
