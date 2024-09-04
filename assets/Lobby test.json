@@ -188,6 +188,10 @@
          "tileheight":64,
          "tilewidth":64,
          "transparentcolor":"#ff00ff"
+        }, 
+        {
+         "firstgid":14,
+         "source":":\/automap-tiles.tsx"
         }],
  "tilewidth":64,
  "type":"map",
