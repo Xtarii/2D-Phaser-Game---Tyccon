@@ -118,8 +118,11 @@ export namespace WorldManager {
      * @param layer Layer
      */
     function setCollidableLayer(scene: Scene, layer: Tilemaps.TilemapLayer) {
-        for(const obj of collidable) obj.collider = scene.physics.add.collider(obj.body, layer)
-        layer.setCollisionBetween(0, 100) // This is needed for some reason to add collision ( both lines )
+        layer.setCollisionByProperty({ collides: true })
+        scene.matter.world.convertTilemapLayer(layer)
+
+        // for(const obj of collidable) obj.collider = scene.physics.add.collider(obj.body, layer)
+        // layer.setCollisionBetween(0, 100) // This is needed for some reason to add collision ( both lines )
     }
 
 
