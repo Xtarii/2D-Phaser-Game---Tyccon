@@ -63,9 +63,7 @@ export namespace WorldManager {
         for(const data of sceneObject.Tilesets) {
             const tiles = createTiles(data.tileName, data.key)
             createLayers(tiles, sceneObject.Layers[data.tileName])
-            for(const layer of map.layers)
-                // if(layer.collision) setCollidableLayer(scene, layer.layer)
-                setCollidableLayer(scene, layer.layer)
+            for(const layer of map.layers) if(layer.collision) setCollidableLayer(scene, layer.layer)
             map.tiles.push(tiles)
         }
 
@@ -120,11 +118,8 @@ export namespace WorldManager {
      * @param layer Layer
      */
     function setCollidableLayer(scene: Scene, layer: Tilemaps.TilemapLayer) {
-        layer.setCollisionByProperty({ collides: true })
-        scene.matter.world.convertTilemapLayer(layer)
-
-        // for(const obj of collidable) obj.collider = scene.physics.add.collider(obj.body, layer)
-        // layer.setCollisionBetween(0, 100) // This is needed for some reason to add collision ( both lines )
+        for(const obj of collidable) obj.collider = scene.physics.add.collider(obj.body, layer)
+        layer.setCollisionBetween(0, 100) // This is needed for some reason to add collision ( both lines )
     }
 
 
