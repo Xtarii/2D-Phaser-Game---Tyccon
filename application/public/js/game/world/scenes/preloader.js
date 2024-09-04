@@ -53,6 +53,11 @@ export default class Preloader extends Phaser.Scene {
 
         // Lobby : 1
         this.load.tilemapTiledJSON("lobby part 1", BASE + "/assets/Lobby_1.json")
+
+        // Room1_lvl1
+        this.load.spritesheet("Isymetric tiles", BASE + "assets/Isymetric tiles.png", {frameWidth: 64, frameHeight: 64})
+        this.load.tilemapTiledJSON("room1_lv1", BASE + "assets/kub rum.json")
+
     }
 
 
