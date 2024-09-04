@@ -128,9 +128,8 @@ export default class MainScene extends World {
         ///
         /// Takes the tilemap name: "hotel tilemap" - from preload
         /// Takes a tileset: "Hotel tiles" - custom id, "hotel tileset" - from preload
-        const lobby_1 = new Lobby("lobby part 1")
-        scenes.add(lobby_1)
-        this.loadScene(lobby_1)
+        scenes.add("lobby", new Lobby("lobby part 1"))
+        this.loadScene("lobby")
 
 
 
@@ -146,7 +145,8 @@ export default class MainScene extends World {
 
         // TEST HUD UPDATE
         MainScene.gameUI.gameHUD.money.setText(Runtime.Player.getMoney() + " B")
-        MainScene.gameUI.gameHUD.money.x = 450 - MainScene.gameUI.gameHUD.money.displayWidth
+        MainScene.gameUI.gameHUD.money.x =
+            this.cameras.main.displayWidth - MainScene.gameUI.gameHUD.money.displayWidth
 
 
 
