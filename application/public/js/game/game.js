@@ -67,9 +67,6 @@ const config = {
         // DEBUG
         arcade: {
             debug: true
-        },
-        matter: {
-            debug: true
         }
     },
 }
