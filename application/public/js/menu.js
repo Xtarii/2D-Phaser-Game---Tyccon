@@ -13,10 +13,10 @@ document.getElementById("spriteID").value = playerData.spriteID
 
 
 // Play : Single Player
-document.getElementById("player:singleplayer").addEventListener("click", () =>
+document.getElementById("play:singleplayer").addEventListener("click", () =>
     startGame())
 // Play : Multiplayer
-document.getElementById("connect").addEventListener("click", () =>
+document.getElementById("play:multiplayer").addEventListener("click", () =>
     startGame(document.getElementById("server").value))
 
 
