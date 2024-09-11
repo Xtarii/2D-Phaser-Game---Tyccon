@@ -37,6 +37,7 @@ body {
 nav {
     background-color: var(--yellow);
     width: 100%;
+    height: 10vh;
 
     display: flex;
 }
@@ -59,12 +60,21 @@ nav > .main > a {
 .container {
     background-color: var(--black);
 
-    width: 70%;
+    width: 50%;
     height: 500px;
     margin: auto;
 
     border: 1px solid var(--red);
     border-radius: 25px;
+}
+
+.left {
+    width: 25%;
+    height: calc(100% - 10vh);
+}
+.panel {
+    background-color: var(--black);
+    color: var(--white);
 }
 p {
     font-family: none;
