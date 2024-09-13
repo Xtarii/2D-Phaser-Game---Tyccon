@@ -4,13 +4,18 @@ const { SceneObject, World } = require("obesity-components")
 
 
 
-export class level1 extends SceneObject {
+export class Room_lvl1 extends SceneObject {
+    constructor(map) {
+        super(map, {tileName: "Isymetric tiles", key: "Isymetric tiles"})
+    }
     onCreate() {
+        // this.add({tileName: "128px BLOCK", key: "128px BLOCK"})
         // Scene Layers
-        this.addLayer({name: "grounds"}, "Hotel tiles")
-        this.addLayer({name: "walls", collision: true}, "Hotel tiles")
-        this.addLayer({name: "doors"}, "Hotel tiles")
-        this.addLayer({name: "dekorations", collision: true}, "Hotel tiles")
+        this.addLayer({name: "Grounds",collision: true}, "Isymetric tiles")
+        this.addLayer({name: "Wall 1", collision: true}, "Isymetric tiles")
+        this.addLayer({name: "Wall 2",collision: true}, "Isymetric tiles")
+        this.addLayer({name: "Wall 3", collision: true}, "Isymetric tiles")
+        this.addLayer({name: "block", collision: true}, "Isymetric tiles")
 
         /// The Constructor Params are
         /// ( "hotel tilemap", {tileName: "Hotel tiles", key: "hotel tileset"} )
@@ -26,9 +31,5 @@ export class level1 extends SceneObject {
     onLoad(s) {
         /** @type {World} */
         const scene = s
-
-        // Gets Room Data
-        if(Game.server.room) Game.server.room.send("get level data", 1)
-        else scene.setupDoors(1)
     }
 }

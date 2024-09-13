@@ -3,6 +3,7 @@ import Player from "../../objects/entities/player/player.js"
 import { Game } from "../../game.js"
 import GameUI from "../../ui/UI.js"
 import Lobby from "../../scenes/hotel/lobby.js"
+import { Room_lvl1 } from "../../scenes/rooms/room1_lvl1.js"
 
 
 const {
@@ -130,7 +131,11 @@ export default class MainScene extends World {
         /// Takes a tileset: "Hotel tiles" - custom id, "hotel tileset" - from preload
         const lobby_1 = new Lobby("lobby part 1")
         scenes.add(lobby_1)
-        this.loadScene(lobby_1)
+        // this.loadScene(lobby_1)
+
+        const Room1 = new Room_lvl1("room1_lv1")
+        scenes.add(Room1)
+        this.loadScene(Room1)
 
 
 
