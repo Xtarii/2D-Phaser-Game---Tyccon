@@ -151,7 +151,8 @@ export default class MainScene extends World {
 
         // TEST HUD UPDATE
         MainScene.gameUI.gameHUD.money.setText(Runtime.Player.getMoney() + " B")
-        MainScene.gameUI.gameHUD.money.x = 450 - MainScene.gameUI.gameHUD.money.displayWidth
+        MainScene.gameUI.gameHUD.money.x =
+            this.cameras.main.displayWidth - MainScene.gameUI.gameHUD.money.displayWidth
 
 
 

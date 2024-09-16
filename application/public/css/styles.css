@@ -25,6 +25,8 @@ body {
 
     font-family: "standard galactic";
     color: var(--text-color);
+    height: 100vh;
+    width: 100vw;
 }
 
 
@@ -35,6 +37,7 @@ body {
 nav {
     background-color: var(--yellow);
     width: 100%;
+    height: 10vh;
 
     display: flex;
 }
@@ -57,13 +60,71 @@ nav > .main > a {
 .container {
     background-color: var(--black);
 
-    width: 70%;
+    width: 50%;
     height: 500px;
     margin: auto;
 
     border: 1px solid var(--red);
     border-radius: 25px;
 }
+
+.left {
+    width: 25%;
+    height: calc(100% - 10vh);
+}
+.panel {
+    background-color: var(--black);
+    color: var(--white);
+}
 p {
     font-family: none;
+}
+
+
+#singleplayer {
+    width: 100%;
+    height: 50%;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+#singleplayer input {
+    width: 30%;
+    height: 10%;
+    margin: auto;
+}
+#singleplayer button {
+    width: 30%;
+    height: 10%;
+
+    margin: auto;
+}
+
+#multiplayer {
+    width: 100%;
+    height: 50%;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+#multiplayer input {
+    width: 30%;
+    height: 10%;
+
+    margin: auto;
+}
+#multiplayer button {
+    width: 30%;
+    height: 10%;
+
+    margin: auto;
+}
+
+
+
+
+
+/* Game */
+canvas {
+    margin: auto;
 }

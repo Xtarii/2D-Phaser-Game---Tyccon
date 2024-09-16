@@ -102,4 +102,36 @@ export namespace Runtime {
          */
         export function getMoney() : number { return _money }
     }
+
+    /**
+     * Runtime Server Data namespace
+     */
+    export namespace Server {
+        /**
+         * Server Address
+         */
+        let _address: string | null = null
+
+
+        /**
+         * Sets Server Address
+         *
+         * This is not local server,
+         * this is the server address
+         * of the game that this client
+         * is connected to.
+         *
+         * @param address Server Address
+         */
+        export function setAddress(address: string | null) { _address = address }
+        /**
+         * Gets Current Connection Address
+         *
+         * The Address of the server that
+         * this client is connected to.
+         *
+         * @returns Server Address
+         */
+        export function getAddress() : string | null { return _address }
+    }
 }

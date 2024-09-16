@@ -24,19 +24,37 @@
 
 
         <!-- Info -->
-        <p>⑱ NSFW Content may be found</p>
+        <div class="left panel">
+            <p>⑱ NSFW Content may be found</p>
+
+            <p>
+                We do not take responsibility for
+                your actions in our game and we are
+                not responsible if you are harassed
+                by other players or feel that the game
+                content is offending you.
+            </p>
+            <p>
+                It is up to you to play this game or not.
+            </p>
+        </div>
 
 
 
         <!-- Game -->
         <div class="container">
-            <br>
-            <input type="text" id="server" placeholder="<IP>:<Port>">
-            <button id="connect">Connect</button>
+            <!-- Single Player -->
+            <div id="singleplayer">
+                <input type="text" id="name" placeholder="Player Name" maxlength="15">
+                <input type="text" id="spriteID" placeholder="Sprite ID">
+                <button id="play:singleplayer">Play</button>
+            </div>
 
-            <br>
-            <input type="text" id="name" placeholder="Player Name" maxlength="15">
-            <input type="text" id="spriteID" placeholder="Sprite ID">
+            <!-- Multiplayer -->
+            <div id="multiplayer">
+                <input type="text" id="server" placeholder="<IP>:<Port>">
+                <button id="play:multiplayer">Join</button>
+            </div>
         </div>
 
 

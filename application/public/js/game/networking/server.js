@@ -40,15 +40,11 @@ export default class Server {
      * Creates Game Server instance
      */
     constructor(){
-        const host = localStorage.getItem("host")
-        if(host === null || host === "null" || host === ""){
-
-
+        if(Runtime.Server.getAddress() === null){
             this.socket = new Client("ws://localhost:1024") // Connects to Local Socket Server
             Runtime.Player.setRole("host") // Sets Role to Host ( Default to Client )
+        }else this.socket = new Client(Runtime.Server.getAddress()) // Connects to Socket Server
 
-
-        }else this.socket = new Client(host) // Connects to Socket Server
         // Joins Server Room
         this.join().then(() => {
             // Player join room event
