@@ -41,28 +41,27 @@ export default class Preloader extends Phaser.Scene {
  * @param {Phaser.Loader.LoaderPlugin} loader Loader
  */
 function loadSprites(loader) {
-    this.load.image("interact key", BASE + "/application/public/assets/ui/buttons/interact.png")
+    // UI Sprites
+    loader.image("interact key", path.join(BASE, "/assets/sprites/UI/buttons/interact.png"))
 
     // Tabs
-    this.load.image("Tab Button", BASE + "/application/public/assets/ui/menu/tabs/tab.png") // TAB Main
-    this.load.image("Tab buttons: Build", BASE + "/application/public/assets/ui/menu/tabs/icons/build.png")
-    this.load.image("Tab Buttons: Home", BASE + "/application/public/assets/ui/menu/tabs/icons/home.png")
+    loader.image("Tab Button", BASE + "/application/public/assets/ui/menu/tabs/tab.png") // TAB Main
+    loader.image("Tab buttons: Build", BASE + "/application/public/assets/ui/menu/tabs/icons/build.png")
+    loader.image("Tab Buttons: Home", BASE + "/application/public/assets/ui/menu/tabs/icons/home.png")
 
-    this.load.image("hotel-manager background", BASE + "/application/public/assets/ui/panels/UI Panel - Build Menu.png")
+    loader.image("hotel-manager background", path.join(BASE, "/assets/sprites/UI/panels/panel.png"))
 
 
+    // Entities
+    loader.image("player", BASE + "/application/public/assets/extras-add-later/people/fat guy 2.0.png") // DEBUG
+    loader.image("phak", BASE + "/application/public/assets/extras-add-later/people/Phak.png")
 
-    // this.load.image("player", "assets/player/player.png") // DEBUG
-    // this.load.image("player", "assets/extras-add-later/people/Cool guy.png") // DEBUG
-    this.load.image("player", BASE + "/application/public/assets/extras-add-later/people/fat guy 2.0.png") // DEBUG
-    this.load.image("phak", BASE + "/application/public/assets/extras-add-later/people/Phak.png")
+    loader.image("Dr. Time", BASE + "/application/public/assets/characters/dev/Dr. Time.png")
 
-    this.load.image("Dr. Time", BASE + "/application/public/assets/characters/dev/Dr. Time.png")
+    loader.image("big guy", BASE + "/application/public/assets/extras-add-later/people/morbidly obese guy.png")
+    loader.image("Mohammed", BASE + "/application/public/assets/extras-add-later/people/Mohammed.png")
 
-    this.load.image("big guy", BASE + "/application/public/assets/extras-add-later/people/morbidly obese guy.png")
-    this.load.image("Mohammed", BASE + "/application/public/assets/extras-add-later/people/Mohammed.png")
-
-    this.load.image("Ben 10", BASE + "/application/public/assets/extras-add-later/people/Ben 10.png")
+    loader.image("Ben 10", BASE + "/application/public/assets/extras-add-later/people/Ben 10.png")
 
 }
 
