@@ -1,5 +1,6 @@
 const { BASE } = require("obesity-utils")
 const Phaser = require("phaser")
+const path = require("path")
 
 
 
@@ -46,23 +47,42 @@ export default class Preloader extends Phaser.Scene {
         this.load.tilemapTiledJSON("tilemaptest", BASE + "/application/public/assets/extras-add-later/tile-test/tilemaptest.json")
 
 
-        // New Map
-        this.load.spritesheet("hotel tileset", BASE + "/assets/Hotel tiles.png", {frameWidth: 64, frameHeight: 64})
-        this.load.tilemapTiledJSON("hotel tilemap", BASE + "/assets/Lobby test.json")
-
-
-        // Lobby : 1
-        this.load.tilemapTiledJSON("lobby part 1", BASE + "/assets/Lobby_1.json")
-
-        // Room1_lvl1
-        this.load.spritesheet("Isymetric tiles", BASE + "assets/Isymetric tiles.png", {frameWidth: 64, frameHeight: 64})
-        this.load.tilemapTiledJSON("room1_lv1", BASE + "assets/kub rum.json")
-        this.load.spritesheet("128px BLOCK", BASE + "assets/128px BLOCK.png", {frameWidth: 64, frameHeight: 64})
-
+        // Tiles and Tilemaps
+        loadTilesets(this.load)
+        loadTilemaps(this.load)
     }
 
 
     create(){
         this.scene.start("main") // Loads Next Scene
     }
+}
+
+
+
+/**
+ * Loads Tilesets
+ *
+ * @param {Phaser.Loader.LoaderPlugin} loader Loader
+ */
+function loadTilesets(loader) {
+    loader.spritesheet("base", path.join(BASE, "/assets/hotelTiles.png"), { frameWidth: 64, frameHeight: 64 })
+}
+
+/**
+ * Loads Tilemaps
+ *
+ * Tilemaps are loaded as
+ * ```js
+ * scene:<id>
+ * lvl:<level>
+ *
+ * // Example
+ * "room:1 lvl:1"
+ * ```
+ *
+ * @param {Phaser.Loader.LoaderPlugin} loader Loader
+ */
+function loadTilemaps(loader) {
+    loader.tilemapTiledJSON("room:1 lvl:1", path.join(BASE, "/assets/rum1_lvl1.json"))
 }

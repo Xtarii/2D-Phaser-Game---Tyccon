@@ -129,11 +129,11 @@ export default class MainScene extends World {
         ///
         /// Takes the tilemap name: "hotel tilemap" - from preload
         /// Takes a tileset: "Hotel tiles" - custom id, "hotel tileset" - from preload
-        const lobby_1 = new Lobby("lobby part 1")
-        scenes.add(lobby_1)
+        // const lobby_1 = new Lobby("lobby part 1")
+        // scenes.add(lobby_1)
         // this.loadScene(lobby_1)
 
-        const Room1 = new Room_lvl1("room1_lv1")
+        const Room1 = new Room_lvl1("room:1 lvl:1")
         scenes.add(Room1)
         this.loadScene(Room1)
 
