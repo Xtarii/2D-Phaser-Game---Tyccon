@@ -1,3 +1,5 @@
+import MainScene from "../../world/scenes/mainScene.js"
+
 const { SceneObject, World } = require("obesity-components")
 
 
@@ -26,5 +28,6 @@ export class Room_lvl1 extends SceneObject {
     onLoad(s) {
         /** @type {World} */
         const scene = s
+        MainScene.player.setPosition(64*2-32, 64*3-32)
     }
 }
