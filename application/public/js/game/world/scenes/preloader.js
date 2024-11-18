@@ -90,4 +90,5 @@ function loadTilesets(loader) {
  */
 function loadTilemaps(loader) {
     loader.tilemapTiledJSON("room:1 lvl:1", path.join(BASE, "/assets/rum1_lvl1.json"))
+    loader.tilemapTiledJSON("lobby", path.join(BASE, "assets/Lobby test.json"))
 }

@@ -7,13 +7,13 @@ const { SceneObject, World, Rooms } = require("obesity-components")
 
 export default class Lobby extends SceneObject {
     constructor(map) {
-        super(map, {tileName: "Hotel tiles", key: "hotel tileset"})
+        super(map, {tileName: "hotelTiles", key: "base"})
     }
 
     onCreate() {
-        this.addLayer({name: "ground"}, "Hotel tiles")
-        this.addLayer({name: "wall", collision: true}, "Hotel tiles")
-        this.addLayer({name: "wall_over", collision: true}, "Hotel tiles")
+        this.addLayer({name: "grounds"}, "hotelTiles")
+        this.addLayer({name: "walls", collision: true}, "hotelTiles")
+        this.addLayer({name: "doors", collision: true}, "hotelTiles")
     }
 
     onLoad(s) {
