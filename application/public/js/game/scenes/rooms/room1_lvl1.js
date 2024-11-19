@@ -30,7 +30,7 @@ export class Room_lvl1 extends SceneObject {
         const scene = s
         MainScene.player.setPosition(64*2-32, 64*3-32)
         Rooms.createDoor(scene, 1, 3, () => {
-            // Load Lobby Scenes
+            scene.loadScene("lobby") // Load Lobby Scenes
         })
     }
 }
