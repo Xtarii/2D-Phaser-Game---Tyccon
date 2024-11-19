@@ -1,3 +1,4 @@
+import { Runtime } from "obesity-utils"
 import { Game } from "../../game.js"
 import MainScene from "../../world/scenes/mainScene.js"
 
@@ -25,6 +26,9 @@ export default class Lobby extends SceneObject {
 
         Rooms.createDoor(scene, 3, 4, () => { // First Door, to room A1
             if(Game.server.room) Game.server.room.send("change level", "A1")
+            const { x, y } = Runtime.Player.getLocation()
+            Runtime.Player.setLocation(x, y, "A1");
+
             scene.loadScene("room:1 lvl:1")
         })
         // Office Door
