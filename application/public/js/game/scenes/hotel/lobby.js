@@ -23,7 +23,7 @@ export default class Lobby extends SceneObject {
         this.setupPlayer()
 
 
-        Rooms.createDoor(scene, 7.5, 3, () => {
+        Rooms.createDoor(scene, 3, 4, () => {
             scene.loadScene("room:1 lvl:1")
         })
         // Office Door
