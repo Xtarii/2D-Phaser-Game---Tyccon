@@ -89,6 +89,6 @@ export namespace Rooms {
         const door = scene.add.sprite(x * 64 - 32, y * 64 - 32, "interact key")
         door.setDepth(-5)
         WorldManager.addRemovable(door) // Adds Room to be removed on new Scene load
-        addInteractableObject(door, () => callback())
+        addInteractableObject(door, callback)
     }
 }
