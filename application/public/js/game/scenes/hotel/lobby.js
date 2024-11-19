@@ -36,8 +36,8 @@ export default class Lobby extends SceneObject {
 
     setupWorld(scene) {
         // Gets Room Data
-        if(Game.server.room) Game.server.room.send("get level data", 1)
-        else scene.setupDoors(1)
+        // if(Game.server.room) Game.server.room.send("get level data", 1)
+        // else scene.setupDoors(1) // Problem is located here
 
 
 
