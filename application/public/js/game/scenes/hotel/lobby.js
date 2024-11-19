@@ -13,7 +13,7 @@ export default class Lobby extends SceneObject {
     onCreate() {
         this.addLayer({name: "grounds"}, "hotelTiles")
         this.addLayer({name: "walls", collision: true}, "hotelTiles")
-        this.addLayer({name: "doors", collision: true}, "hotelTiles")
+        this.addLayer({name: "doors"}, "hotelTiles")
     }
 
     onLoad(s) {
@@ -23,6 +23,9 @@ export default class Lobby extends SceneObject {
         this.setupPlayer()
 
 
+        Rooms.createDoor(scene, 7.5, 3, () => {
+            scene.loadScene("room:1 lvl:1")
+        })
         // Office Door
         Rooms.createDoor(scene, 15.5, 14, () => {
             console.log("Enters Office")
