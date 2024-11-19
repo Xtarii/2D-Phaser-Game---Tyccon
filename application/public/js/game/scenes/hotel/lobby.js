@@ -44,7 +44,7 @@ export default class Lobby extends SceneObject {
     }
     setupPlayer() {
         // Teleport player
-        const x = 64 * 8.5 - 32, y = 64 * 14 - 32
+        const x = 64 * 8.5 - 32, y = 64 * 8 - 32
         if(MainScene.player) MainScene.player.setPosition(
             x + Math.random() * ((64 * 2) - -(64 * 2)) + -(64 * 2),
             y + Math.random() * ((64 * 2) - -(64 * 2)) + -(64 * 2)

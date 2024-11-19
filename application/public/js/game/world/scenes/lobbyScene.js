@@ -65,7 +65,7 @@ export default class MainScene extends World {
 
 
         // Test Button ( PC )
-        const testComputer_HotelManager = this.add.sprite(200, 500, "player")
+        const testComputer_HotelManager = this.add.sprite(2900, 2900, "player")
         testComputer_HotelManager.setDepth(55)
 
         testComputer_HotelManager.manager = new Manager(this) // Build Manager
@@ -103,11 +103,7 @@ export default class MainScene extends World {
             /// Example: loading room A1 ( first room ) = "room_A1"
             ///
             /// DEBUG
-            console.log("Loads Room: room_" + room.level)
-
-            this.loadScene(`room:1 lvl:${room.level}`)
-        
-
+            console.log("Loads Room: room_" + room.name)
 
             /// We need that scene
             /// but then we can just do "this.loadScene(`room_${room.name}`)"
@@ -138,10 +134,8 @@ export default class MainScene extends World {
         // this.loadScene(lobby_1)
 
         const Room1 = new Room_lvl1("room:1 lvl:1")
-        const lobby = new Lobby("lobby")
-        scenes.add("room:1 lvl:1", Room1)
-        scenes.add("lobby", lobby)
-        this.loadScene("lobby")
+        scenes.add(Room1)
+        this.loadScene(Room1)
 
 
 
