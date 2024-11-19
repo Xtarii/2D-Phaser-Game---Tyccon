@@ -106,7 +106,7 @@ export default class MainScene extends World {
             console.log("Loads Room: room_" + room.level)
 
             this.loadScene(`room:1 lvl:${room.level}`)
-        
+
 
 
             /// We need that scene
@@ -139,8 +139,10 @@ export default class MainScene extends World {
 
         const Room1 = new Room_lvl1("room:1 lvl:1")
         const lobby = new Lobby("lobby")
+
         scenes.add("room:1 lvl:1", Room1)
         scenes.add("lobby", lobby)
+
         this.loadScene("lobby")
 
 

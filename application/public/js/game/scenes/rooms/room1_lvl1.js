@@ -1,3 +1,4 @@
+import { Game } from "../../game.js"
 import MainScene from "../../world/scenes/mainScene.js"
 
 const { SceneObject, World, Rooms } = require("obesity-components")
@@ -30,6 +31,7 @@ export class Room_lvl1 extends SceneObject {
         const scene = s
         MainScene.player.setPosition(64*2-32, 64*3-32)
         Rooms.createDoor(scene, 1, 3, () => {
+            if(Game.server.room) Game.server.room.send("change level", 1)
             scene.loadScene("lobby") // Load Lobby Scenes
         })
     }
