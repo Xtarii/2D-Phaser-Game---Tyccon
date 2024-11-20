@@ -32,16 +32,11 @@ export class Room_lvl1 extends SceneObject {
         const scene = s
         MainScene.player.setPosition(64*2-32, 64*3-32)
         Rooms.createDoor(scene, 1, 3, () => {
-<<<<<<< HEAD
-            // Load Lobby Scenes
-            scene.loadScene("lobby")
-=======
             if(Game.server.room) Game.server.room.send("change level", 1)
             const { x, y } = Runtime.Player.getLocation()
             Runtime.Player.setLocation(x, y, 1);
 
             scene.loadScene("lobby") // Load Lobby Scenes
->>>>>>> 227a2ff830a97c748c7cf5254866f1cbc99b5e40
         })
     }
 }
