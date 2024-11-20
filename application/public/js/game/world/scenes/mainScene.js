@@ -8,10 +8,6 @@ import { Room_lvl1 } from "../../scenes/rooms/room1_lvl1.js"
 
 const {
     UI,
-
-    addInteractableObject,
-
-    Manager,
     Rooms,
     World,
     scenes

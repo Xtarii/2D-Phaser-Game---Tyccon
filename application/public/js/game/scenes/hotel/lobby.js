@@ -1,7 +1,7 @@
 import { Game } from "../../game.js"
 import MainScene from "../../world/scenes/mainScene.js"
 
-const { SceneObject, World, Rooms } = require("obesity-components")
+const { SceneObject, World, Rooms, Manager, addInteractableObject } = require("obesity-components")
 const { Runtime } =  require("obesity-utils")
 
 
@@ -50,7 +50,7 @@ export default class Lobby extends SceneObject {
 
 
         // Test Button ( PC )
-        const testComputer_HotelManager = this.add.sprite(200, 500, "player")
+        const testComputer_HotelManager = scene.add.sprite(200, 500, "player")
         testComputer_HotelManager.setDepth(55)
 
         testComputer_HotelManager.manager = new Manager(this) // Build Manager
@@ -71,7 +71,7 @@ export default class Lobby extends SceneObject {
 
         /// Test Manager Interact Event
         addInteractableObject(testComputer_HotelManager, () => testComputer_HotelManager.manager.manager())
-        this.addRemovable(testComputer_HotelManager)
+        scene.addRemovable(testComputer_HotelManager)
 
 
 
