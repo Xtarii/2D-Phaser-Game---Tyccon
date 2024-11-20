@@ -53,6 +53,7 @@ export default class Server {
 
 
                 // Creates Network Player Object
+                console.log("Client connected to this server") // DEBUG
                 const networkPlayer = new NetworkPlayer(
                     Game.scene.getScene("main"), // Scene
 

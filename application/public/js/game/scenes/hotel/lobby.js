@@ -32,11 +32,6 @@ export default class Lobby extends SceneObject {
 
 
         Rooms.createDoor(scene, 3, 4, () => { // First Door, to room A1
-            if(Game.server.room) Game.server.room.send("change level", "A1")
-            const { x, y } = Runtime.Player.getLocation()
-            Runtime.Player.setLocation(x, y, "A1")
-            this.playerLastPosition = { x, y } // Sets players last position for lobby
-
             scene.loadScene("room:1 lvl:1")
         })
         // Office Door
@@ -51,6 +46,31 @@ export default class Lobby extends SceneObject {
         // Gets Room Data
         // if(Game.server.room) Game.server.room.send("get level data", 1)
         // else scene.setupDoors(1) // Problem is located here
+
+
+        // Test Button ( PC )
+        const testComputer_HotelManager = this.add.sprite(200, 500, "player")
+        testComputer_HotelManager.setDepth(55)
+
+        testComputer_HotelManager.manager = new Manager(this) // Build Manager
+
+        // Manager Event
+        testComputer_HotelManager.manager.events.on("open", () => {
+            MainScene.player.interactButton.destroy()
+            MainScene.player.interactButton = null // Removes Interact Button
+            MainScene.player.components[0].target = null // Removes Target
+
+            MainScene.player.components[0].run = false // Interact Component
+            MainScene.player.canMove = false // Player Can't Move
+        })
+        testComputer_HotelManager.manager.events.on("close", () => {
+            MainScene.player.components[0].run = true // Interact Component
+            MainScene.player.canMove = true // Player Can Move
+        })
+
+        /// Test Manager Interact Event
+        addInteractableObject(testComputer_HotelManager, () => testComputer_HotelManager.manager.manager())
+        this.addRemovable(testComputer_HotelManager)
 
 
 
@@ -69,5 +89,10 @@ export default class Lobby extends SceneObject {
             x + Math.random() * ((64 * 2) - -(64 * 2)) + -(64 * 2),
             y + Math.random() * ((64 * 2) - -(64 * 2)) + -(64 * 2)
         )
+
+
+        // Sets player level to lobby
+        if(Game.server.room) Game.server.room.send("change level", "1")
+        Runtime.Player.setLocation(MainScene.player.x, MainScene.player.y, "1");
     }
 }
