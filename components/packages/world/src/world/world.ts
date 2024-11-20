@@ -259,8 +259,15 @@ export namespace WorldManager {
      * @param sceneObject Scene Object
      */
     export function autoLoad(scene: World, sceneObject: SceneObject) {
+        scene.physics.pause() // Pauses Physics
+        scene.game.pause()
+
         if(map) removeLoadedScene()
+
         loadSceneObject(scene, sceneObject)
         sceneObject.onLoad(scene) // Scene OnLoad ( Enables Scene Setup )
+
+        scene.physics.resume() // Starts Physics
+        scene.game.pause()
     }
 }
