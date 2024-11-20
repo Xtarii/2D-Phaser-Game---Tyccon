@@ -53,7 +53,7 @@ export default class Lobby extends SceneObject {
         const testComputer_HotelManager = scene.add.sprite(250, 250, "PC")
         testComputer_HotelManager.setDepth(55)
 
-        testComputer_HotelManager.manager = new Manager(this) // Build Manager
+        testComputer_HotelManager.manager = new Manager(scene) // Build Manager
 
         // Manager Event
         testComputer_HotelManager.manager.events.on("open", () => {
