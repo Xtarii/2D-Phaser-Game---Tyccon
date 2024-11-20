@@ -65,7 +65,7 @@ export default class MainScene extends World {
 
 
         // Test Button ( PC )
-        const testComputer_HotelManager = this.add.sprite(200, 500, "player")
+        const testComputer_HotelManager = this.add.sprite(200, 500, "PC")
         testComputer_HotelManager.setDepth(55)
 
         testComputer_HotelManager.manager = new Manager(this) // Build Manager

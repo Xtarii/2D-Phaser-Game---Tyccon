@@ -64,6 +64,8 @@ function loadSprites(loader) {
 
     loader.image("Ben 10", BASE + "/application/public/assets/extras-add-later/people/Ben 10.png")
 
+    loader.image("PC", BASE + "assets/Tiles/Dator och bord.png")
+
 }
 
 /**
