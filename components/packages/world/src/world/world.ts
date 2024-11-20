@@ -268,6 +268,6 @@ export namespace WorldManager {
         sceneObject.onLoad(scene) // Scene OnLoad ( Enables Scene Setup )
 
         scene.physics.resume() // Starts Physics
-        scene.game.pause()
+        scene.game.resume()
     }
 }
