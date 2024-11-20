@@ -38,9 +38,9 @@ export class Room_lvl1 extends SceneObject {
         })
 
 
-        if(Game.server.room) Game.server.room.send("change level", "A1")
+        if(Game.server.room) Game.server.room.send("change level", 2)
         const { x, y } = Runtime.Player.getLocation()
-        Runtime.Player.setLocation(x, y, "A1")
+        Runtime.Player.setLocation(x, y, 2)
         this.playerLastPosition = { x, y } // Sets players last position for lobby
     }
 }
