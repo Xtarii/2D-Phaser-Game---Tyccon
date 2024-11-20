@@ -50,7 +50,7 @@ export default class Lobby extends SceneObject {
 
 
         // Test Button ( PC )
-        const testComputer_HotelManager = scene.add.sprite(200, 500, "player")
+        const testComputer_HotelManager = scene.add.sprite(250, 250, "PC")
         testComputer_HotelManager.setDepth(55)
 
         testComputer_HotelManager.manager = new Manager(this) // Build Manager
