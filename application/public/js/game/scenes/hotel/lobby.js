@@ -48,6 +48,7 @@ export default class Lobby extends SceneObject {
         // else scene.setupDoors(1) // Problem is located here
 
 
+
         // Test Button ( PC )
         const testComputer_HotelManager = this.add.sprite(200, 500, "player")
         testComputer_HotelManager.setDepth(55)
@@ -71,6 +72,8 @@ export default class Lobby extends SceneObject {
         /// Test Manager Interact Event
         addInteractableObject(testComputer_HotelManager, () => testComputer_HotelManager.manager.manager())
         this.addRemovable(testComputer_HotelManager)
+
+
 
 
 
