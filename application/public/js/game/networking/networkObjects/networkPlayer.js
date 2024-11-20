@@ -17,7 +17,7 @@ export default class NetworkPlayer extends Entity {
         super.update()
 
         // Network Render Level Check
-        // if(this.level !== Runtime.Player.getLocation().l) this.setVisible(false)
-        // else this.setVisible(true)
+        if(this.level != Runtime.Player.getLocation().l) this.setVisible(false)
+        else this.setVisible(true)
     }
 }
