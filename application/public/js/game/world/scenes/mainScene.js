@@ -60,30 +60,6 @@ export default class MainScene extends World {
         this.cameras.main.setZoom(1.7) // Camera Zoom
 
 
-        // Test Button ( PC )
-        const testComputer_HotelManager = this.add.sprite(200, 500, "PC")
-        testComputer_HotelManager.setDepth(55)
-
-        testComputer_HotelManager.manager = new Manager(this) // Build Manager
-
-        // Manager Event
-        testComputer_HotelManager.manager.events.on("open", () => {
-            MainScene.player.interactButton.destroy()
-            MainScene.player.interactButton = null // Removes Interact Button
-            MainScene.player.components[0].target = null // Removes Target
-
-            MainScene.player.components[0].run = false // Interact Component
-            MainScene.player.canMove = false // Player Can't Move
-        })
-        testComputer_HotelManager.manager.events.on("close", () => {
-            MainScene.player.components[0].run = true // Interact Component
-            MainScene.player.canMove = true // Player Can Move
-        })
-
-        /// Test Manager Interact Event
-        addInteractableObject(testComputer_HotelManager, () => testComputer_HotelManager.manager.manager())
-        this.addRemovable(testComputer_HotelManager)
-
 
         /// Room Change Test
         Rooms.events.on("enter", (room) => {
