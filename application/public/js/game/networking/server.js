@@ -45,6 +45,10 @@ export default class Server {
             Runtime.Player.setRole("host") // Sets Role to Host ( Default to Client )
         }else this.socket = new Client(Runtime.Server.getAddress()) // Connects to Socket Server
 
+        // this.socket = new Client("ws://192.168.250.67:1024") // Temporary
+
+
+
         // Joins Server Room
         this.join().then(() => {
             // Player join room event
@@ -60,7 +64,7 @@ export default class Server {
                     // Position
                     player.x,
                     player.y,
-                    player.l,
+                    // player.l,
 
                     // Extra Data
                     player.spriteID,
@@ -76,7 +80,7 @@ export default class Server {
                 player.onChange(() => {
                     networkPlayer.x = player.x
                     networkPlayer.y = player.y
-                    networkPlayer.level = player.l
+                    // networkPlayer.level = player.l
 
                     networkPlayer.update() // Updates Name Position
                 })
