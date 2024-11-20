@@ -222,7 +222,9 @@ export namespace WorldManager {
         cleanupCollidable() // Removes Colliders
         cleanupRemovable()  // Removes Removable
 
+        for(const layer of map.layers) layer.layer.destroy() // Force destroys layer
         map.base.destroy() // Destroys Map ( includes layers and tiles )
+        map = undefined
     }
     function cleanupCollidable() {
         const newCollidable = []
