@@ -1,3 +1,5 @@
+import { Runtime } from "obesity-utils"
+import { Game } from "../../game.js"
 import MainScene from "../../world/scenes/mainScene.js"
 
 const { SceneObject, World, Rooms } = require("obesity-components")
