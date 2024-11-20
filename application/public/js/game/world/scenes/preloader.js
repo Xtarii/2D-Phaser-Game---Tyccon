@@ -43,6 +43,7 @@ export default class Preloader extends Phaser.Scene {
 function loadSprites(loader) {
     // UI Sprites
     loader.image("interact key", path.join(BASE, "/assets/sprites/UI/buttons/interact.png"))
+    loader.image("close button", path.join(BASE, "/assets/sprites/UI/buttons/exit_button.png"))
 
     // Tabs
     loader.image("Tab Button", BASE + "/application/public/assets/ui/menu/tabs/tab.png") // TAB Main

@@ -107,7 +107,7 @@ export namespace ManagerUI {
         UIBackground.sprite.setDisplaySize(camera.displayWidth - margin, camera.displayHeight - margin)
 
         // UI Close Button
-        UICloseButton = new Button(scene, 0, 0, "interact key")
+        UICloseButton = new Button(scene, 0, 0, "close button")
         UIBackground.add(UICloseButton) // Adds Close Button
         UICloseButton.x = UIBackground.sprite.displayWidth + UICloseButton.sprite.displayWidth
         UICloseButton.y = margin - UICloseButton.sprite.displayHeight
